@@ -1,4 +1,3 @@
-
 'use strict';
 const { Model, Validator } = require('sequelize');
 
@@ -38,9 +37,15 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60]
         }
       }
-    }, {
+    },
+    {
       sequelize,
-      modelName: 'User'
+      modelName: "User",
+      defaultScope: {
+        attributes: {
+          exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
+        }
+      }
     }
   );
   return User;
