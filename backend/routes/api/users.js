@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
+//Sign up
 router.post(
     '/',
     async (req, res) => {
@@ -25,5 +26,5 @@ router.post(
       });
     }
   );
-  
+
 module.exports = router;
