@@ -2,7 +2,7 @@
 
 let options = {}
 options.tableName = "Users"
-options.schema = airbnb
+options.schema = 'airbnb'
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
