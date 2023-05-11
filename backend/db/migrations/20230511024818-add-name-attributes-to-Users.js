@@ -1,5 +1,9 @@
 'use strict';
 
+let options = {}
+options.tableName = "Users"
+options.schema = airbnb
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -9,11 +13,11 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn('users', 'firstName', {
+    await queryInterface.addColumn(options, 'firstName', {
       type: Sequelize.STRING,
 
     });
-    await queryInterface.addColumn('users', 'lastName', {
+    await queryInterface.addColumn(options, 'lastName', {
       type: Sequelize.STRING,
 
     });
@@ -26,7 +30,7 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.addColumn('users', 'firstName');
-    await queryInterface.addColumn('users', 'lastName');
+    await queryInterface.addColumn(options, 'firstName');
+    await queryInterface.addColumn(options, 'lastName');
   }
 };
