@@ -1,8 +1,10 @@
 'use strict';
 
-let options = {}
-options.tableName = "Users"
-options.schema = 'airbnb'
+let options = {};
+options.tableName = 'Users';
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
