@@ -25,7 +25,7 @@ module.exports = {
         id: 1,
         url: 'image1.jpg',
         imageableId: 1,
-        imageableType: 'spot',
+        imageableType: 'Spot',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -33,7 +33,7 @@ module.exports = {
         id: 2,
         url: 'image2.jpg',
         imageableId: 2,
-        imageableType: 'spot',
+        imageableType: 'Spot',
         createdAt: new Date(),
         updatedAt: new Date()
       }
