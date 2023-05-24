@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'imageableId',
         constraints: false
       });
-      Image.belongsToOne(models.User, {
+      Image.belongsTo(models.User, {
         foreignKey: 'imageableId',
         constraints: false
       })
