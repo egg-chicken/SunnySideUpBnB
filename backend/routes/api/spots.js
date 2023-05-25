@@ -10,6 +10,13 @@ router.get('/', async (req, res) => {
     res.json(spots);
 })
 
+//get all spots owned by the current user
+router.get('/current', requireAuth, async (req, res) => {
+    const currentUserId = req.user.id;
 
+    const spots = await Spot.findAll({ where: { ownerId: currentUserId } });
+    res.json(spots);
+
+})
 
 module.exports = router;
