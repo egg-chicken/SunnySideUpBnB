@@ -79,4 +79,11 @@ app.use((err, _req, res, _next) => {
     stack: isProduction ? null : err.stack
   });
 });
-module.exports = app;
+
+if (require.main === module) {
+  const port = 8000;
+  app.listen(port, () => console.log('Server is listening on port', port));
+} else {
+  module.exports = app;
+}
+//module.exports = app;
