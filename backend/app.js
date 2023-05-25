@@ -80,10 +80,4 @@ app.use((err, _req, res, _next) => {
   });
 });
 
-if (require.main === module) {
-  const port = 8000;
-  app.listen(port, () => console.log('Server is listening on port', port));
-} else {
-  module.exports = app;
-}
-//module.exports = app;
+module.exports = app;
