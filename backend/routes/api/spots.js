@@ -19,9 +19,17 @@ router.get('/current', requireAuth, async (req, res) => {
 
 })
 
-//get details of a spot from an id
+//get details of a spot from an id - not complete
 router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    const detailId = await Spot.findByPk(id);
 
+    if(!detailId) {
+        res.status(404)
+        res.json({message: "Spot couldn't be found"})
+    }
+
+    res.json(detailId);
 })
 
 module.exports = router;

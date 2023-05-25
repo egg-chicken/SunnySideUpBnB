@@ -23,7 +23,7 @@ module.exports = {
     await queryInterface.bulkInsert(options, [
       {
         id: 1,
-        url: 'image1.jpg',
+        url: 'image1 url',
         imageableId: 1,
         imageableType: 'Spot',
         createdAt: new Date(),
@@ -31,8 +31,16 @@ module.exports = {
       },
       {
         id: 2,
-        url: 'image2.jpg',
+        url: 'image2 url',
         imageableId: 2,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 3,
+        url: 'image3 url',
+        imageableId: 3,
         imageableType: 'Spot',
         createdAt: new Date(),
         updatedAt: new Date()
