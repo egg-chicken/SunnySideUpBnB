@@ -94,7 +94,7 @@ router.get('/:id', async (req, res) => {
             {
                 model: Image,
                 as: 'SpotImages',
-                attributes: ['id', 'url'],
+                attributes: ['id', 'url', 'preview'],
             },
             {
                 model: User,
