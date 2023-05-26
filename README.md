@@ -2,7 +2,9 @@
 
 ## Database Schema Design
 
-[![alt text](./schema.png)](https://dbdiagram.io/d/6451e6c1dca9fb07c467f098)
+https://sunny-side-up-bnb.onrender.com
+
+[![alt text](./may_schema_update.png)](https://dbdiagram.io/d/6451e6c1dca9fb07c467f098)
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
