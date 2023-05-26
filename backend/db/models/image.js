@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Image.init({
     url: DataTypes.STRING,
+    preivew: DataTypes.BOOLEAN,
     imageableId: DataTypes.INTEGER,
     imageableType: DataTypes.ENUM('User', 'Review', 'Spot')
   }, {

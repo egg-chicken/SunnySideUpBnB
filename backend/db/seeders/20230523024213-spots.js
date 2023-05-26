@@ -23,7 +23,6 @@ module.exports = {
         name: 'Spot 1',
         description: 'This is Spot 1',
         price: 100,
-        previewImage: 'image1.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -39,7 +38,6 @@ module.exports = {
         name: 'Spot 2',
         description: 'This is Spot 2',
         price: 100,
-        previewImage: 'image1.jpg',
         createdAt: new Date(),
         updatedAt: new Date()
       },

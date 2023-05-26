@@ -18,6 +18,9 @@ module.exports = {
       url: {
         type: Sequelize.STRING
       },
+      preview: {
+        type: Sequelize.BOOLEAN
+      },
       imageableId: {
         type: Sequelize.INTEGER
       },
