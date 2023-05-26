@@ -75,8 +75,9 @@ router.get('/current', requireAuth, async (req, res) => {
 
 });
 
-//get details of a spot from an id - not complete
+//get details of a spot from an id
 router.get('/:id', async (req, res) => {
+
     const id = req.params.id;
     const detailId = await Spot.findByPk(id, {
         attributes: {
@@ -105,16 +106,16 @@ router.get('/:id', async (req, res) => {
                 model: Review,
                 attributes: []
             }
-        ]
-
+        ],
+        group: ['Spot.id', 'SpotImages.id', 'Owner.id']
     });
 
-    if(!detailId) {
-        res.status(404)
-        res.json({message: "Spot couldn't be found"})
-    }
+    if (!detailId) {
+        res.status(404).json({ message: "Spot couldn't be found" });
+      } else {
+        res.json(detailId);
+      }
 
-    res.json(detailId);
 })
 
 //create a spot
