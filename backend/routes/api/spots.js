@@ -118,7 +118,7 @@ router.get('/:id', async (req, res) => {
 
 })
 
-//create a spot
+//create a spot - idk tbh
 router.post('/', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
@@ -141,6 +141,7 @@ router.post('/', requireAuth, async (req, res) => {
     }
 
     const spot = await Spot.create({
+        ownerId: req.user.id,
         address,
         city,
         state,
@@ -150,10 +151,21 @@ router.post('/', requireAuth, async (req, res) => {
         name,
         description,
         price,
-        ownerId: req.user.id
       });
 
       res.json(spot)
 })
+
+//add an image to a spot based on the Spot's id
+
+
+//edit a spot
+
+
+//delete a spot
+
+
+
+
 
 module.exports = router;
