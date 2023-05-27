@@ -18,9 +18,9 @@ router.get('/current', requireAuth, async (req, res) => {
           {
             model: Spot,
             exclude: ['createdAt', 'updatedAt'],
-            include: [[
+            include: [
                 sequelize.col('SpotImages.url'), 'previewImage'
-            ]]
+            ]
           },
           {
             model: Image,
