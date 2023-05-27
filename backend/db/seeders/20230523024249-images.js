@@ -22,7 +22,7 @@ module.exports = {
     */
     await queryInterface.bulkInsert(options, [
       {
-        id: 1,
+        //id: 1,
         url: 'image1 url',
         preview: true,
         imageableId: 1,
@@ -31,7 +31,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 2,
+        //id: 2,
         url: 'image2 url',
         preview: true,
         imageableId: 2,
@@ -40,7 +40,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 3,
+        //id: 3,
         url: 'image3 url',
         preview: true,
         imageableId: 3,
