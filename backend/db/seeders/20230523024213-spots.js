@@ -12,7 +12,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
      await queryInterface.bulkInsert(options, [
       {
-        id: 1,
+        // id: 1,
         ownerId: 1,
         address: '12345 test street',
         city: 'test01',
@@ -27,7 +27,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 2,
+        // id: 2,
         ownerId: 2,
         address: '2 test street',
         city: 'test02',
@@ -42,7 +42,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        id: 3,
+        // id: 3,
         ownerId: 3,
         address: '3 test street',
         city: 'test02',

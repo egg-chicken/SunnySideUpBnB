@@ -73,7 +73,7 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({Spots: spots});
 });
 
-//get details of a spot from an id
+//get details of a spot from an id - idk whats wrong
 router.get('/:id', async (req, res) => {
 
     const id = req.params.id;
