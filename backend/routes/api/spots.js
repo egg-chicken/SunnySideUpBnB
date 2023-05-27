@@ -73,7 +73,7 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({Spots: spots});
 });
 
-//get details of a spot from an id - idk whats wrong
+//get details of a spot from an id
 router.get('/:id', async (req, res) => {
 
     const id = req.params.id;
@@ -154,7 +154,7 @@ router.post('/', requireAuth, async (req, res) => {
       res.json(spot)
 });
 
-//add an image to a spot based on the Spot's id - works in local but not dev
+//add an image to a spot based on the Spot's id
 router.post('/:id/images', requireAuth, async (req, res) => {
     const spotId = req.params.id;
     const { url, preview } = req.body;

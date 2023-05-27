@@ -51,7 +51,7 @@ module.exports = {
         lat: 123.456,
         lng: 78.910,
         name: 'Spot 2',
-        description: 'This is Spot 2',
+        description: 'This is Spot 3',
         price: 100,
         createdAt: new Date(),
         updatedAt: new Date()

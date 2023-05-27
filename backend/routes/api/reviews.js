@@ -10,9 +10,6 @@ router.get('/current', requireAuth, async (req, res) => {
         where: {
           userId: currentUser.id
         },
-        attributes: {
-
-        },
         include: [
           {
             model: User,
@@ -20,14 +17,17 @@ router.get('/current', requireAuth, async (req, res) => {
           },
           {
             model: Spot,
+            exclude: ['createdAt', 'updatedAt'],
+            include: [[
+                sequelize.col('SpotImages.url'), 'previewImage'
+            ]]
           },
           {
             model: Image,
-            as: 'SpotImages',
+            as: 'ReviewImages',
             attributes: ['id', 'url']
            }
         ],
-        group: ['Spot.id', 'SpotImages.url']
       });
     res.json({Reviews: reviews})
 })
