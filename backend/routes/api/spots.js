@@ -6,7 +6,6 @@ const { requireAuth } = require('../../utils/auth');
 
 //get all spots
 router.get('/', async (req, res) => {
-    try{
       const spots = await Spot.findAll({
         attributes: {
           include: [
@@ -36,10 +35,7 @@ router.get('/', async (req, res) => {
       });
 
     res.json({Spots: spots})
-} catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server Error' });
-  }
+
 });
 
 //get all spots owned by the current user
