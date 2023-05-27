@@ -31,13 +31,13 @@ router.get('/', async (req, res) => {
           }
         ],
 
-        group: ['Spot.id']
+        group: ['Spot.id', 'SpotImages.url']
 
       });
 
     res.json({Spots: spots})
 
-  });
+});
 
 //get all spots owned by the current user
 router.get('/current', requireAuth, async (req, res) => {
@@ -116,7 +116,7 @@ router.get('/:id', async (req, res) => {
         res.json(detailId);
       }
 
-})
+});
 
 //create a spot - idk tbh
 router.post('/', requireAuth, async (req, res) => {
@@ -154,10 +154,12 @@ router.post('/', requireAuth, async (req, res) => {
       });
 
       res.json(spot)
-})
+});
 
 //add an image to a spot based on the Spot's id
+router.patch('/:id/images', requireAuth, async (req, res) => {
 
+});
 
 //edit a spot
 
