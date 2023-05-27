@@ -155,8 +155,25 @@ router.post('/', requireAuth, async (req, res) => {
 });
 
 //add an image to a spot based on the Spot's id
-router.patch('/:id/images', requireAuth, async (req, res) => {
+router.post('/:id/images', requireAuth, async (req, res) => {
+    const spotId = req.params.id;
+    const { url, preview } = req.body;
 
+    const spot = await Spot.findOne({
+        where: { id: spotId }
+      });
+
+      if (!spot) {
+        return res.status(404).json({ message: "Spot couldn't be found" });
+      }
+
+      // Create a new image for the spot
+      const image = await Image.create({
+        url,
+        preview
+      });
+
+      res.json(image);
 });
 
 //edit a spot
