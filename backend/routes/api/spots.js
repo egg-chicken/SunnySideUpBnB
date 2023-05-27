@@ -154,7 +154,7 @@ router.post('/', requireAuth, async (req, res) => {
       res.json(spot)
 });
 
-//add an image to a spot based on the Spot's id
+//add an image to a spot based on the Spot's id - works in local but not dev
 router.post('/:id/images', requireAuth, async (req, res) => {
     const spotId = req.params.id;
     const { url, preview } = req.body;
@@ -167,7 +167,6 @@ router.post('/:id/images', requireAuth, async (req, res) => {
         return res.status(404).json({ message: "Spot couldn't be found" });
       }
 
-      // Create a new image for the spot
       const image = await Image.create({
         url,
         preview
@@ -177,7 +176,33 @@ router.post('/:id/images', requireAuth, async (req, res) => {
 });
 
 //edit a spot
+router.put('/:id', requireAuth, async (req, res) => {
+    const spotId = req.params.id;
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
+    const spot = await Spot.findOne({
+        where: { id: spotId, ownerId: req.user.id }
+      });
+
+      if (!spot) {
+        return res.status(404).json({ message: "Spot couldn't be found" });
+      }
+
+      // Update the spot with the new information
+      await spot.update({
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+      });
+
+      res.status(200).json(spot);
+});
 
 //delete a spot
 
