@@ -277,4 +277,48 @@ router.get('/:id/reviews', async (req, res) => {
 
       res.json({ Reviews: reviews });
 });
+
+//create a review for a spot based on the spot's id
+router.post('/:id/reviews', requireAuth, async (req, res) => {
+    const { id } = req.params;
+    const { review, stars } = req.body;
+    const userId = req.user.id;
+
+    const spot = await Spot.findByPk(id);
+
+    if (!review || !stars) {
+        res.status(400);
+        res.json({
+            message: 'Bad Request',
+            errors: {
+            review: 'Review text is required',
+            stars: 'Stars must be an integer from 1 to 5'
+            }
+        });
+    }
+
+    if (!spot) {
+      return res.status(404).json({ message: "Spot couldn't be found" });
+    }
+
+    const existingReview = await Review.findOne({
+      where: {
+        id,
+        userId
+      }
+    });
+
+    if (existingReview) {
+      return res.status(500).json({ message: 'User already has a review for this spot' });
+    }
+
+    const newReview = await Review.create({
+      userId,
+      id,
+      review,
+      stars
+    });
+
+    res.status(201).json(newReview);
+})
 module.exports = router;
