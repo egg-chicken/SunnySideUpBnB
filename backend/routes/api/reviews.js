@@ -101,7 +101,7 @@ router.put('/:id', requireAuth, async (req, res) => {
       res.json(existingReview);
 });
 
-//delete a review
+//delete a review -- idk
 router.delete('/:id', requireAuth, async (req, res) => {
     const reviewId = req.params.id;
 
@@ -116,10 +116,15 @@ router.delete('/:id', requireAuth, async (req, res) => {
     if(review.ownerId !== req.user.id){
         return res.status(403).json({message: "Forbidden"});
     }
-    
+
     await review.destroy();
 
     res.status(200).json({ message: 'Successfully deleted' });
 });
+
+
+
+
+
 
 module.exports = router;
