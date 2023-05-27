@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
       });
       Image.belongsTo(models.Spot, {
         foreignKey: 'imageableId',
-        constraints: false
+        constraints: false,
+        as: 'SpotImages'
       });
       Image.belongsTo(models.User, {
         foreignKey: 'imageableId',
