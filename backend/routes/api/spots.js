@@ -221,5 +221,9 @@ router.delete('/:id', requireAuth, async (req, res) => {
 
     });
 
+//add query filters to get all spots
+// router.get('/spots?:query', async (req, res) => {
+
+// })
 
 module.exports = router;
