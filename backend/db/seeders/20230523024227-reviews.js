@@ -20,7 +20,7 @@ backend/db/models/review.js     *   name: 'John Doe',
      * }], {});
     */
 await queryInterface.bulkInsert(options, [{
-        id: 1,
+        //id: 1,
         userId: 1,
         spotId: 1,
         review: 'gorgeous house',
@@ -29,7 +29,7 @@ await queryInterface.bulkInsert(options, [{
         updatedAt: new Date()
       },
       {
-        id: 2,
+        //id: 2,
         userId: 2,
         spotId: 2,
         review: 'beautiful area',
@@ -38,7 +38,7 @@ await queryInterface.bulkInsert(options, [{
         updatedAt: new Date()
       },
       {
-        id: 3,
+        //id: 3,
         userId: 3,
         spotId: 3,
         review: 'not the best',
