@@ -181,11 +181,15 @@ router.put('/:id', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
     const spot = await Spot.findOne({
-        where: { id: spotId, ownerId: req.user.id }
+        where: { id: spotId}
       });
 
       if (!spot) {
         return res.status(404).json({ message: "Spot couldn't be found" });
+      }
+      
+      if(spot.ownerId !== req.user.id){
+        return res.status(403).json({message: "Forbidden"});
       }
 
       await spot.update({
