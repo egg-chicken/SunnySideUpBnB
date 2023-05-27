@@ -38,7 +38,7 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({Reviews: reviews})
 });
 
-//add an image to a review based on the reviews id
+//add an image to a review based on the reviews id - not complete
 router.post('/:id/images', requireAuth, async (req, res) => {
     const { id } = req.params;
     const { url } = req.body;
@@ -68,5 +68,39 @@ router.post('/:id/images', requireAuth, async (req, res) => {
     res.json(newImage);
 
 });
+
+//edit a review
+router.put('/:id', requireAuth, async (req, res) => {
+    const reviewId = req.params.id;
+    const { review, stars } = req.body;
+
+    const existingReview = await Review.findOne({
+        where: { id: reviewId }
+      });
+
+      if(!review || !stars) {
+        res.status(400);
+        res.json({
+            message: 'Bad Request',
+            errors: {
+                review: "Review text is required",
+                stars: "Stars must be an integer from 1 to 5",
+            }
+        });
+      }
+
+      if (!existingReview) {
+        return res.status(404).json({ message: "Review couldn't be found" });
+      }
+
+      existingReview.review = review;
+      existingReview.stars = stars;
+
+      await existingReview.save();
+
+      res.json(existingReview);
+});
+
+
 
 module.exports = router;
