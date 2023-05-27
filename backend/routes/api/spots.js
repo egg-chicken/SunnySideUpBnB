@@ -71,11 +71,10 @@ router.get('/current', requireAuth, async (req, res) => {
             }
           ],
 
-          group: ['Spot.id']
+          group: ['Spot.id', 'SpotImages.url']
 
     });
     res.json({Spots: spots});
-
 });
 
 //get details of a spot from an id
