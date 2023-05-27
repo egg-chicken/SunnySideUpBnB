@@ -313,12 +313,14 @@ router.post('/:id/reviews', requireAuth, async (req, res) => {
     }
 
     const newReview = await Review.create({
-      userId,
       id,
+      userId,
       review,
       stars
     });
 
     res.status(201).json(newReview);
-})
+});
+
+
 module.exports = router;
