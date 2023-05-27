@@ -116,7 +116,7 @@ router.get('/:id', async (req, res) => {
 
 });
 
-//create a spot - idk tbh
+//create a spot
 router.post('/', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
@@ -184,10 +184,28 @@ router.put('/:id', requireAuth, async (req, res) => {
         where: { id: spotId}
       });
 
+        if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+            res.status(400);
+            res.json({
+                message: 'Bad Request',
+                errors: {
+                address: 'Street address is required',
+                city: 'City is required',
+                state: 'State is required',
+                country: 'Country is required',
+                lat: 'Latitude is not valid',
+                lng: 'Longitude is not valid',
+                name: 'Name must be less than 50 characters',
+                description: 'Description is required',
+                price: 'Price per day is required'
+                }
+            });
+        }
+
       if (!spot) {
         return res.status(404).json({ message: "Spot couldn't be found" });
       }
-      
+
       if(spot.ownerId !== req.user.id){
         return res.status(403).json({message: "Forbidden"});
       }
