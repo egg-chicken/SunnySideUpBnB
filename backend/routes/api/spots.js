@@ -315,7 +315,7 @@ router.post('/:id/reviews', requireAuth, async (req, res) => {
     res.status(201).json(newReview);
 });
 
-//create a booking from a Spot based on thr spots id
+//create a booking from a Spot based on thr spots id - not complete
 //spot must Not belong to the current user . . .
 router.post('/:id/bookings', requireAuth, async (req, res) => {
     const id = req.params.id;
@@ -325,6 +325,15 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(id);
     if (!spot) {
       return res.status(404).json({ message: "Spot couldn't be found" });
+    }
+
+    if(!startDate || !endDate) {
+        return res.status(400).json({
+            message: "Bad request",
+            errors: {
+                endDate: "endDate cannot be on or before startDate"
+            }
+        });
     }
 
     if (spot.ownerId === currentUserId) {
@@ -368,5 +377,6 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
 
     res.status(200).json(booking);
 });
+
 
 module.exports = router;
