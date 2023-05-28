@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { Spot, Image, Booking, User, Review, sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
+const { Op } = require('sequelize');
 
 //get all spots
 router.get('/', async (req, res) => {
@@ -314,5 +315,58 @@ router.post('/:id/reviews', requireAuth, async (req, res) => {
     res.status(201).json(newReview);
 });
 
+//create a booking from a Spot based on thr spots id
+//spot must Not belong to the current user . . .
+router.post('/:id/bookings', requireAuth, async (req, res) => {
+    const id = req.params.id;
+    const { startDate, endDate } = req.body;
+    const currentUserId = req.user.id;
+
+    const spot = await Spot.findByPk(id);
+    if (!spot) {
+      return res.status(404).json({ message: "Spot couldn't be found" });
+    }
+
+    if (spot.ownerId === currentUserId) {
+      return res.status(403).json({ message: "You cannot book your own spot" });
+    }
+
+    const existingBooking = await Booking.findOne({
+      where: {
+        id,
+        [Op.or]: [
+          {
+            startDate: {
+              [Op.lte]: endDate
+            }
+          },
+          {
+            endDate: {
+              [Op.gte]: startDate
+            }
+          }
+        ]
+      }
+    });
+
+    if (existingBooking) {
+      return res.status(403).json({
+        message: "Sorry, this spot is already booked for the specified dates",
+        errors: {
+          startDate: "Start date conflicts with an existing booking",
+          endDate: "End date conflicts with an existing booking"
+        }
+      });
+    }
+
+    const booking = await Booking.create({
+      id,
+      userId: currentUserId,
+      startDate,
+      endDate
+    });
+
+    res.status(200).json(booking);
+});
 
 module.exports = router;

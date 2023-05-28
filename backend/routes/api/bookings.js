@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const { Spot, Image, Booking, User, Review, sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
-//get all of the current user's bookings - idk
+//get all of the current user's bookings - idk not complete
 router.get('/current', requireAuth, async (req, res) => {
     const currentUserId = req.user;
 
@@ -24,6 +24,8 @@ router.get('/current', requireAuth, async (req, res) => {
 
     res.json({Bookings: bookings});
 });
+
+
 
 
 
