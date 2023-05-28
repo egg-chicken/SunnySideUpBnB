@@ -22,7 +22,7 @@ const validateLogin = [
 //Log in
 router.post(
     '/',
-    validateLogin,
+   // validateLogin,
     async (req, res, next) => {
       const { credential, password } = req.body;
 
@@ -34,6 +34,16 @@ router.post(
           }
         }
       });
+
+      // if (!credential || !password) {
+      // return res.status(400).json({
+      // message: "Bad Request",
+      // errors: {
+      //   credential: "Email or username is required",
+      //   password: "Password is required"
+      //       }
+      //     });
+      //   }
 
       if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
         const err = new Error('Login failed');
