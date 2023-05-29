@@ -84,9 +84,9 @@ router.get('/:id', async (req, res) => {
                 // [
                 //     sequelize.fn("COUNT", sequelize.cast(sequelize.col("Reviews.id"), 'FLOAT')),"numReviews"
                 // ],
-                [
-                    sequelize.fn("AVG", sequelize.cast(sequelize.col("Reviews.stars"), 'FLOAT')),"avgStarRating"
-                ]
+                // [
+                //     sequelize.fn("AVG", sequelize.cast(sequelize.col("Reviews.stars"), 'FLOAT')),"avgStarRating"
+                // ]
             ],
         },
         include: [
@@ -101,10 +101,10 @@ router.get('/:id', async (req, res) => {
                 as: 'Owner',
                 attributes: ['id', 'firstName', 'lastName']
             },
-            {
-                model: Review,
-                attributes: []
-            }
+            // {
+            //     model: Review,
+            //     attributes: []
+            // }
         ],
         group: ['Spot.id', 'SpotImages.id', 'Owner.id']
     });
@@ -116,7 +116,8 @@ router.get('/:id', async (req, res) => {
     const reviewsInfo = await Review.findAll({
       where: { spotId: detailId.id},
       attributes: [
-        [sequelize.fn("COUNT", sequelize.col("Review.spotId")),"numReviews"]
+        [sequelize.fn("COUNT", sequelize.col("Review.spotId")),"numReviews"],
+        [sequelize.fn("AVG", sequelize.col("Review.stars")),"avgStarRating"]
       ]
     })
 
@@ -124,6 +125,7 @@ router.get('/:id', async (req, res) => {
     const numReviewsInfo = reviewsInfo[0].toJSON();
 
     detailIdInfo.numReviews = numReviewsInfo.numReviews;
+    detailIdInfo.avgStarRating = numReviewsInfo.avgStarRating
 
     res.json(detailIdInfo);
 
