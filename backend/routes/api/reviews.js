@@ -6,17 +6,11 @@ const { requireAuth } = require('../../utils/auth');
 
 //get all reviews of the current user - not complete
 router.get('/current', requireAuth, async (req, res) => {
-    const currentUser = req.user;
+    const userId = req.user.id;
+
     const reviews = await Review.findAll({
         where: {
-          userId: currentUser.id
-        },
-        attributes: {
-            include: [
-                 [
-                    sequelize.col('SpotImages.url'), 'previewImage'
-                ]
-            ]
+          userId
         },
         include: [
           {
@@ -25,8 +19,17 @@ router.get('/current', requireAuth, async (req, res) => {
           },
           {
             model: Spot,
-            exclude: ['createdAt', 'updatedAt'],
-            as: 'SpotImages'
+            attributes: {
+              exclude: ['createdAt', 'updatedAt'],
+            },
+            include: [
+              {
+                model: Image,
+                as: 'SpotImages',
+                attributes: [],
+                where: { preview: true}
+              }
+            ]
           },
           {
             model: Image,
@@ -35,6 +38,25 @@ router.get('/current', requireAuth, async (req, res) => {
            }
         ],
       });
+
+    for(let i = 0; i < reviews.length; i ++){
+      const review = reviews[i];
+      const showPreviewImage = await Image.findOne({
+        where: {
+          imageableId: review.Spot.id,
+          imageableType: 'Spot',
+          preview: true
+        },
+        attributes: ['url'],
+      });
+
+      if(showPreviewImage){
+        reviews[i].Spot.dataValues.previewImage = showPreviewImage.url;
+      } else {
+        reviews[i].Spot.previewImage = null;
+      }
+    }
+    
     res.json({Reviews: reviews})
 });
 
