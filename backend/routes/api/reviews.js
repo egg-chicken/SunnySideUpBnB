@@ -6,7 +6,7 @@ const { requireAuth } = require('../../utils/auth');
 
 //get all reviews of the current user
 router.get('/current', requireAuth, async (req, res) => {
-    const userId = req.user.id;
+    const userId = req.user;
 
     const reviews = await Review.findAll({
         where: {
