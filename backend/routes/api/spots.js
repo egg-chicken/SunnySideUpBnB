@@ -167,10 +167,12 @@ router.post('/:id/images', requireAuth, async (req, res) => {
       if (!spot) {
         return res.status(404).json({ message: "Spot couldn't be found" });
       }
+      const image = await Image.create({url, preview});
 
-      const image = await Image.create({
-        url,
-        preview
+      return res.json({
+        id: spotId,
+        url: image.url,
+        preview: image.preview
       });
 
       res.json(image);
