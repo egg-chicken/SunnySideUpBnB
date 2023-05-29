@@ -116,8 +116,8 @@ router.get('/:id', async (req, res) => {
     const reviewsInfo = await Review.findAll({
       where: { spotId: detailId.id},
       attributes: [
-        [sequelize.fn("COUNT", sequelize.col("Review.spotId")),"numReviews"],
-        [sequelize.fn("AVG", sequelize.col("Review.stars")),"avgStarRating"]
+        [sequelize.fn("COUNT", sequelize.cast(sequelize.col("Review.spotId"), 'INTEGER')),"numReviews"],
+        [sequelize.fn("AVG", sequelize.cast(sequelize.col("Review.stars"), 'FLOAT')),"avgStarRating"]
       ]
     })
 
