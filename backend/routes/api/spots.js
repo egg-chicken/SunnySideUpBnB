@@ -183,7 +183,7 @@ router.post('/:id/images', requireAuth, async (req, res) => {
         preview: image.preview
       });
 
-      res.json(image);
+     // res.json(image);
 });
 
 //edit a spot
