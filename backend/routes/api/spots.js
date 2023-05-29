@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const { Spot, Image, Booking, User, Review, sequelize } = require('../../db/models');
+const { Spot, Image, Booking, User, Review, sequelize, Sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
 
@@ -116,7 +116,7 @@ router.get('/:id', async (req, res) => {
     const reviewsInfo = await Review.findAll({
       where: { spotId: detailId.id},
       attributes: [
-        [sequelize.fn("COUNT", sequelize.cast(sequelize.col("Review.spotId"), 'INTEGER')),"numReviews"],
+        [Sequelize.fn("COUNT", Sequelize.cast(Sequelize.col("Review.spotId"), 'INTEGER')),"numReviews"],
         [sequelize.fn("AVG", sequelize.cast(sequelize.col("Review.stars"), 'FLOAT')),"avgStarRating"]
       ]
     })
@@ -389,7 +389,7 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
         });
     }
 
-    //fix existing booking . . . 
+    //fix existing booking . . .
     if (spot.ownerId === userId) {
       return res.status(403).json({ message: "You cannot book your own spot" });
     }
