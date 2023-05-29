@@ -74,7 +74,7 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({Spots: spots});
 });
 
-//get details of a spot from an id
+//get details of a spot from an id -- not complete
 router.get('/:id', async (req, res) => {
 
     const id = +req.params.id;
@@ -180,7 +180,7 @@ router.post('/:id/images', requireAuth, async (req, res) => {
           {
             model: Image,
             as: 'SpotImages',
-            attributes: ['id', 'url', 'preview']
+            //attributes: ['id', 'url', 'preview']
           }
         ]
 
