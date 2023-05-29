@@ -6,21 +6,45 @@ const { requireAuth } = require('../../utils/auth');
 
 //get all of the current user's bookings - idk not complete
 router.get('/current', requireAuth, async (req, res) => {
-    const currentUserId = req.user;
+    const userId = req.user.id;
 
     const bookings = await Booking.findAll({
         where: {
-            userId: currentUserId.id
+          userId
           },
         include: {
             model: Spot,
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', ],
-        //     include: {
-        //     model: SpotImages,
-        //     attributes: ['url'],
-        //   },
-        }
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'],
+            include: {
+              model: Image,
+              as: 'SpotImages',
+              where: { preview: true},
+              attributes: []
+            }
+        },
     });
+
+    for (let i = 0; i < bookings.length; i ++) {
+      const booking = bookings[i];
+
+      if(booking.Spot){
+        const bookingId = booking.Spot.id;
+        const bookPreviewImage = await Image.findOne({
+          where: {
+            imageableId: bookingId,
+            imageableType: 'Spot',
+            preview: true
+          },
+          attributes: ['url']
+        });
+
+        if(bookPreviewImage){
+          bookings[i].Spot.dataValues.previewImage = bookPreviewImage.url;
+        } else {
+          bookings[i].Spot.dataValues.bookPreviewImage = null;
+        }
+      }
+    }
 
     res.json({Bookings: bookings});
 });
@@ -96,7 +120,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
     if (booking.startDate <= currentDate) {
       return res.status(403).json({ message: "Bookings that have been started can't be deleted" });
     }
-    
+
     if (!booking) {
         return res.status(404).json({ message: "Booking couldnt be found" });
       }
