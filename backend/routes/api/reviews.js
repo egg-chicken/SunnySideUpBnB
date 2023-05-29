@@ -53,12 +53,12 @@ router.get('/current', requireAuth, async (req, res) => {
         attributes: ['url'],
       });
 
-      // if(showPreviewImage){
-      //   reviews[i].Spot.dataValues.previewImage = showPreviewImage.url;
-      // } else {
-      //   reviews[i].Spot.dataValues.showPreviewImage = null;
-      // }
-      review.Spot.dataValues.previewImage = showPreviewImage ? showPreviewImage.url : null
+      if(showPreviewImage){
+        reviews[i].Spot.dataValues.previewImage = showPreviewImage.url;
+      } else {
+        reviews[i].Spot.dataValues.showPreviewImage = null;
+      }
+      
     }
   }
     res.json({Reviews: reviews})
