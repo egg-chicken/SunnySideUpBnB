@@ -109,6 +109,8 @@ router.get('/:id', async (req, res) => {
         group: ['Spot.id', 'SpotImages.id', 'Owner.id']
     });
 
+    detailId.numReviews = parseInt(detailId.numReviews);
+    
     if (!detailId) {
         res.status(404).json({ message: "Spot couldn't be found" });
       } else {
