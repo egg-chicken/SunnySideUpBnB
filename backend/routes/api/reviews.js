@@ -92,7 +92,6 @@ router.post('/:id/images', requireAuth, async (req, res) => {
         imageableType: 'Review'
     });
 
-    //res.json(newImage);
     return res.json({
       id: newImage.id,
       url: newImage.url
@@ -131,9 +130,10 @@ router.put('/:id', requireAuth, async (req, res) => {
       res.json(existingReview);
 });
 
-//delete a review -- idk
+//delete a review
 router.delete('/:id', requireAuth, async (req, res) => {
     const reviewId = req.params.id;
+    const ownerId = req.user.id
 
     const review = await Review.findOne({
         where: { id: reviewId }
@@ -143,7 +143,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
         return res.status(404).json({ message: "Spot couldn't be found" });
     }
 
-    if(review.ownerId !== req.user.id){
+    if(review !== ownerId){
         return res.status(403).json({message: "Forbidden"});
     }
 
