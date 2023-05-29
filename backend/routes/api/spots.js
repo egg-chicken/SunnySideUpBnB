@@ -109,23 +109,23 @@ router.get('/:id', async (req, res) => {
         group: ['Spot.id', 'SpotImages.id', 'Owner.id']
     });
 
+    if (!detailId) {
+      res.status(404).json({ message: "Spot couldn't be found" });
+    }
+
     const reviewsInfo = await Review.findAll({
       where: { spotId: detailId.id},
       attributes: [
-        [sequelize.fn("COUNT", sequelize.col("Reviews.spotId")),"numReviews"]
+        [sequelize.fn("COUNT", sequelize.col("Review.spotId")),"numReviews"]
       ]
     })
 
-    const final = detailId.toJSON();
-    const answer = avg[0].toJSON();
+    const detailIdInfo = detailId.toJSON();
+    const numReviewsInfo = reviewsInfo[0].toJSON();
 
-    final.numReviews = answer.avgRating;
-    
-    if (!detailId) {
-        res.status(404).json({ message: "Spot couldn't be found" });
-      } else {
-        res.json(detailId);
-      }
+    detailIdInfo.numReviews = numReviewsInfo.numReviews;
+
+    res.json(detailIdInfo);
 
 });
 
