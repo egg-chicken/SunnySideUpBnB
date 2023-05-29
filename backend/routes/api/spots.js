@@ -344,14 +344,38 @@ router.post('/:id/reviews', requireAuth, async (req, res) => {
     res.status(201).json(newReview);
 });
 
+//get all bookings for a spot based on the spots id
+router.get('/:id/bookings', requireAuth, async (req, res) => {
+    const { id } = req.params;
+
+    const spot = await Spot.findByPk(id);
+
+    if (!spot) {
+      return res.status(404).json({ message: "Spot couldn't be found" });
+    }
+
+    const bookings = await Booking.findAll({
+      where: { id },
+      include: [
+        {
+          model: User,
+          attributes: ['id', 'firstName', 'lastName']
+        },
+      ]
+    })
+    res.json({Bookings: bookings});
+});
+
+
 //create a booking from a Spot based on thr spots id - not complete
 //spot must Not belong to the current user . . .
 router.post('/:id/bookings', requireAuth, async (req, res) => {
-    const id = req.params.id;
+    const spotId = +req.params.id;
     const { startDate, endDate } = req.body;
-    const currentUserId = req.user.id;
+    const userId = req.user.id;
 
-    const spot = await Spot.findByPk(id);
+    const spot = await Spot.findByPk(spotId);
+
     if (!spot) {
       return res.status(404).json({ message: "Spot couldn't be found" });
     }
@@ -365,13 +389,14 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
         });
     }
 
-    if (spot.ownerId === currentUserId) {
+    //fix existing booking . . . 
+    if (spot.ownerId === userId) {
       return res.status(403).json({ message: "You cannot book your own spot" });
     }
 
     const existingBooking = await Booking.findOne({
       where: {
-        id,
+        spotId,
         [Op.or]: [
           {
             startDate: {
@@ -398,8 +423,8 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
     }
 
     const booking = await Booking.create({
-      id,
-      userId: currentUserId,
+      spotId,
+      userId,
       startDate,
       endDate
     });
