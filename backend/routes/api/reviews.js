@@ -143,9 +143,9 @@ router.delete('/:id', requireAuth, async (req, res) => {
         return res.status(404).json({ message: "Spot couldn't be found" });
     }
 
-    if(review !== ownerId){
-        return res.status(403).json({message: "Forbidden"});
-    }
+    // if(review !== ownerId){
+    //     return res.status(403).json({message: "Forbidden"});
+    // }
 
     await review.destroy();
 
