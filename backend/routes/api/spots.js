@@ -82,7 +82,7 @@ router.get('/:id', async (req, res) => {
         attributes: {
             include: [
                 [
-                    sequelize.fn("COUNT", sequelize.col("Reviews.id")),"numReviews"
+                    sequelize.fn("COUNT", sequelize.cast(sequelize.col("Reviews.id"), 'FLOAT')),"numReviews"
                 ],
                 [
                     sequelize.fn("AVG", sequelize.cast(sequelize.col("Reviews.stars"), 'FLOAT')),"avgStarRating"
