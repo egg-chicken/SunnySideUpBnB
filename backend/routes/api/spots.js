@@ -77,13 +77,13 @@ router.get('/current', requireAuth, async (req, res) => {
 //get details of a spot from an id
 router.get('/:id', async (req, res) => {
 
-    const id = req.params.id;
+    const id = +req.params.id;
     const detailId = await Spot.findByPk(id, {
         attributes: {
             include: [
-                [
-                    sequelize.fn("COUNT", sequelize.cast(sequelize.col("Reviews.id"), 'FLOAT')),"numReviews"
-                ],
+                // [
+                //     sequelize.fn("COUNT", sequelize.cast(sequelize.col("Reviews.id"), 'FLOAT')),"numReviews"
+                // ],
                 [
                     sequelize.fn("AVG", sequelize.cast(sequelize.col("Reviews.stars"), 'FLOAT')),"avgStarRating"
                 ]
@@ -109,9 +109,18 @@ router.get('/:id', async (req, res) => {
         group: ['Spot.id', 'SpotImages.id', 'Owner.id']
     });
 
-    //detailId.numReviews = parseInt(detailId.numReviews);
+    const reviewsInfo = await Review.findAll({
+      where: { spotId: detailId.id},
+      attributes: [
+        [sequelize.fn("COUNT", sequelize.col("Reviews.spotId")),"numReviews"]
+      ]
+    })
 
+    const final = detailId.toJSON();
+    const answer = avg[0].toJSON();
 
+    final.numReviews = answer.avgRating;
+    
     if (!detailId) {
         res.status(404).json({ message: "Spot couldn't be found" });
       } else {
