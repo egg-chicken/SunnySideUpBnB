@@ -92,8 +92,11 @@ router.post('/:id/images', requireAuth, async (req, res) => {
         imageableType: 'Review'
     });
 
-    res.json(newImage);
-
+    //res.json(newImage);
+    return res.json({
+      id: newImage.id,
+      url: newImage.url
+    })
 });
 
 //edit a review
