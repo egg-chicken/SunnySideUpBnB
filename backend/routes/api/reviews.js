@@ -58,7 +58,7 @@ router.get('/current', requireAuth, async (req, res) => {
       } else {
         reviews[i].Spot.dataValues.showPreviewImage = null;
       }
-      
+
     }
   }
     res.json({Reviews: reviews})
@@ -66,28 +66,26 @@ router.get('/current', requireAuth, async (req, res) => {
 
 //add an image to a review based on the reviews id - not complete
 router.post('/:id/images', requireAuth, async (req, res) => {
-    const { id } = req.params;
+    const reviewId  = req.params.id;
     const { url } = req.body;
     const userId = req.user.id;
 
-    const review = await Review.findOne({
-        where: { id: id, userId}
-    });
+    const review = await Review.findByPk(reviewId);
 
     if(!review){
         return res.status(404).json({message: "Review couldn't be found"})
     }
 
-    const imageCount = await Image.count({
-        where: { id }
+    const imageCount = await Image.findAll({
+        where: { imageableId: reviewId, imageableType: 'Review' },
+        attributes: [[ sequelize.fn('COUNT', sequelize.col('id')), 'imageTotal']]
     });
 
-    if(imageCount >= 10){
+    if(imageCount[0].dataValues.imageTotal >= 10){
         return res.status(403).json({ message: "Maximum number of images for this resource was reached"})
     }
 
     const newImage = await Image.create({
-        id,
         url
     });
 

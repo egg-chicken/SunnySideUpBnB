@@ -31,6 +31,15 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        //id: 1,
+        url: 'image1 url',
+        preview: true,
+        imageableId: 1,
+        imageableType: 'Review',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         //id: 2,
         url: 'image2 url',
         preview: true,
