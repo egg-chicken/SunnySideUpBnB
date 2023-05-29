@@ -305,11 +305,15 @@ router.get('/:id/reviews', async (req, res) => {
 
 //create a review for a spot based on the spot's id
 router.post('/:id/reviews', requireAuth, async (req, res) => {
-    const { id } = req.params;
     const { review, stars } = req.body;
     const userId = req.user.id;
+    const spotId = +req.params.id;
 
-    const spot = await Spot.findByPk(id);
+    const spot = await Spot.findByPk(spotId);
+
+    if (!spot) {
+          return res.status(404).json({ message: "Spot couldn't be found" });
+        }
 
     if (!review || !stars) {
         res.status(400);
@@ -322,15 +326,8 @@ router.post('/:id/reviews', requireAuth, async (req, res) => {
         });
     }
 
-    if (!spot) {
-      return res.status(404).json({ message: "Spot couldn't be found" });
-    }
-
     const existingReview = await Review.findOne({
-      where: {
-        id,
-        userId
-      }
+      where: { userId, spotId}
     });
 
     if (existingReview) {
@@ -338,8 +335,8 @@ router.post('/:id/reviews', requireAuth, async (req, res) => {
     }
 
     const newReview = await Review.create({
-      id,
       userId,
+      spotId,
       review,
       stars
     });
