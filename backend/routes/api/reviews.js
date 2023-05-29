@@ -41,6 +41,8 @@ router.get('/current', requireAuth, async (req, res) => {
 
     for(let i = 0; i < reviews.length; i ++){
       const review = reviews[i];
+
+      if(review.Spot){
       const spotId = review.Spot.id;
       const showPreviewImage = await Image.findOne({
         where: {
@@ -58,7 +60,7 @@ router.get('/current', requireAuth, async (req, res) => {
       // }
       review.Spot.dataValues.previewImage = showPreviewImage ? showPreviewImage.url : null
     }
-
+  }
     res.json({Reviews: reviews})
 });
 
