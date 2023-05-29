@@ -48,6 +48,10 @@ router.get('/current', requireAuth, async (req, res) => {
         attributes: {
             include: [
               [
+                sequelize.fn('AVG', sequelize.cast(sequelize.col('Reviews.stars'), 'FLOAT')),
+                'avgRating'
+              ],
+              [
                   sequelize.col('SpotImages.url'), 'previewImage'
               ]
             ]
@@ -57,7 +61,11 @@ router.get('/current', requireAuth, async (req, res) => {
               model: Image,
               attributes: [],
               as: 'SpotImages'
-            }
+            },
+            {
+              model: Review,
+              attributes: []
+            },
           ],
 
           group: ['Spot.id', 'SpotImages.url']
