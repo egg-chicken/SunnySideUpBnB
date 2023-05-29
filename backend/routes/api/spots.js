@@ -82,7 +82,7 @@ router.get('/:id', async (req, res) => {
         attributes: {
             include: [
                 [
-                    sequelize.fn("COUNT", sequelize.col("Reviews.review")),"numReviews"
+                    sequelize.fn("COUNT", sequelize.cast(sequelize.col("Reviews.id"), 'FLOAT')),"numReviews"
                 ],
                 [
                     sequelize.fn("AVG", sequelize.cast(sequelize.col("Reviews.stars"), 'FLOAT')),"avgStarRating"
@@ -111,7 +111,6 @@ router.get('/:id', async (req, res) => {
 
     //detailId.numReviews = parseInt(detailId.numReviews);
 
-    detailId.dataValues.numReviews = req.numReviews;
 
     if (!detailId) {
         res.status(404).json({ message: "Spot couldn't be found" });
