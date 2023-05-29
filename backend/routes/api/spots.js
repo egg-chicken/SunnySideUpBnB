@@ -117,7 +117,7 @@ router.get('/:id', async (req, res) => {
       where: { spotId: detailId.id},
       attributes: [
         [Sequelize.cast(Sequelize.fn("COUNT", Sequelize.col("Review.spotId")), 'INTEGER'),"numReviews"],
-        [Sequelize.fn("AVG",Sequelize.cast(Sequelize.col("Review.stars"), 'FLOAT')),"avgStarRating"]
+        [Sequelize.cast(Sequelize.fn("AVG", Sequelize.col("Review.stars")), 'FLOAT'),"avgStarRating"]
       ]
     })
 

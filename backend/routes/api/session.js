@@ -11,63 +11,48 @@ const router = express.Router();
 const validateLogin = [
     check('credential')
       .exists({ checkFalsy: true })
-      .notEmpty()
+      //.notEmpty()
       .withMessage('Email or username is required.'),
-    check('password')
-      .exists({ checkFalsy: true })
-      .withMessage('Password is required.'),
+    check('password').exists({ checkFalsy: true }).withMessage('Password is required.'),
     handleValidationErrors
   ];
 
 //Log in
-router.post(
-    '/',
-   // validateLogin,
-    async (req, res, next) => {
-      const { credential, password } = req.body;
+router.post('/', validateLogin, async (req, res, next) => {
+    const { credential, password } = req.body;
 
-      const user = await User.unscoped().findOne({
-        where: {
-          [Op.or]: {
-            username: credential,
-            email: credential
-          }
+    const user = await User.unscoped().findOne({
+      where: {
+        [Op.or]: {
+          username: credential,
+          email: credential,
         }
-      });
-
-      // if (!credential || !password) {
-      // return res.status(400).json({
-      // message: "Bad Request",
-      // errors: {
-      //   credential: "Email or username is required",
-      //   password: "Password is required"
-      //       }
-      //     });
-      //   }
-
-      if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = { credential: 'The provided credentials were invalid.' };
-        return next(err);
       }
+    });
 
-      const safeUser = {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        username: user.username,
-      };
-
-      await setTokenCookie(res, safeUser);
-
-      return res.json({
-        user: safeUser
-      });
+    if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) { // user.hashedPassword.toString()
+      //const err = new Error('Login failed');
+      const err = new Error('Invalid Credentials');
+      err.status = 401;
+      //err.title = 'Login failed';
+      //err.errors = { credential: 'The provided credentials were invalid.' };
+      //err.message = 'Invalid Credentials';
+      return next(err);
     }
-  );
+
+    const safeUser = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.username,
+    };
+
+    const token = await setTokenCookie(res, safeUser);
+    safeUser.token = token;
+
+    return res.json({user: safeUser});
+});
 
 // Log out
 router.delete(
