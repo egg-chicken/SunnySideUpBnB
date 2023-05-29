@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const { Spot, Image, Booking, User, Review, sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
-//get all reviews of the current user - not complete
+//get all reviews of the current user
 router.get('/current', requireAuth, async (req, res) => {
     const userId = req.user.id;
 
@@ -20,7 +20,7 @@ router.get('/current', requireAuth, async (req, res) => {
           {
             model: Spot,
             attributes: {
-              exclude: ['createdAt', 'updatedAt'],
+              exclude: ['description', 'createdAt', 'updatedAt'],
             },
             include: [
               {
@@ -53,10 +53,10 @@ router.get('/current', requireAuth, async (req, res) => {
       if(showPreviewImage){
         reviews[i].Spot.dataValues.previewImage = showPreviewImage.url;
       } else {
-        reviews[i].Spot.previewImage = null;
+        reviews[i].Spot.showPreviewImage = null;
       }
     }
-    
+
     res.json({Reviews: reviews})
 });
 
