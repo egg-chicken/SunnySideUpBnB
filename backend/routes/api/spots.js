@@ -161,7 +161,15 @@ router.post('/:id/images', requireAuth, async (req, res) => {
     const { url, preview } = req.body;
 
     const spot = await Spot.findOne({
-        where: { id: spotId }
+        where: { id: spotId },
+        include: [
+          {
+            model: Image,
+            as: 'SpotImages',
+            attributes: ['id', 'url', 'preview']
+          }
+        ]
+
       });
 
       if (!spot) {
