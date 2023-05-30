@@ -5,6 +5,9 @@ const { Spot, Image, Booking, User, Review, sequelize, Sequelize } = require('..
 const { requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
 
+const validateQueryParams = [
+
+];
 //get all spots
 router.get('/', async (req, res) => {
       const spots = await Spot.findAll({
