@@ -74,21 +74,11 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({Spots: spots});
 });
 
-//get details of a spot from an id -- not complete
+//get details of a spot from an id
 router.get('/:id', async (req, res) => {
 
     const id = +req.params.id;
     const detailId = await Spot.findByPk(id, {
-        attributes: {
-            include: [
-                // [
-                //     sequelize.fn("COUNT", sequelize.cast(sequelize.col("Reviews.id"), 'FLOAT')),"numReviews"
-                // ],
-                // [
-                //     sequelize.fn("AVG", sequelize.cast(sequelize.col("Reviews.stars"), 'FLOAT')),"avgStarRating"
-                // ]
-            ],
-        },
         include: [
 
             {
@@ -101,10 +91,6 @@ router.get('/:id', async (req, res) => {
                 as: 'Owner',
                 attributes: ['id', 'firstName', 'lastName']
             },
-            // {
-            //     model: Review,
-            //     attributes: []
-            // }
         ],
         group: ['Spot.id', 'SpotImages.id', 'Owner.id']
     });
@@ -189,7 +175,10 @@ router.post('/:id/images', requireAuth, async (req, res) => {
       if (!spot) {
         return res.status(404).json({ message: "Spot couldn't be found" });
       }
-      const image = await Image.create({url, preview});
+      const image = await Image.create({
+        url,
+        preview
+      });
 
       return res.json({
         id: spotId,
@@ -255,11 +244,14 @@ router.delete('/:id', requireAuth, async (req, res) => {
       const spotId = req.params.id;
 
       const spot = await Spot.findOne({
-        where: { id: spotId, ownerId: req.user.id }
+        where: { id: spotId} //, ownerId: req.user.id
       });
 
       if (!spot) {
         return res.status(404).json({ message: "Spot couldn't be found" });
+      }
+      if(spot.ownerId !== req.user.id){
+        return res.status(403).json({message: "Forbidden"});
       }
 
       await spot.destroy();
@@ -393,6 +385,12 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
     if (spot.ownerId === userId) {
       return res.status(403).json({ message: "You cannot book your own spot" });
     }
+
+    //if(req.user.id === spot.owner.id){
+      //const err = new Error('Forbidden');
+      //err.status = 403;
+      //return next(err);
+   // }
 
     const existingBooking = await Booking.findOne({
       where: {

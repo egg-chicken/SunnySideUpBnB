@@ -133,7 +133,7 @@ router.put('/:id', requireAuth, async (req, res) => {
 //delete a review
 router.delete('/:id', requireAuth, async (req, res) => {
     const reviewId = req.params.id;
-    const ownerId = req.user.id
+    //const ownerId = req.user.id
 
     const review = await Review.findOne({
         where: { id: reviewId }
@@ -143,9 +143,9 @@ router.delete('/:id', requireAuth, async (req, res) => {
         return res.status(404).json({ message: "Spot couldn't be found" });
     }
 
-    // if(review !== ownerId){
-    //     return res.status(403).json({message: "Forbidden"});
-    // }
+    if(review.userId !== req.user.id){
+        return res.status(403).json({message: "Forbidden"});
+    }
 
     await review.destroy();
 
