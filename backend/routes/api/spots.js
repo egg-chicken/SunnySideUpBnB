@@ -4,41 +4,94 @@ const bcrypt = require('bcryptjs');
 const { Spot, Image, Booking, User, Review, sequelize, Sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
+const { check } = require('express-validator');
 
 const validateQueryParams = [
-
+  check('page')
+    .optional()
+    .isInt({ min: 0, max: 10 })
+    .withMessage('Page must be an integer between 0 and 10'),
+  check('size')
+    .optional()
+    .isInt({ min: 0, max: 20 })
+    .withMessage('Page must be an integer between 0 and 10'),
+  check('maxLat')
+    .optional()
+    .isFloat({ min: -90, max: 90 })
+    .withMessage('Maximum latitude is invalid'),
+  check('minLat')
+    .optional()
+    .isFloat({ min: -90, max: 90 })
+    .withMessage('Minimum latitude is invalid'),
+  check('minLng')
+    .optional()
+    .isFloat({ min: -90, max: 90 })
+    .withMessage('Minimum longitude is invalid'),
+  check('maxLng')
+    .optional()
+    .isFloat({ min: -90, max: 90 })
+    .withMessage('Maximum longitude is invalid'),
+  check('minPrice')
+    .optional()
+    .isFloat({ min: 0})
+    .withMessage('Minimum price must be greater than or equal to 0'),
+  check('maxPrice')
+    .optional()
+    .isFloat({ min: 0})
+    .withMessage('Maximum price must be greater than or equal to 0'),
 ];
 //get all spots
-router.get('/', async (req, res) => {
-      const spots = await Spot.findAll({
-        attributes: {
-          include: [
-            [
-              sequelize.fn('AVG', sequelize.cast(sequelize.col('Reviews.stars'), 'FLOAT')),
-              'avgRating'
-            ],
-            [
-                sequelize.col('SpotImages.url'), 'previewImage'
-            ]
-          ]
-        },
-        include: [
-          {
-            model: Review,
-            attributes: []
-          },
-          {
-            model: Image,
-            attributes: [],
-            as: 'SpotImages'
-          }
+router.get('/', validateQueryParams, async (req, res) => {
+  let { page, size, minLng, maxLng, minPrice, maxPrice } = req.query;
+  const options = { };
+
+  page = parseInt(page);
+  size = parseInt(size);
+
+  if(page > 10) page = 10;
+  if(size > 10) size = 20;
+
+  if(Number.isNaN(page) || page < 0 || !page) page = 0;
+  if(Number.isNaN(size) || size <= 0) size = 20;
+
+  options.limit = size;
+  options.offset = size * page;
+
+  const spots = await Spot.findAll({
+    attributes: {
+      include: [
+        [
+          //sequelize.fn('AVG', sequelize.cast(sequelize.col('Reviews.stars'), 'FLOAT')),'avgRating'
+          Sequelize.cast(Sequelize.fn("AVG", Sequelize.col("Reviews.stars")), 'FLOAT'),"avgRating"
         ],
+        [
+          sequelize.col('SpotImages.url'), 'previewImage'
+        ]
+      ]
+    },
+    include: [
+      {
+        model: Review,
+        attributes: []
+      },
+      {
+        model: Image,
+        attributes: [],
+        as: 'SpotImages'
+      }
+    ],
 
-        group: ['Spot.id', 'SpotImages.url']
+    group: ['Spot.id', 'SpotImages.url'],
+    // limit,
+    // offset
 
-      });
+  });
 
-    res.json({Spots: spots})
+  res.json({
+    Spots: spots,
+    page: parseInt(page),
+    size: parseInt(size)
+  })
 
 });
 

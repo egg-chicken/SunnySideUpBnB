@@ -4,7 +4,19 @@ const bcrypt = require('bcryptjs');
 const { Spot, Image, Booking, User, Review, sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { Op } = require('sequelize');
+const { check } = require('express-validator')
 
+const validateBooking = [
+  check('endDate')
+    .exists( {checkFalsy: true})
+    .custom((value, { req }) => {
+      if(new Date(value) <= new Date(req.body.startDate)) {
+        throw new Error ('endDate cannot be on or before startDate')
+      }
+      return true
+    }),
+    //.withMessage('endDate cannot be on or before startDate')
+]
 //get all of the current user's bookings - idk not complete
 router.get('/current', requireAuth, async (req, res) => {
     const userId = req.user.id;
@@ -51,10 +63,12 @@ router.get('/current', requireAuth, async (req, res) => {
 });
 
 //edit a booking
-router.put('/:id', requireAuth, async (req, res) => {
+router.put('/:id', requireAuth, validateBooking, async (req, res) => {
     const bookingId = req.params.id;
     let { startDate, endDate } = req.body;
     // const currentUserId = req.user.id;
+    //startDate = new Date(startDate);
+    //endDate = new Date(endDate);
 
     const booking = await Booking.findByPk(bookingId);
 
@@ -66,48 +80,18 @@ router.put('/:id', requireAuth, async (req, res) => {
       return res.status(403).json({ message: "Forbidden" });
     }
 
-    //startDate = new Date(startDate);
-    //endDate = new Date(endDate);
+
 
     const currentDate = new Date();
-    if (currentDate > booking.endDate) { //new Date(booking.endDate).getTime() < currentDate.getTime()
+    const date = currentDate.toISOString().slice(0, 10);
+    if (date > booking.endDate) { //new Date(booking.endDate).getTime() < currentDate.getTime()
       return res.status(403).json({ message: "Past bookings can't be modified"});
     }
 
-    if (endDate <= startDate){
-      return res.status(400).json({ message: "endDate cannot be on or before startDate"});
+    if (endDate < startDate){
+      return res.status(403).json({ message: "endDate cannot be on or before startDate"});
     }
 
-    // const existingBooking = await Booking.findOne({
-    //   where: {
-    //     spotId: booking.spotId,
-    //     [Op.or]: [
-    //       {
-    //         startDate: {
-    //           [Op.lte]: endDate
-    //         }
-    //       },
-    //       {
-    //         endDate: {
-    //           [Op.gte]: startDate
-    //         }
-    //       }
-    //     ],
-    //     id: {
-    //       [Op.not]: bookingId
-    //     }
-    //   }
-    // });
-
-    // if (existingBooking) {
-    //   return res.status(403).json({
-    //     message: "Sorry, this spot is already booked for the specified dates",
-    //     errors: {
-    //       startDate: "Start date conflicts with an existing booking",
-    //       endDate: "End date conflicts with an existing booking"
-    //     }
-    //   });
-    // }
     const bookingsSpot = await Booking.findAll({
       where: { spotId: booking.spotId, id: { [Op.not]: bookingId}}
     });
