@@ -345,9 +345,9 @@ router.get('/:id/bookings', requireAuth, async (req, res) => {
       return res.status(404).json({ message: "Spot couldn't be found" });
     }
 
-    let bookingsAll;
+  let bookingsAll;
     if(req.user.id === spot.ownerId){
-      bookingsAll = await spot.getBookings({
+       bookingsAll = await spot.getBookings({
         include: {
           model: User,
           attributes: ['id', 'firstName', 'lastName']
@@ -368,12 +368,12 @@ router.get('/:id/bookings', requireAuth, async (req, res) => {
     //     },
     //   ]
     //})
-    res.json({Bookings: allBookings});
+    res.json({Bookings: bookingsAll});
 
 });
 
 
-//create a booking from a Spot based on thr spots id - not complete
+//create a booking from a Spot based on thr spots id
 //spot must Not belong to the current user . . .
 router.post('/:id/bookings', requireAuth, async (req, res) => {
     const spotId = req.params.id;
