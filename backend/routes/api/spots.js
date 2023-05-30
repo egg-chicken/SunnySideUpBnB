@@ -108,7 +108,7 @@ router.get('/current', requireAuth, async (req, res) => {
                 'avgRating'
               ],
               [
-                  sequelize.col('SpotImages.url'), 'previewImage'
+                sequelize.col('SpotImages.url'), 'previewImage'
               ]
             ]
           },
@@ -313,10 +313,6 @@ router.delete('/:id', requireAuth, async (req, res) => {
 
     });
 
-//add query filters to get all spots
-// router.get('/spots?:query', async (req, res) => {
-
-// })
 
 //get all reviews by a spot's id
 router.get('/:id/reviews', async (req, res) => {

@@ -5,27 +5,25 @@ const { Spot, Image, Booking, User, Review, sequelize } = require('../../db/mode
 const { requireAuth } = require('../../utils/auth');
 
 //delete a review image
-router.delete('/id', requireAuth, async (req, res) => {
+router.delete('/:id', requireAuth, async (req, res) => {
+    const userId = +req.user.id;
+    const { id } = req.params;
 
-    const image = await Image.findByPk(req.params.id);
+    const image = await Image.findByPk(id);
 
     if(!image) {
-        return res.status(404).json({ message: "Spot Image couldn't be found" });
+        return res.status(404).json({ message: "Review Image couldn't be found" });
     }
 
-    const spotImage = image.imageableType;
+    const imageType = image.imageableType;
 
-    if(spotImage === "Spot"){
-        const spot = await image.getSpot();
+    if(imageType === "Review"){
+        const review = await image.getReview();
 
-        if(req.user.id !== spot.ownerId){
+        if(userId !== review.userId){
             return res.status(403).json({ message: "Forbidden" });
             }
     }
-
-    // if(req.user.id !== image.ownerId){
-    //     return res.status(403).json({ message: "Forbidden" });
-    // }
 
     await image.destroy();
 

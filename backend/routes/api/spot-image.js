@@ -6,19 +6,24 @@ const { requireAuth } = require('../../utils/auth');
 
 //delete a spot image
 router.delete('/:id', requireAuth, async (req, res) => {
-    //const userId = +req.user.id;
-    //const spotId = +req.params.spotId;
+    const userId = +req.user.id;
+    const { id } = req.params;
     //const imageId = +req.params.imageableId;
 
-    const image = await Image.findByPk(req.params.id);
+    const image = await Image.findByPk(id);
 
     if(!image) {
         return res.status(404).json({ message: "Spot Image couldn't be found" });
     }
 
+    const imageType = image.imageableType;
 
-    if(req.user.id !== image.ownerId){
-        return res.status(403).json({ message: "Forbidden" });
+    if(imageType === 'Spot') {
+        const spot = await image.getSpot();
+
+        if(userId !== spot.ownerId){
+                return res.status(403).json({ message: "Forbidden" });
+            }
     }
 
     await image.destroy();

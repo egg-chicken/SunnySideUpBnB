@@ -76,7 +76,7 @@ router.post('/:id/images', requireAuth, async (req, res) => {
         return res.status(404).json({message: "Review couldn't be found"})
     }
 
-    if(req.user.id !== review.ownerId){
+    if(req.user.id !== review.userId){
       return res.status(403).json({message: "Forbidden"});
     }
 
@@ -98,7 +98,7 @@ router.post('/:id/images', requireAuth, async (req, res) => {
 
     return res.json({
       id: newImage.id,
-      url: newImage.url
+      url
     })
 });
 
