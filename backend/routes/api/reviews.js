@@ -122,6 +122,10 @@ router.put('/:id', requireAuth, async (req, res) => {
         return res.status(404).json({ message: "Review couldn't be found" });
       }
 
+      if(existingReview.userId !== req.user.id){
+        return res.status(403).json({message: "Forbidden"});
+      }
+
       existingReview.review = review;
       existingReview.stars = stars;
 
