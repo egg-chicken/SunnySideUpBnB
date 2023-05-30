@@ -160,28 +160,25 @@ router.post('/:id/images', requireAuth, async (req, res) => {
     const spotId = req.params.id;
     const { url, preview } = req.body;
 
-    const spot = await Spot.findOne({
-        where: { id: spotId },
-        include: [
-          {
-            model: Image,
-            as: 'SpotImages',
-            //attributes: ['id', 'url', 'preview']
-          }
-        ]
-
-      });
+    const spot = await Spot.findByPk(spotId);
 
       if (!spot) {
         return res.status(404).json({ message: "Spot couldn't be found" });
       }
+
+      if(req.user.id !== spot.ownerId){
+        return res.status(403).json({message: "Forbidden"});
+      }
+
       const image = await Image.create({
         url,
-        preview
+        preview,
+        imageableId: spotId,
+        imeageableType: 'Spot'
       });
 
       return res.json({
-        id: spotId,
+        id: image.id,
         url: image.url,
         preview: image.preview
       });

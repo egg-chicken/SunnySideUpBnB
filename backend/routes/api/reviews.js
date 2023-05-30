@@ -76,6 +76,10 @@ router.post('/:id/images', requireAuth, async (req, res) => {
         return res.status(404).json({message: "Review couldn't be found"})
     }
 
+    if(req.user.id !== review.ownerId){
+      return res.status(403).json({message: "Forbidden"});
+    }
+
     const imageCount = await Image.findAll({
         where: { imageableId: reviewId, imageableType: 'Review' },
         attributes: [[ sequelize.fn('COUNT', sequelize.col('id')), 'imageTotal']]

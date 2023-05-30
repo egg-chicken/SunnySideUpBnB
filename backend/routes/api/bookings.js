@@ -55,19 +55,19 @@ router.put('/:id', requireAuth, async (req, res) => {
     const { startDate, endDate } = req.body;
     // const currentUserId = req.user.id;
 
-    const booking = await Booking.findByPk(id);
+    const booking = await Booking.findByPk(bookingId);
 
     if (!booking) {
       return res.status(404).json({ message: "Booking couldn't be found" });
     }
 
-    // if (booking.userId !== currentUserId) {
-    //   return res.status(403).json({ message: "You are not authorized to modify this booking" });
-    // }
+    if (booking.userId !== req.user.id) {
+      return res.status(403).json({ message: "You are not authorized to modify this booking" });
+    }
 
     const currentDate = new Date();
-    if (booking.endDate < currentDate) {
-      return res.status(403).json({ message: "Past bookings can't be modified" });
+    if (booking.endDate <= currentDate) {
+      return res.status(403).json({ message: "endDate cannot come before startDate" });
     }
 
     // const existingBooking = await Booking.findOne({
@@ -112,22 +112,33 @@ router.put('/:id', requireAuth, async (req, res) => {
 router.delete('/:id', requireAuth, async (req, res) => {
     const bookingId = req.params.id;
 
-    const booking = await Booking.findOne({
-        where: { id: bookingId }
+    // const booking = await Booking.findOne({
+    //     where: { bookingId }
+    // });
+    const booking = await Booking.findByPk(bookingId, {
+      include: {
+        model: Spot,
+        attributes: ['ownerId'],
+      }
     });
+
+    if (!booking) {
+      return res.status(404).json({ message: "Booking couldnt be found" });
+    }
+
+
+    if(req.user.id !== booking.userId && req.user.id !== booking.Spot.ownerId){
+      return res.status(403).json({ message: "Forbidden" });
+    }
 
     const currentDate = new Date();
     if (booking.startDate <= currentDate) {
       return res.status(403).json({ message: "Bookings that have been started can't be deleted" });
     }
 
-    if (!booking) {
-        return res.status(404).json({ message: "Booking couldnt be found" });
-      }
+    await booking.destroy();
 
-      await booking.destroy();
-
-      res.status(200).json({ message: 'Successfully deleted' });
+    res.status(200).json({ message: 'Successfully deleted' });
 });
 
 
