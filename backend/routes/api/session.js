@@ -76,7 +76,8 @@ router.get(
           lastName: user.lastName,
           email: user.email,
           username: user.username,
-
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt
         };
         return res.json({
           user: safeUser
