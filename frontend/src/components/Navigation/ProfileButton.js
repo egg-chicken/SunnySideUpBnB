@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import OpenModalButton from './OpenModalButton';
-//import LoginFormModal from './LoginFormModal';
+import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormPage from "../LoginFormPage";
-//import SignupFormModal from './SignupFormModal';
 import SignupFormPage from '../SignupFormPage';
 
 function ProfileButton({ user }) {
@@ -31,9 +29,12 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  const closeMenu = () => setShowMenu(false);
+
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    closeMenu();
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -56,14 +57,16 @@ function ProfileButton({ user }) {
         ) : (
           <>
             <li>
-              <OpenModalButton
-                buttonText="Log In"
+              <OpenModalMenuItem
+                itemText='Log In'
+                onItemClick={closeMenu}
                 modalComponent={<LoginFormPage />}
               />
             </li>
             <li>
-              <OpenModalButton
-                buttonText="Sign Up"
+              <OpenModalMenuItem
+                itemText="Sign Up"
+                onItemClick={closeMenu}
                 modalComponent={<SignupFormPage />}
               />
             </li>
