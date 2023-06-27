@@ -1,5 +1,5 @@
 import React from "react";
-import { useModal } from "../../context/Modal.js";
+import { Modal } from "../../context/Modal.js";
 
 export default function OpemModalMenuItem ({
     modalComponent, // component to render inside the modal
@@ -8,7 +8,7 @@ export default function OpemModalMenuItem ({
     onModalClose // optional: callback function that will be called once the modal is closed
 }) {
 
-    const { setModalContent, setOnModalClose } = useModal();
+    const { setModalContent, setOnModalClose } = Modal();
 
     const onClick = () => {
         if (onModalClose) setOnModalClose(onModalClose);
