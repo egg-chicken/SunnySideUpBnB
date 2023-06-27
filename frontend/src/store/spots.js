@@ -9,7 +9,7 @@ const load = list => ({
 
 //get the list of All Spots thunk
 export const getSpots = () => async dispatch => {
-    const response = await await csrfFetch('/api/session');
+    const response = await csrfFetch('/api/spots');
 
     if(response.ok) {
         const list = await response.json();
@@ -19,19 +19,29 @@ export const getSpots = () => async dispatch => {
 }
 
 const initialState = { list: []}
+// const initialState = {}
 
-export const spotsReducer = (state = initialState, action) => {
+const spotsReducer = (state = initialState, action) => {
+    //let newState;
+    //let newState = {...state}
     switch (action.type) {
         case LOAD:
             const allSpots = {};
-            action.list.forEach(spot => {
+
+            action.list.forEach((spot) => {
                 allSpots[spot.id] = spot;
             });
-            return {
-                ...allSpots,
-                ...state
-            }
+            //newState = {...allSpots, ...state}
+            // return {
+            //     ...allSpots,
+            //     ...state
+            // }
+            //return newState
+
+            return allSpots;
         default:
             return state;
     }
 }
+
+export default spotsReducer;
