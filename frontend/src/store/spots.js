@@ -13,32 +13,29 @@ export const getSpots = () => async dispatch => {
 
     if(response.ok) {
         const list = await response.json();
+        console.log('!!!!!!!!!!!!!!!!', list)
         dispatch(load(list));
         return list;
     }
 }
 
-const initialState = { list: []}
-// const initialState = {}
+const initialState = {}
 
 const spotsReducer = (state = initialState, action) => {
-    //let newState;
-    //let newState = {...state}
+
     switch (action.type) {
         case LOAD:
             const allSpots = {};
 
-            action.list.forEach((spot) => {
+            action.list.Spots.forEach((spot) => {
                 allSpots[spot.id] = spot;
             });
-            //newState = {...allSpots, ...state}
-            // return {
-            //     ...allSpots,
-            //     ...state
-            // }
-            //return newState
 
-            return allSpots;
+            return {
+                ...allSpots,
+                ...state
+            }
+
         default:
             return state;
     }
