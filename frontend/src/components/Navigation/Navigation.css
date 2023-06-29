@@ -1,15 +1,25 @@
-ul {
+.navbar {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
     list-style-type: none;
-    color: black;
+    border-bottom: 2px solid #CCCCCC;
+    Height: 70px;
+    /* top | right | bottom | left */
+    padding: 0px 20px 0px 20px;
+    /* font-size: 24pt;
+    font-weight: bold; */
   }
 
-nav a {
-    color: inherit;
-    text-decoration: none;
+.right-align {
+    margin-left: auto;
 }
 
-.hidden {
-    display: none;
+.space {
+    flex-grow: 1;
+}
+
+.nav-link{
+    text-decoration: none;
+    color: black;
 }
