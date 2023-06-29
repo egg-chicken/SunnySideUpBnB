@@ -20,14 +20,35 @@ const SpotDetails = () => {
     }
 
     return (
-        <div className='spot-details'>
+        <div className='parent'>
           {spot ? (
             <>
-              <h1>{spot.name}</h1>
-              <p>{spot.city}, {spot.state}, {spot.country}</p>
-              <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
-              <p>Hosted by {spot.firstName} {spot.lastName}</p>
-              <p>{spot.description}</p>
+              <div className='div1'>
+                  <h1>{spot.name}</h1>
+                  <p>{spot.city}, {spot.state}, {spot.country}</p>
+              </div>
+              <div className='div2'>
+                  <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
+              </div>
+              <div className='div3'>
+                <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
+              </div>
+              <div className='div4'>
+                <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
+              </div>
+              <div className='div5'>
+                <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
+              </div>
+              <div className='div6'>
+                <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
+              </div>
+              <div className='div8'>
+                <p>Hosted by {spot.firstName} {spot.lastName}</p>
+                <p>{spot.description}</p>
+              </div>
+              <div className='div7'>
+                <p>Reviews . . .</p>
+              </div>
               <div className='callout-box'>
                 <p>Price: ${spot.price} night</p>
                 <button onClick={handleClick} className='reserve-button'>Reserve</button>
