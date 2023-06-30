@@ -23,7 +23,7 @@ module.exports = {
     await queryInterface.bulkInsert(options, [
       {
         //id: 1,
-        url: 'Image1 url',//real pic
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688021129/airbnb-proj/spot1/d4ce648e8d26d05a403bee6d0c8fa356-cc_ft_1536_p9piom.webp',//real pic
         preview: true,
         imageableId: 1,
         imageableType: 'Spot',
