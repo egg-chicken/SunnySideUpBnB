@@ -24,11 +24,11 @@ const SpotDetails = () => {
           {spot ? (
             <>
               <div className='div1'>
-                  <h1>{spot.name}</h1>
-                  <p>{spot.city}, {spot.state}, {spot.country}</p>
+                <h1>{spot.name}</h1>
+                <p>{spot.city}, {spot.state}, {spot.country}</p>
               </div>
               <div className='div2'>
-                  <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
+                <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
               </div>
               <div className='div3'>
                 <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
