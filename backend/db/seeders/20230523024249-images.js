@@ -34,7 +34,7 @@ module.exports = {
         //id: 1,
         url: 'Image1 url',
         preview: false,
-        imageableId: 1,
+        imageableId: 9,
         imageableType: 'Review',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -61,7 +61,7 @@ module.exports = {
         //id: 4,
         url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688237804/airbnb-proj/spot4/6efb1b04e3b6554583eefe156ee8ac57-cc_ft_960_ssxsj2.webp',
         preview: true,
-        imageableId: 3,
+        imageableId: 4,
         imageableType: 'Spot',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -70,7 +70,7 @@ module.exports = {
         //id: 5,
         url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240550/airbnb-proj/spot5/114a1cc7ef9f08cce4ba5785977bec5c-cc_ft_960_tlcolh.webp',
         preview: true,
-        imageableId: 3,
+        imageableId: 5,
         imageableType: 'Spot',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -79,7 +79,7 @@ module.exports = {
         //id: 6,
         url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240735/airbnb-proj/spot6/114d81583719f117e368bd17242c7a30-cc_ft_384_cqe1zd.webp',
         preview: true,
-        imageableId: 3,
+        imageableId: 6,
         imageableType: 'Spot',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -88,7 +88,7 @@ module.exports = {
         //id: 7,
         url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241072/airbnb-proj/spot7/a0e20848fedd8d3c52936acc28c9f6ac-cc_ft_960_sywd8a.webp',
         preview: true,
-        imageableId: 3,
+        imageableId: 7,
         imageableType: 'Spot',
         createdAt: new Date(),
         updatedAt: new Date()
@@ -97,7 +97,7 @@ module.exports = {
         //id: 8,
         url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241658/airbnb-proj/spot8/f591e0991e6bcd0453a0409082abe386-cc_ft_960_viqppm.webp',
         preview: true,
-        imageableId: 3,
+        imageableId: 8,
         imageableType: 'Spot',
         createdAt: new Date(),
         updatedAt: new Date()
