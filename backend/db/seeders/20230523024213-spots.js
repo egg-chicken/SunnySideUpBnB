@@ -21,7 +21,7 @@ module.exports = {
         lat: 123.456,
         lng: 78.910,
         name: 'Perfect Family Home to Rent',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore. Delectus at repellendus voluptate illum eius voluptas ipsa fugit harum nostrum dolore!Sit cupiditate ipsam esse, quibusdam iusto, modi asperiores temporibus corrupti minus vel aperiam. Repudiandae earum similique amet cumque, cum iure quam eaque facere vel optio dignissimos qui repellat accusamus harum!',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore.',
         price: 100,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -36,7 +36,7 @@ module.exports = {
         lat: 123.456,
         lng: 78.910,
         name: 'A Beautiful Coastal Home',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore. Delectus at repellendus voluptate illum eius voluptas ipsa fugit harum nostrum dolore!Sit cupiditate ipsam esse, quibusdam iusto, modi asperiores temporibus corrupti minus vel aperiam. Repudiandae earum similique amet cumque, cum iure quam eaque facere vel optio dignissimos qui repellat accusamus harum!',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore.',
         price: 100,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -51,7 +51,7 @@ module.exports = {
         lat: 123.456,
         lng: 78.910,
         name: 'A lovely City Home',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore. Delectus at repellendus voluptate illum eius voluptas ipsa fugit harum nostrum dolore!Sit cupiditate ipsam esse, quibusdam iusto, modi asperiores temporibus corrupti minus vel aperiam. Repudiandae earum similique amet cumque, cum iure quam eaque facere vel optio dignissimos qui repellat accusamus harum!',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore.',
         price: 100,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -66,7 +66,7 @@ module.exports = {
         lat: 123.456,
         lng: 78.910,
         name: 'Perfect Family Home to Rent',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore. Delectus at repellendus voluptate illum eius voluptas ipsa fugit harum nostrum dolore!Sit cupiditate ipsam esse, quibusdam iusto, modi asperiores temporibus corrupti minus vel aperiam. Repudiandae earum similique amet cumque, cum iure quam eaque facere vel optio dignissimos qui repellat accusamus harum!',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore.',
         price: 100,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -81,7 +81,7 @@ module.exports = {
         lat: 123.456,
         lng: 78.910,
         name: 'Perfect Family Home to Rent',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore. Delectus at repellendus voluptate illum eius voluptas ipsa fugit harum nostrum dolore!Sit cupiditate ipsam esse, quibusdam iusto, modi asperiores temporibus corrupti minus vel aperiam. Repudiandae earum similique amet cumque, cum iure quam eaque facere vel optio dignissimos qui repellat accusamus harum!',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore.',
         price: 100,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -96,7 +96,7 @@ module.exports = {
         lat: 123.456,
         lng: 78.910,
         name: 'Perfect Family Home to Rent',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore. Delectus at repellendus voluptate illum eius voluptas ipsa fugit harum nostrum dolore!Sit cupiditate ipsam esse, quibusdam iusto, modi asperiores temporibus corrupti minus vel aperiam. Repudiandae earum similique amet cumque, cum iure quam eaque facere vel optio dignissimos qui repellat accusamus harum!',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore.',
         price: 100,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -111,7 +111,7 @@ module.exports = {
         lat: 123.456,
         lng: 78.910,
         name: 'Perfect Family Home to Rent',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore. Delectus at repellendus voluptate illum eius voluptas ipsa fugit harum nostrum dolore!Sit cupiditate ipsam esse, quibusdam iusto, modi asperiores temporibus corrupti minus vel aperiam. Repudiandae earum similique amet cumque, cum iure quam eaque facere vel optio dignissimos qui repellat accusamus harum!',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore.',
         price: 100,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -126,7 +126,7 @@ module.exports = {
         lat: 123.456,
         lng: 78.910,
         name: 'Perfect Family Home to Rent',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore. Delectus at repellendus voluptate illum eius voluptas ipsa fugit harum nostrum dolore!Sit cupiditate ipsam esse, quibusdam iusto, modi asperiores temporibus corrupti minus vel aperiam. Repudiandae earum similique amet cumque, cum iure quam eaque facere vel optio dignissimos qui repellat accusamus harum!',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate voluptatem esse deserunt dolor atque ducimus nesciunt veritatis dolore.',
         price: 100,
         createdAt: new Date(),
         updatedAt: new Date()
