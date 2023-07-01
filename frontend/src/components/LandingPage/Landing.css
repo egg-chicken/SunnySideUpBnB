@@ -1,17 +1,21 @@
-.tiles-container {
+.spot-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     /* grid-template-columns: minmax(1, 4); */
-    gap: 20px
+    /* grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr); */
+    gap: 10px;
+    margin: 10px auto;
+    max-width: 1300px;
+    padding: 0 20px;
 }
-
 .spot-tile{
     display: flex;
     flex-direction: column;
     border: 1px dotted black;
     padding: 10px;
+    cursor: pointer;
 }
-
 .spot-details {
     display: flex;
     flex-direction: column;
@@ -23,7 +27,11 @@
     justify-content: space-between;
 }
 .image {
-    border: 1px dotted black;
+    /* border: 1px dotted black; */
+    position: absolute;
+    /* width: 100px; */
+    height: 100px;
+    /* object-fit: cover; */
 }
 /* .spot-name{
     position: absolute;
@@ -55,20 +63,20 @@
     margin-left: -60px;
   }
 
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent black transparent;
-  }
+.tooltip .tooltiptext::after {
+content: "";
+position: absolute;
+bottom: 100%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: transparent transparent black transparent;
+}
 
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
+.tooltip:hover .tooltiptext {
+visibility: visible;
+}
 
 .spot-location {
     display: flex;
