@@ -13,9 +13,15 @@
 }
 
 .spot-details {
+    display: flex;
+    flex-direction: column;
     margin-top: 10px;
 }
-
+.local-rating {
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+}
 .image {
     border: 1px dotted black;
 }
@@ -27,7 +33,7 @@
     text-align: center;
     opacity: 0;
     transition: opacity 0.3s ease;
-} 
+}
 
 .spot-details:hover .spot-name {
     opacity: 1;

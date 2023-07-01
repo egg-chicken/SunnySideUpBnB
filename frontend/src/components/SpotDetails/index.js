@@ -43,14 +43,16 @@ const SpotDetails = () => {
                 <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
               </div>
               <div className='div8'>
-                <p>Hosted by {spot.Owner.firstName} {spot.lastName}</p>
+                <p>Hosted by {spot.firstName} {spot.lastName}</p>
                 <p>{spot.description}</p>
               </div>
               <div className='div7'>
+                {/* <i className="fa-solid fa-star"/> */}
                 <p>Reviews . . .</p>
               </div>
               <div className='callout-box'>
                 <p>Price: ${spot.price} night</p>
+                {/* <i className="fa-solid fa-star"/> */}
                 <button onClick={handleClick} className='reserve-button'>Reserve</button>
               </div>
             </>

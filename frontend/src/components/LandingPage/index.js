@@ -20,14 +20,18 @@ const LandingPage = () => {
             {spots && spotsArray.map((spot) => (
                 <div key={spot.id} className='spot-tile'>
                     <Link to={`/spots/${spot.id}`}>test</Link>
-                    <img src={spot.url} alt={spot.name} className='image'/>
+                    <img src={spot.url} alt='Spot Preview' className='image'title={spot.name}/>
                     <div className='spot-details'>
-                        <p className='spot-location'>{`${spot.city}, ${spot.state}`}</p>
-                        <p className='spot-name'>{spot.name}</p>
-                        {/* <ReactToolTip role='tooltip' tip-position='center' >{spot.name}</ReactToolTip> */}
-                        <p className='spot-rating'>{`${spot.rating} || 'New'`}</p>
+                        <div className='local-rating'>
+                            <p className='spot-location'>{`${spot.city}, ${spot.state}`}</p>
+                            <p className='spot-rating'>
+                                <i className="fa-solid fa-star"/>
+                                {`${spot.rating}` || 'New'}
+                            </p>
+                        </div>
                         <p className='spot-price'>{`$${spot.price} night`}</p>
                     </div>
+
                 </div>
             ))}
         </main>
