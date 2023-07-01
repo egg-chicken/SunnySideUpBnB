@@ -10,7 +10,7 @@ const SpotDetails = () => {
     const spot = useSelector((state) => state.spot[id])
 
     useEffect(() => {
-        console.log('!!!!spots!!!!', id)
+        // console.log('!!!!spots!!!!', id)
         dispatch(getOneSpot(id));
     }, [id, dispatch]);
 
@@ -43,7 +43,7 @@ const SpotDetails = () => {
                 <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
               </div>
               <div className='div8'>
-                <p>Hosted by {spot.firstName} {spot.lastName}</p>
+                <p>Hosted by {spot.Owner.firstName} {spot.lastName}</p>
                 <p>{spot.description}</p>
               </div>
               <div className='div7'>
