@@ -1,7 +1,9 @@
 import { csrfFetch } from "./csrf";
+// import { ValidationError } from '../backend/utils/validation.js';
 
 const LOAD = 'spots/LOAD';
 const LOAD_ONE = 'spots/ADD_ONE';
+const CREATE = 'spots/CREATE';
 
 const load = list => ({
     type: LOAD,
@@ -11,7 +13,12 @@ const load = list => ({
 const viewOne = spot => ({
     type: LOAD_ONE,
     spot
-})
+});
+
+const createOne = spot => ({
+    type: CREATE,
+    spot
+});
 
 //get the list of All Spots thunk
 export const getSpots = () => async dispatch => {
@@ -23,7 +30,7 @@ export const getSpots = () => async dispatch => {
         dispatch(load(list));
         return list;
     }
-}
+};
 
 //View a spot's detail
 export const getOneSpot = (id) => async dispatch => {
@@ -34,9 +41,25 @@ export const getOneSpot = (id) => async dispatch => {
         dispatch(viewOne(spot));
         // return spot;
     }
-}
+};
 
-const initialState = {}
+export const createSpot = (id) => async dispatch => {
+    const response = await csrfFetch('/api/spots', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(id)
+    });
+
+    if(response.ok){
+        const spot = await response.json();
+        dispatch(createOne(spot))
+        return spot;
+    }
+};
+
+const initialState = {};
 
 const spotsReducer = (state = initialState, action) => {
     let newState = {...state}
@@ -58,6 +81,6 @@ const spotsReducer = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
 
 export default spotsReducer;

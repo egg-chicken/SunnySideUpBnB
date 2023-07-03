@@ -4,22 +4,18 @@ import { getSpots } from '../../store/spots';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Landing.css';
-// import { getAllReviews } from '../../store/reviews';
 
 const LandingPage = () => {
     const dispatch = useDispatch();
     const spots = useSelector((state) => state.spot);
     const spotsArray = Object.values(spots);
 
-    // const reviews = useSelector((state) => state.reviews);
-    // const reviewsArr = Object.values(reviews);
-    // console.log(reviewsArr, '<------ reviews');
-
     useEffect(() => {
        dispatch(getSpots())
     }, [dispatch]);
 
-    const defaultImage = 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688021244/airbnb-proj/spot1/334f322b2b69306444da7210fcc5ad6c-cc_ft_768_zbx09n.webp'
+
+    const defaultImage = 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688368793/airbnb-proj/No-Image-Placeholder_wthyue.svg'
 
     return (
         <main className='tiles-container'>
@@ -36,7 +32,7 @@ const LandingPage = () => {
                                 <p className='spot-location'>{`${spot.city}, ${spot.state}`}</p>
                                 <p className='spot-rating'>
                                     <i className="fa-solid fa-star"/>
-                                    {`${spot.rating}` || 'New'}
+                                    {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(2)) : 'New'}
                                 </p>
                             </div>
                             <p className='spot-price'>{`$${spot.price} night`}</p>
