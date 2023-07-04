@@ -27,8 +27,10 @@
     justify-content: space-between;
 }
 .image {
+    /* object-fit: cover; */
     position: absolute;
-    height: 100px;
+    height: 100%;
+    width: 100%
 }
 /* .spot-name{
     position: absolute;

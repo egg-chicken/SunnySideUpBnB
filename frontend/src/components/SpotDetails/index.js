@@ -28,7 +28,7 @@ const SpotDetails = () => {
                 <p>{spot.city}, {spot.state}, {spot.country}</p>
               </div>
               <div className='div2'>
-                <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
+                <img src={spot.SpotImages[0].url} alt={spot.name} className='image-detail-spot'/>
               </div>
               <div className='div3'>
                 <img src={spot.url} alt={spot.name} className='image-detail-spot'/>
