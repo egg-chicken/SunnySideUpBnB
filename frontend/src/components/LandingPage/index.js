@@ -23,19 +23,17 @@ const LandingPage = () => {
                 <div key={spot.id} className='spot-tile'>
                     <div  className='tooltip'>
                         <Link className='spot-id' to={`/spots/${spot.id}`}>
-                        <p className='tooltiptext'>{spot.name}</p>
-                                <img src={spot.previewImage || defaultImage} alt='Spot Preview' className='image'title={spot.name}/>
-
-                        <div className='spot-details'>
-
-                            <div className='local-rating'>
-                                <p className='spot-location'>{`${spot.city}, ${spot.state}`}</p>
-                                <p className='spot-rating'>
-                                    <i className="fa-solid fa-star"/>
-                                    {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(2)) : 'New'}
-                                </p>
-                            </div>
-                            <p className='spot-price'>{`$${spot.price} night`}</p>
+                            <p className='tooltiptext'>{spot.name}</p>
+                            <img src={spot.previewImage || defaultImage} alt='Spot Preview' className='image'title={spot.name}/>
+                            <div className='spot-details'>
+                                <div className='local-rating'>
+                                    <p className='spot-location'>{`${spot.city}, ${spot.state}`}</p>
+                                    <p className='spot-rating'>
+                                        <i className="fa-solid fa-star"/>
+                                        {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(2)) : 'New'}
+                                    </p>
+                                </div>
+                                <p className='spot-price'>{`$${spot.price} night`}</p>
                             </div>
                         </Link>
                     </div>

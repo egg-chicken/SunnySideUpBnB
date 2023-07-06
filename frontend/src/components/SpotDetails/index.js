@@ -1,6 +1,7 @@
 import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSpot } from '../../store/spots';
+// import { getAllReviews } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
 import './spotDetails.css'
 
@@ -8,10 +9,12 @@ const SpotDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const spot = useSelector((state) => state.spot[id])
+    // const reviews = useSelector(state => Object.values(state.review))
 
     useEffect(() => {
         // console.log('!!!!spots!!!!', id)
         dispatch(getOneSpot(id));
+        // dispatch(getAllReviews(id))
     }, [id, dispatch]);
 
     const handleClick = e => {
@@ -23,9 +26,9 @@ const SpotDetails = () => {
         <div className='parent'>
           {spot ? (
             <>
-              <div className='div1'>
+              <div className='spot-details'>
                 <h1>{spot.name}</h1>
-                <p>{spot.city}, {spot.state}, {spot.country}</p>
+                <p className='location'>{spot.city}, {spot.state}, {spot.country}</p>
               </div>
               <div className='div2'>
                 <img src={spot.SpotImages[0].url} alt={spot.name} className='image-detail-spot'/>
@@ -60,6 +63,7 @@ const SpotDetails = () => {
             <p>Loading spot details...</p>
           )}
         </div>
+
       );
 }
 
