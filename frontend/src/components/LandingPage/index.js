@@ -20,8 +20,8 @@ const LandingPage = () => {
     return (
         <main className='tiles-container'>
             {spots && spotsArray.map((spot) => (
-                <div key={spot.id} className='tooltip'>
-                    <div className='spot-tile'>
+                <div key={spot.id} className='spot-tile'>
+                    <div  className='tooltip'>
                         <Link className='spot-id' to={`/spots/${spot.id}`}>
                         <p className='tooltiptext'>{spot.name}</p>
                                 <img src={spot.previewImage || defaultImage} alt='Spot Preview' className='image'title={spot.name}/>
