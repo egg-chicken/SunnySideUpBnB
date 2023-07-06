@@ -1,50 +1,57 @@
-.spot-container {
+.tiles-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    /* grid-template-columns: minmax(1, 4); */
-    /* grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(1, 1fr); */
-    gap: 10px;
-    margin: 10px auto;
-    max-width: 1300px;
-    padding: 0 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* justify-content: flex-start; */
+    /* gap: 20px; */
+    padding: 20px;
 }
+
+.spot-id {
+    text-decoration: none;
+    color: black;
+}
+
 .spot-tile{
     display: flex;
     flex-direction: column;
     border: 1px dotted black;
-    padding: 10px;
+    padding: 15px;
     cursor: pointer;
+    /* overflow: hidden; */
+    flex-basis: 100%;
 }
+
+.image {
+    object-fit: cover;
+    height: 300px;
+    width: 300px;
+}
+
 .spot-details {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
+    font-size: 14px;
 }
+
 .local-rating {
     display: flex;
-    margin-top: 10px;
     justify-content: space-between;
 }
-.image {
-    /* object-fit: cover; */
-    position: absolute;
-    height: 100%;
-    width: 100%
+
+.spot-rating {
+    display: flex;
+    justify-content: flex-end;
 }
-/* .spot-name{
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-} */
+
+.spot-price {
+    display: flex-start;
+    margin: 0px;
+}
+
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
   }
 
   .tooltip .tooltiptext {
@@ -61,32 +68,3 @@
     left: 50%;
     margin-left: -60px;
   }
-
-.tooltip .tooltiptext::after {
-content: "";
-position: absolute;
-bottom: 100%;
-left: 50%;
-margin-left: -5px;
-border-width: 5px;
-border-style: solid;
-border-color: transparent transparent black transparent;
-}
-
-.tooltip:hover .tooltiptext {
-visibility: visible;
-}
-
-.spot-location {
-    display: flex;
-    justify-content:  flex-start;
-}
-.spot-rating {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.spot-id{
-    text-decoration: none;
-    color: black;
-}

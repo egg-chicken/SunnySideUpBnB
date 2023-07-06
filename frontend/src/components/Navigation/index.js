@@ -43,9 +43,16 @@ function Navigation ({ isLoaded }) {
                 </li>
                 <li className='space'></li>
             {isLoaded && sessionLinks}
+            {sessionUser && (
+                <li>
+                    <NavLink to='/spots/create' className='nav-link'>
+                        Create a New Spot
+                    </NavLink>
+                </li>
+            )}
             </ul>
         </nav>
-    )
+    );
 }
 
 export default Navigation;

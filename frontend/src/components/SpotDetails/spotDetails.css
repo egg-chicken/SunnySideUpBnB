@@ -1,13 +1,15 @@
 .parent {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    /* grid-template-rows: repeat(5, 1fr); */
     grid-column-gap: 5px;
     grid-row-gap: 5px;
+    overflow: hidden;
 }
 
-.div1 { grid-area: 1 / 2 / 2 / 10; }
-.div2 { grid-area: 2 / 2 / 4 / 6; border: dotted 1px black}
+.div1 { grid-area: 1 / 2 / 2 / 10;
+padding-bottom: 10px;}
+.div2 { grid-area: 2 / 2 / 4 / 6; border: dotted 1px black; overflow: hidden;}
 .div3 { grid-area: 2 / 6 / 3 / 8; border: dotted 1px black}
 .div4 { grid-area: 2 / 8 / 3 / 10; border: dotted 1px black}
 .div5 { grid-area: 3 / 6 / 4 / 8; border: dotted 1px black}
@@ -16,7 +18,8 @@
 .div8 { grid-area: 4 / 2 / 5 / 6; }
 
 .callout-box{
-    grid-area: 4 / 6 / 5 / 10;
+    grid-area: 4 / 7 / 5 / 10;
+    justify-content: center;
     background-color: white;
     border: 2px solid black;
     padding: 20px;
