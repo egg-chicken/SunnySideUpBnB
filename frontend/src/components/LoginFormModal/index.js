@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from '../../context/Modal';
 // import './LoginForm.css';
 
-const LoginFormPage = () => {
+const LoginFormModal = () => {
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
 
@@ -62,4 +62,4 @@ const LoginFormPage = () => {
     )
 }
 
-export default LoginFormPage;
+export default LoginFormModal;

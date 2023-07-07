@@ -41,9 +41,7 @@ export function Modal() {
     return ReactDOM.createPortal(
         <div>
             <div onClick={closeModal}/>
-            <div>
-                {modalContent}
-            </div>
+            <div>{modalContent}</div>
         </div>,
         modalRef.current
     )

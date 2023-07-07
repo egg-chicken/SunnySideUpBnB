@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from '../../context/Modal';
 // import "./SignupForm.css";
 
-function SignupFormPage() {
+function SignupFormModal() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
@@ -119,4 +119,4 @@ function SignupFormPage() {
   );
 }
 
-export default SignupFormPage;
+export default SignupFormModal;
