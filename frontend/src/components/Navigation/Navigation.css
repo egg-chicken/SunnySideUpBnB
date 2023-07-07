@@ -17,12 +17,13 @@
     flex-grow: 1;
 }
 
-.nav-link{
+.nav-link {
     text-decoration: none;
     color: black;
+    padding: 10px;
 }
 
-.home-link{
+.home-link {
     color: #FF5A5F;
     font-size: 24pt;
     font-weight: bold;
