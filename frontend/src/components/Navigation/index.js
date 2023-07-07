@@ -69,9 +69,9 @@ function Navigation({ isLoaded }) {
                 </NavLink>
             </li>
             <div className='menu'>
-                {sessionUser && (
+                {/* {sessionUser && (
                     <NavLink to='/spots/new'>Create a New Spot</NavLink>
-                )}
+                )} */}
                 {isLoaded && (
                     <li>
                         <ProfileButton user={sessionUser}/>
