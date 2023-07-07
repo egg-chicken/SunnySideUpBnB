@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './profile-button.css';
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import OpenModalMenuItem from '../OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
@@ -58,18 +58,14 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
-            <li>
               <OpenModalMenuItem
                 buttonText="Log In"
                 modalComponent={<LoginFormModal />}
               />
-            </li>
-            <li>
               <OpenModalMenuItem
                 buttonText="Sign Up"
                 modalComponent={<SignupFormModal />}
               />
-            </li>
           </>
         )}
       </div>
