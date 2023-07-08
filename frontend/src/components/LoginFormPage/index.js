@@ -55,7 +55,7 @@ const LoginFormPage = () => {
                 </div>
                 {errors.credential && <p>{errors.credential}</p>}
                 <div className="size-button">
-                <button className='login-button' type='submit'>Log In</button>
+                <button className='login-button' disabled={credential.length < 4 || password.length < 6} type='submit'>Log In</button>
                 </div>
             </form>
         </div>
