@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import './profile-button.css';
+// import './profile-button.css';
 import { useHistory } from "react-router-dom";
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
@@ -46,8 +46,8 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle"/>
+      <button className='open-menu' onClick={openMenu}>
+        <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
       </button>
       <div className={ulClassName} ref={ulRef}>
         {user ? (
