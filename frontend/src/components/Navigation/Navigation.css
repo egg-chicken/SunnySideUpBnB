@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    list-style-type: none;
+    /* list-style-type: none; */
     border-bottom: 2px solid #CCCCCC;
     Height: 70px;
     /* top | right | bottom | left */
@@ -38,19 +38,18 @@
 div.profile-dropdown {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     background-color: red;
     right: 30px;
     top: 65px;
     position: absolute;
     padding: 10px;
     border: 1px solid #000000;
-    box-shadow: 2px 2px 2px #000000;
+    /* box-shadow: 2px 2px 2px #000000; */
     font-size: 14px;
-    list-style-type: none;
+    /* list-style-type: none; */
 }
 
 div.profile-dropdown.hidden {
     display: none;
 }
-
