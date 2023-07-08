@@ -113,7 +113,7 @@ function SignupFormPage() {
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <div className="style-button">
-        <button type="submit" className="signup-button">Sign Up</button>
+        <button type="submit" className="signup-button" disabled={!firstName || !lastName || !email || username.length < 4 || password.length < 6 || (password !== confirmPassword)}>Sign Up</button>
         </div>
       </form>
       </div>
