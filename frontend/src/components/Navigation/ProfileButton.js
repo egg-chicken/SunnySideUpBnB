@@ -53,23 +53,21 @@ function ProfileButton({ user }) {
           <>
             <li>Hello, {user.username}</li>
             <li>{user.email}</li>
-            <NavLink to='/spots/current' className='link-spots'>Manage Spots</NavLink>
-            <li className="profile-button">
-            <button onClick={logout}>Log Out</button>
-            </li>
+            <NavLink to='/spots/current' onClick={closeMenu}>Manage Spots</NavLink>
+            <button className="profile-button" onClick={logout}>Log Out</button>
           </>
         ) : (
           <>
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
               <OpenModalMenuItem
                 itemText="Sign Up"
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />
+              <OpenModalMenuItem
+              itemText="Log In"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
           </>
         )}
       </ul>

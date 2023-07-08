@@ -33,14 +33,19 @@ ul.profile-dropdown {
     align-items: flex-start;
     background-color: white;
     right: 30px;
-    top: 65px;
+    top: 45px;
     position: absolute;
     padding: 10px;
-    border: 1px solid #000000;
+    border: 2px solid #000000;
     /* box-shadow: 2px 2px 2px #000000; */
     font-size: 14px;
+    width: 90px;
 }
 
 ul.profile-dropdown.hidden {
     display: none;
+}
+
+.profile-button {
+    align-self: center;
 }
