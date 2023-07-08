@@ -28,31 +28,37 @@ const LoginFormPage = () => {
       };
 
     return (
-        <>
-            <h1>Log In</h1>
+        <div className="loginform">
             <form onSubmit={handleSubmit}>
-                <label>
-                    Username or Email
+            <h1>Log In</h1>
+                <div className="group-inputs">
+                <label className="user">
+                    {/* Username or Email */}
                     <input
                         type="text"
+                        placeholder="Username or Email"
                         value={credential}
                         onChange={(e) => setCredential(e.target.value)}
                         required
                     />
                 </label>
-                <label>
-                    Password
+                <label className="password">
+                    {/* Password */}
                     <input
                         type='password'
+                        placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </label>
+                </div>
                 {errors.credential && <p>{errors.credential}</p>}
-                <button type='submit'>Log In</button>
+                <div className="size-button">
+                <button className='login-button' disabled={credential.length < 4 || password.length < 6} type='submit'>Log In</button>
+                </div>
             </form>
-        </>
+        </div>
     )
 }
 

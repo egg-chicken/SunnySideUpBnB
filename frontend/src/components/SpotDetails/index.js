@@ -19,7 +19,7 @@ const SpotDetails = () => {
 
     const handleClick = e => {
         e.preventDefault();
-        alert("Feature Coming Soon...")
+        alert("Feature Coming Soon")
     }
 
     return (

@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -52,9 +53,9 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <li>Hello, {user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
-            <li>
+            <NavLink to='/spots/current' className='link-spots'>Manage Spots</NavLink>
+            <li className="profile-button">
             <button onClick={logout}>Log Out</button>
             </li>
           </>

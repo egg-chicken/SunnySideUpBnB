@@ -1,8 +1,37 @@
-/* button {
-    background-color: red;
-    padding: 15px 32px;
+.loginform {
+    display: flex;
+    padding: 20px;
+    justify-content: center;
 }
 
-label {
-    background-color: grey;
-} */
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.user {
+    justify-content: center;
+    padding: 10px;
+}
+
+.password {
+    justify-content: center;
+    padding: 10px;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    /* padding: 10px; */
+}
+
+.group-inputs {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.size-button {
+    padding: 10px;
+}
