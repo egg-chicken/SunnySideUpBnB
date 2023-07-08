@@ -48,33 +48,31 @@ function ProfileButton({ user }) {
       <button className='open-menu' onClick={openMenu}>
         <i className="fas fa-bars"/> <i className="fas fa-user-circle"/>
       </button>
-      <div className={ulClassName} ref={ulRef}>
+      <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <p>Hello, {user.username}</p>
-            <p>{user.email}</p>
+            <li>Hello, {user.username}</li>
+            <li>{user.email}</li>
             <NavLink to='/spots/current' className='link-spots'>Manage Spots</NavLink>
-            <div className="profile-button">
+            <li className="profile-button">
             <button onClick={logout}>Log Out</button>
-            </div>
-
-
+            </li>
           </>
         ) : (
           <>
               <OpenModalMenuItem
-                buttonText="Log In"
+                itemText="Log In"
                 onItemClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
               <OpenModalMenuItem
-                buttonText="Sign Up"
+                itemText="Sign Up"
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />
           </>
         )}
-      </div>
+      </ul>
     </>
   );
 }

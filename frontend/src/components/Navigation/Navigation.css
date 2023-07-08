@@ -9,14 +9,6 @@
     padding: 0px 20px 0px 20px;
 }
 
-.right-align {
-    margin-left: auto;
-}
-
-.space {
-    flex-grow: 1;
-}
-
 .nav-link {
     text-decoration: none;
     color: black;
@@ -35,11 +27,11 @@
     padding: 5px 10px;
 }
 
-div.profile-dropdown {
+ul.profile-dropdown {
     display: flex;
     flex-direction: column;
-    /* align-items: flex-start; */
-    background-color: red;
+    align-items: flex-start;
+    background-color: white;
     right: 30px;
     top: 65px;
     position: absolute;
@@ -47,9 +39,8 @@ div.profile-dropdown {
     border: 1px solid #000000;
     /* box-shadow: 2px 2px 2px #000000; */
     font-size: 14px;
-    /* list-style-type: none; */
 }
 
-div.profile-dropdown.hidden {
+ul.profile-dropdown.hidden {
     display: none;
 }
