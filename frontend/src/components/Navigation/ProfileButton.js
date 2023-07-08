@@ -44,7 +44,7 @@ function ProfileButton({ user }) {
         <li>Hello, {user.username}</li>
         <li>{user.email}</li>
         <NavLink to='/spots/current' className='link-spots'>Manage Spots</NavLink>
-        <li>
+        <li className="profile-button">
           <button onClick={logout}>Log Out</button>
         </li>
       </ul>
