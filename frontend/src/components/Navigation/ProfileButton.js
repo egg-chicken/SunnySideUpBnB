@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './profile-button.css';
+import { NavLink } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -41,8 +42,8 @@ function ProfileButton({ user }) {
       </button>
       <ul className={ulClassName} ref={ulRef}>
         <li>Hello, {user.username}</li>
-        <li>{user.firstName} {user.lastName}</li>
         <li>{user.email}</li>
+        <NavLink to='/spots/current' className='link-spots'>Manage Spots</NavLink>
         <li>
           <button onClick={logout}>Log Out</button>
         </li>

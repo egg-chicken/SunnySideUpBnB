@@ -1,11 +1,11 @@
 .profile-dropdown {
     display: flex;
     flex-direction: column;
-    position: static;
-    top: 100%;
+    position: relative;
+    /* top: 100%; */
     right: 20px;
     width: fit-content;
-    min-width: 200px;
+    /* min-width: 200px; */
     padding: 10px;
     background-color: white;
     border: 1px solid #ccc;
@@ -13,6 +13,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     font-size: 14px;
     text-align: left;
+    list-style-type: none;
   }
 
   .profile-dropdown.hidden {
@@ -40,4 +41,9 @@
 
 .profile-dropdown button i {
     margin-right: 5px;
+}
+
+.link-spots {
+  text-decoration: none;
+  color: black;
 }
