@@ -9,7 +9,7 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from "./store/session";
 import * as spotsActions from './store/spots';
 import * as reviewsActions from './store/reviews'
-import { ModalProvider, Modal } from './context/Modal';
+import { ModalProvider, Modal} from './context/Modal';
 
 const store = configureStore();
 

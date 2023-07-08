@@ -1,9 +1,53 @@
-import {NavLink} from 'react-router-dom';
-import React from 'react';
-import ProfileButton from './ProfileButton';
-import * as sessionActions from '../../store/session'
-import { useSelector, useDispatch } from 'react-redux';
-import './Navigation.css'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import ProfileButton from "./ProfileButton";
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
+import "./Navigation.css";
+
+function Navigation({ isLoaded }) {
+  const sessionUser = useSelector((state) => state.session.user);
+
+  let sessionLinks;
+  if (sessionUser) {
+    sessionLinks = (
+      <li>
+        <ProfileButton user={sessionUser} />
+      </li>
+    );
+  } else {
+    sessionLinks = (
+      <li>
+        <OpenModalButton
+          buttonText="Log In"
+          modalComponent={<LoginFormModal />}
+        />
+        <NavLink to="/signup">Sign Up</NavLink>
+      </li>
+    );
+  }
+
+  return (
+    <ul>
+      <li>
+        <NavLink exact to="/">
+          Home
+        </NavLink>
+      </li>
+      {isLoaded && sessionLinks}
+    </ul>
+  );
+}
+
+export default Navigation;
+
+// import {NavLink} from 'react-router-dom';
+// import React from 'react';
+// import ProfileButton from './ProfileButton';
+// import * as sessionActions from '../../store/session'
+// import { useSelector, useDispatch } from 'react-redux';
+// import './Navigation.css'
 
 // function Navigation ({ isLoaded }) {
 //     const sessionUser = useSelector(state => state.session.user);
@@ -57,30 +101,30 @@ import './Navigation.css'
 
 // export default Navigation;
 
-function Navigation({ isLoaded }) {
-    const sessionUser = useSelector(state => state.session.user);
+// function Navigation({ isLoaded }) {
+//     const sessionUser = useSelector(state => state.session.user);
 
-    return (
-        <ul className='home'>
-            <li>
-                <NavLink exact to='/' className='nav-link home-link'>
-                <i className="fas fa-brands fa-airbnb fa-rotate-180" />
-                    airbnb
-                </NavLink>
-            </li>
-            <div className='menu'>
-                {/* {sessionUser && (
-                    <NavLink to='/spots/new'>Create a New Spot</NavLink>
-                )} */}
-                {isLoaded && (
-                    <li>
-                        <ProfileButton user={sessionUser}/>
-                    </li>
+//     return (
+//         <ul className='home'>
+//             <li>
+//                 <NavLink exact to='/' className='nav-link home-link'>
+//                 <i className="fas fa-brands fa-airbnb fa-rotate-180" />
+//                     airbnb
+//                 </NavLink>
+//             </li>
+//             <div className='menu'>
+//                 {/* {sessionUser && (
+//                     <NavLink to='/spots/new'>Create a New Spot</NavLink>
+//                 )} */}
+//                 {isLoaded && (
+//                     <li>
+//                         <ProfileButton user={sessionUser}/>
+//                     </li>
 
-                )}
-            </div>
-        </ul>
-    )
-}
+//                 )}
+//             </div>
+//         </ul>
+//     )
+// }
 
-export default Navigation;
+// export default Navigation;
