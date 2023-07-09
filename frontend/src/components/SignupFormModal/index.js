@@ -44,9 +44,9 @@ function SignupFormModal() {
   return (
     <>
     <div className="signup-form">
-      <h2>Sign Up</h2>
+      <h2 className="signup-text">Sign Up</h2>
       {Object.keys(errors).map((key) => (
-        <p key ={key}>{errors[key]}</p>
+        <p key ={key} className="error-message">{errors[key]}</p>
       ))}
       <form onSubmit={handleSubmit}>
         <label className="email">

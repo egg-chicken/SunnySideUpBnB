@@ -9,11 +9,14 @@
     justify-content: center;
     width: 100%;
     margin: 10px 0px 10px 0px;
-    border: solid 1px darkgray;
+    /* border: solid 1px darkgray; */
     box-shadow: 2px 2px 2px;
     padding: 5px;
 }
 
+.signup-text {
+    margin: 15px 0px;
+}
 .email {
     display: flex;
     justify-content: center;
@@ -61,4 +64,12 @@
     justify-content: center;
     padding: 5px;
     width: 100%;
+}
+.error-message {
+    color: #FF5A5F;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 5px 0px;
+    font-size: 14pt;
 }
