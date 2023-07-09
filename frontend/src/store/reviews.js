@@ -7,7 +7,7 @@ const load = reviews => ({
     reviews
 });
 
-//get all the reviews
+//get all the spots reviews
 export const getAllReviews = id => async dispatch => {
     const response = await csrfFetch(`/api/spots/${id}/reviews`)
 
@@ -19,14 +19,16 @@ export const getAllReviews = id => async dispatch => {
 }
 
 const initialState = {}
+
 const reviewsReducer = (state = initialState, action) => {
     let newState = {...state};
     switch (action.type) {
         case LOAD:
-            action.reviews.forEach(review => {
-                newState[review.id] = review;
+            const mapRev = {}
+            action.reviews.Reviews.forEach(review => {
+                mapRev[review.id] = review;
             });
-            return newState;
+            return mapRev;
         default:
             return newState;
     }

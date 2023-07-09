@@ -11,7 +11,7 @@ const SpotDetails = () => {
     const spot = useSelector((state) => state.spot[id]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isReviewsLoaded, setIsReviewsLoaded] = useState(false);
-    const reviews = useSelector((state) => Object.values(state.reviews.spotReviews));
+    const reviews = useSelector((state) => Object.values(state.reviews));
 
     useEffect(() => {
         // console.log('!!!!spots!!!!', id)
@@ -58,7 +58,7 @@ const SpotDetails = () => {
         // </div>
       <>
         {isLoaded && (
-          <div>
+          <div key={spot.id}>
             <div className='spot-details'>
                  <h1>{spot.name}</h1>
                  <p className='location'>{spot.city}, {spot.state}, {spot.country}</p>
@@ -88,8 +88,10 @@ const SpotDetails = () => {
           </div>
         )}
         {isReviewsLoaded &&
+          <div>
+            <h2>{spot.avgStarRating}</h2>
+          </div>
 
-      
 
         }
       </>
