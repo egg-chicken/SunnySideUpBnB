@@ -7,7 +7,7 @@ const load = reviews => ({
     reviews
 });
 
-//get all the spots reviews
+//get all the spot reviews
 export const getAllReviews = id => async dispatch => {
     const response = await csrfFetch(`/api/spots/${id}/reviews`)
 

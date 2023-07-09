@@ -89,7 +89,7 @@ const SpotDetails = () => {
         )}
         {isReviewsLoaded &&
           <div>
-            <h2>{spot.avgStarRating}</h2>
+            <h2><i className="fa-solid fa-star"/>{spot.avgStarRating}</h2>
           </div>
 
 
