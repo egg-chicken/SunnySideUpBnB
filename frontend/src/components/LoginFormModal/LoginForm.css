@@ -4,7 +4,7 @@
 
     flex-direction: column;
     align-items: center;
-    width: 350px;
+    width: 250px;
 }
 
 .login-text {
@@ -24,17 +24,18 @@
     justify-content: center;
     padding: 5px;
     align-content: center;
-
 }
 
 input {
-    width: 250px;
+    width: 100%;
+    border: solid black 1px;
+    background-color: #E8F0FE;
 }
 
 .login-button {
     display: flex;
     justify-content: center;
-    width: 250px;
+    width: 100%;
     margin: 10px 0px 10px 0px;
     border: solid 1px darkgray;
     box-shadow: 2px 2px 2px;
@@ -52,7 +53,7 @@ input {
     border: none;
     padding: 15px;
     text-decoration: underline;
-    color: blue;
+    color: #00525E;
     cursor: pointer;
 }
 

@@ -1,4 +1,64 @@
-/* .button {
-    background-color: blue;
-    padding: 15px 32px;
-} */
+.signup-form {
+    display: flex;
+    margin: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+.signup-button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+    border: solid 1px darkgray;
+    box-shadow: 2px 2px 2px;
+    padding: 5px;
+}
+
+.email {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+}
+
+.user {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+}
+
+.first-name {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+}
+
+.last-name {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+}
+
+.password {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+}
+
+.confirm {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+}
+
+.style-button {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+}
