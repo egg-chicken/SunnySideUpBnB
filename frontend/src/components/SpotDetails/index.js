@@ -57,6 +57,7 @@ const SpotDetails = () => {
         //   )}
         // </div>
       <>
+        <div className='full-page'>
         {isLoaded && (
           <div key={spot.id}>
             <div className='spot-details'>
@@ -80,7 +81,7 @@ const SpotDetails = () => {
               }
            </div>
            <div className='callout-box'>
-               <p>Price: ${spot.price} night</p>
+               <p>${spot.price} night</p>
                {/* <i className="fa-solid fa-star"/> */}
                <button onClick={handleClick} className='reserve-button'>Reserve</button>
            </div>
@@ -105,6 +106,7 @@ const SpotDetails = () => {
 
 
         }
+        </div>
       </>
       );
 }

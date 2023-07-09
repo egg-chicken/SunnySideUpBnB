@@ -23,8 +23,26 @@ await queryInterface.bulkInsert(options, [{
         //id: 1,
         userId: 1,
         spotId: 1,
-        review: 'gorgeous house',
+        review: 'A gorgeous house with beautiful trees',
         stars: 5,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 2,
+        userId: 2,
+        spotId: 1,
+        review: 'Such a cozy home',
+        stars: 4,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 2,
+        userId: 3,
+        spotId: 1,
+        review: 'The location is perfect',
+        stars: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
