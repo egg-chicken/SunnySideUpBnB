@@ -89,7 +89,18 @@ const SpotDetails = () => {
         )}
         {isReviewsLoaded &&
           <div>
-            <h2><i className="fa-solid fa-star"/>{spot.avgStarRating}</h2>
+            <h2><i className="fa-solid fa-star"/>{spot.avgStarRating || 'New'}</h2>
+            {reviews?.map(review => {
+              return (
+                <div>
+                  <p>{review.User?.firstName}</p>
+                  <p>{review.createdAt}</p>
+                  <p>{review.review}</p>
+                </div>
+              )
+            })
+
+            }
           </div>
 
 
