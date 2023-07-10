@@ -87,11 +87,36 @@ const CreateSpotForm = () => {
                     <input
                         type='text'
                         placeholder="Name of your spot"
-                        value={state}
-                        onChange={(e) => setState(e.target.value)}
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                         required
                     />
                 </label>
+                <label>
+                    Set a base price for your spot
+                    <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
+                    <input
+                        type='number'
+                        placeholder="Price per night (USD)"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Liven up your spot with photos
+                    <p>Submit a link to at least one photo to publish your spot.</p>
+                    <input
+                        type='text'
+                        placeholder="Preview Image URL"
+                        value={previewImage}
+                        onChange={(e) => setPreviewImage(e.target.value)}
+                        required
+                    />
+                </label>
+                <div>
+                    <button type='submit'>Create Spot</button>
+                </div>
             </form>
         </>
     )
