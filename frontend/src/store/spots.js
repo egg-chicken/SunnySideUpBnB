@@ -43,13 +43,13 @@ export const getOneSpot = (id) => async dispatch => {
     }
 };
 
-export const createSpot = (id) => async dispatch => {
+export const createSpot = (spot) => async dispatch => {
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(id)
+        body: JSON.stringify(spot)
     });
 
     if(response.ok){
@@ -76,6 +76,9 @@ const spotsReducer = (state = initialState, action) => {
                 ...state
             }
         case LOAD_ONE:
+            newState[action.spot.id] = action.spot;
+            return newState
+        case CREATE:
             newState[action.spot.id] = action.spot;
             return newState
         default:
