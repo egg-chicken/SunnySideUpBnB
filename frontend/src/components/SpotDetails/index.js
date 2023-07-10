@@ -42,22 +42,24 @@ const SpotDetails = () => {
             </div>
             <div className='spot-images'>
                 {
-                  spot?.SpotImages.map((img, index) => {
+                  spot?.SpotImages.map((image, index) => {
                     return (
-                      <img className={img.preview ? 'spot-preview-img' : `spot-alt-img alt-img-${index}`} src={img.url} onError={(e) => {
+                      <img className={image.preview ? 'preview-image' : `spot-image-tiles tile-image-${index}`} src={image.url} onError={(e) => {
                         e.target.src = 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688368793/airbnb-proj/No-Image-Placeholder_wthyue.svg';
                         e.onError = null;
-                      }} alt={img.url.split('/').pop()} />
+                      }} alt={image.url.split('/').pop()} />
                     );
                   })
                 }
             </div>
             <div className='callout-box'>
                 <p>${spot.price} night</p>
-                {/* <i className="fa-solid fa-star"/> */}
+                <div>
+                  <i className="fa-solid fa-star"/>
+                  <p>{spot.avgStarRating}</p>
+                </div>
                 <button onClick={handleClick} className='reserve-button'>Reserve</button>
             </div>
-
             </div>
           )}
           {isReviewsLoaded &&
@@ -71,12 +73,9 @@ const SpotDetails = () => {
                     <p>{review.review}</p>
                   </div>
                 )
-              })
-
+                })
               }
             </div>
-
-
           }
         </div>
       </>
