@@ -7,20 +7,20 @@ import './createspot.css'
 const CreateSpotForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const user = useSelector(state => state.session.user);
+    // const user = useSelector(state => state.session.user);
     const [country, setCountry] = useState('');
-    const [streetAddress, setStreetAddress] = useState('');
+    const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [description, setDescription] = useState('');
-    const [title, setTitle] = useState('');
+    const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [previewImage, setPreviewImage] = useState('');
     const [image1, setImage1] = useState('');
     const [image2,setImage2] = useState('');
     const [image3, setImage3] = useState('');
     const [image4, setImage4] = useState('');
-    const [errors, setErrors] = useState(false);
+    const [errors, setErrors] = useState({});
 
     // useEffect(() => {
     //     return () => {
@@ -46,7 +46,7 @@ const CreateSpotForm = () => {
         const errors = {};
 
         if(!country) errors.country = 'Country is required';
-        if(!streetAddress) errors.streetAddress = 'Address is required';
+        if(!address) errors.address = 'Address is required';
         if(!city) errors.city = 'City is required';
         if(!state) errors.state = 'State is required';
         if(description.length < 30){
@@ -59,7 +59,7 @@ const CreateSpotForm = () => {
         // if(image3 && !image3.endsWith('.png') && !image3.endsWith('.jpg') && !image3.endsWith('.jpeg')) errors.image3 = 'Image URL must end in .png, .jpg, .jpeg';
         // if(image4 && !image4.endsWith('.png') && !image4.endsWith('.jpg') && !image4.endsWith('.jpeg')) errors.image4 = 'Image URL must end in .png, .jpg, .jpeg';
 
-        const spotInfo = { streetAddress, city, state, country, title, description, price, previewImage, image1, image2, image3, image4}
+        const spotInfo = { address, city, state, country, name, description, price, previewImage, image1, image2, image3, image4}
 
         if (Object.keys(errors).length === 0) {
             setErrors(errors);
@@ -102,12 +102,12 @@ const CreateSpotForm = () => {
                         <input
                             type='text'
                             placeholder="Address"
-                            value={streetAddress}
-                            onChange={(e) => setStreetAddress(e.target.value)}
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
                             // required
                     />
                     </label>
-                    {errors.streetAddress && <p>{errors.streetAddress}</p>}
+                    {errors.address && <p>{errors.address}</p>}
                     <label>
                         City
                         <input
@@ -148,12 +148,12 @@ const CreateSpotForm = () => {
                         <input
                             type='text'
                             placeholder="Name of your spot"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             // required
                         />
                     </label>
-                    {errors.title && <p>{errors.title}</p>}
+                    {errors.name && <p>{errors.name}</p>}
                     <label>
                         Set a base price for your spot
                         <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
