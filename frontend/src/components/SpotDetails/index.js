@@ -2,6 +2,9 @@ import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as spotsActions from '../../store/spots';
 import * as reviewsActions from '../../store/reviews';
+import * as sessionActions from '../../store/session';
+import OpenModalButton from '../OpenModalButton';
+import createReview from '../ReviewModal';
 import { useParams } from 'react-router-dom';
 import './spotDetails.css'
 
@@ -12,6 +15,8 @@ const SpotDetails = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [isReviewsLoaded, setIsReviewsLoaded] = useState(false);
     const reviews = useSelector((state) => Object.values(state.reviews));
+    const [isVisible, setIsVisible] = useState(false);
+    const user = useSelector(state => state.session.user);
 
     useEffect(() => {
         // console.log('!!!!spots!!!!', id)
@@ -22,6 +27,14 @@ const SpotDetails = () => {
         // dispatch(getAllReviews(id))
     }, [id, dispatch]);
 
+    useEffect(() => {
+      if(isReviewsLoaded) {
+        if(user){
+          let target = true;
+          if(target === true) setIsVisible(true);
+        }
+      }
+    })
     const handleClick = e => {
         e.preventDefault();
         alert("Feature Coming Soon")
@@ -76,6 +89,8 @@ const SpotDetails = () => {
                 })
               }
             </div>
+          {isVisible &&
+          <OpenModalButton modalComponent={<createReview setIsVisible={setIsVisible}/>} />}
           }
         </div>
       </>
