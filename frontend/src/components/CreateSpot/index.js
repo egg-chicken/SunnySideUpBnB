@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
-import * as spotActions from '../../store/spots';
+import * as spotsActions from '../../store/spots';
 import { useDispatch, useSelector } from "react-redux";
 import './createspot.css'
+// import { useParams } from "react-router-dom";
 
 const CreateSpotForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    // const { id } = useParams
     // const user = useSelector(state => state.session.user);
+    // const spot = useSelector((state) => state.spots[id]);
     const [country, setCountry] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -22,25 +25,24 @@ const CreateSpotForm = () => {
     const [image4, setImage4] = useState('');
     const [errors, setErrors] = useState({});
 
-    // useEffect(() => {
-    //     return () => {
-    //         setCountry('');
-    //         setStreetAddress('');
-    //         setCity('');
-    //         setState('');
-    //         setDescription('');
-    //         setTitle('');
-    //         setPrice('');
-    //         setPreviewImage('');
-    //         setImage1('');
-    //         setImage2('');
-    //         setImage3('');
-    //         setImage4('');
-    //         setErrors({});
-    //       };
-    // }, []);
+    useEffect(() => {
+        return () => {
+            setCountry('');
+            setAddress('');
+            setCity('');
+            setState('');
+            setDescription('');
+            setName('');
+            setPrice('');
+            setPreviewImage('');
+            setImage1('');
+            setImage2('');
+            setImage3('');
+            setImage4('');
+        }
+    }, []);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const errors = {};
@@ -49,23 +51,29 @@ const CreateSpotForm = () => {
         if(!address) errors.address = 'Address is required';
         if(!city) errors.city = 'City is required';
         if(!state) errors.state = 'State is required';
+        if(!name) errors.name = 'Name is required';
+        if(!price) errors.price = 'Price is required';
+        if(!description) errors.description = 'Description is required';
         if(description.length < 30){
             errors.description = 'Description needs 30 or more characters';
         }
         if(!price) errors.price = 'Price is required';
         if(!previewImage) errors.previewImage = 'Preview Image is required';
+        if(previewImage && !previewImage.endsWith('.png') && !previewImage.endsWith('.jpg') && !previewImage.endsWith('.jpeg')) errors.previewImage = 'Image URL must end in .png, .jpg, .jpeg';
         // if(image1 && !image1.endsWith('.png') && !image1.endsWith('.jpg') && !image1.endsWith('.jpeg')) errors.image1 = 'Image URL must end in .png, .jpg, .jpeg';
         // if(image2 && !image2.endsWith('.png') && !image2.endsWith('.jpg') && !image2.endsWith('.jpeg')) errors.image2 = 'Image URL must end in .png, .jpg, .jpeg';
         // if(image3 && !image3.endsWith('.png') && !image3.endsWith('.jpg') && !image3.endsWith('.jpeg')) errors.image3 = 'Image URL must end in .png, .jpg, .jpeg';
         // if(image4 && !image4.endsWith('.png') && !image4.endsWith('.jpg') && !image4.endsWith('.jpeg')) errors.image4 = 'Image URL must end in .png, .jpg, .jpeg';
 
-        const spotInfo = { address, city, state, country, name, description, price, previewImage, image1, image2, image3, image4}
+        setErrors(errors);
 
-        if (Object.keys(errors).length === 0) {
+        const spotInfo = { address, city, state, country, name, description, price, url: previewImage, spotImages: [image1, image2, image3, image4]}
+
+        if (Object.keys(errors).length > 0) {
             setErrors(errors);
           } else {
             setErrors({});
-            dispatch(spotActions.createSpot(spotInfo))
+            dispatch(spotsActions.createSpot(spotInfo))
                 .then((spot) => {
                     history.push(`/spots/${spot.id}`)
                 })
@@ -73,6 +81,10 @@ const CreateSpotForm = () => {
                     const data = await res.json()
                     if(data && data.errors) setErrors(data.errors)
                 })
+        // let spotId;
+        // spotId = await dispatch(spotsActions.createSpot(spotInfo))
+        // history.push(`/spots/${spotId}`)
+
           }
 
     }

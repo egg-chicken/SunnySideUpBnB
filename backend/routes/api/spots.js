@@ -40,6 +40,37 @@ const validateQueryParams = [
     .isFloat({ min: 0})
     .withMessage('Maximum price must be greater than or equal to 0'),
 ];
+
+const validateSpot = [
+  check('address')
+    .exists({checkFalsy: true})
+    .withMessage('Street address is required'),
+  check('city')
+    .exists({checkFalsy: true})
+    .withMessage('City is required'),
+  check('state')
+    .exists({checkFalsy: true})
+    .withMessage('State is required'),
+  check('country')
+    .exists({checkFalsy: true})
+    .withMessage('Country is required'),
+  check('lat')
+    .exists({checkFalsy: true})
+    .withMessage('Latitude is not valid'),
+  check('lng')
+    .exists({checkFalsy: true})
+    .withMessage('Longitude is not valid'),
+  check('name')
+    .exists({checkFalsy: true})
+    .withMessage('Name must be less than 50 characters'),
+  check('description')
+    .exists({checkFalsy: true})
+    .withMessage('Description is required'),
+  check('price')
+    .exists({checkFalsy: true})
+    .withMessage('Price per day is required')
+]
+
 //get all spots
 router.get('/', validateQueryParams, async (req, res) => {
   let { page, size, minLng, maxLng, minPrice, maxPrice } = req.query;
@@ -174,41 +205,56 @@ router.get('/:id', async (req, res) => {
 });
 
 //create a spot
-router.post('/', requireAuth, async (req, res) => {
+router.post('/', requireAuth, validateSpot, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
-    if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
-        res.status(400);
-        res.json({
-            message: 'Bad Request',
-            errors: {
-              address: 'Street address is required',
-              city: 'City is required',
-              state: 'State is required',
-              country: 'Country is required',
-              lat: 'Latitude is not valid',
-              lng: 'Longitude is not valid',
-              name: 'Name must be less than 50 characters',
-              description: 'Description is required',
-              price: 'Price per day is required'
-            }
-        });
-    }
+    // if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+    //     res.status(400);
+    //     res.json({
+    //         message: 'Bad Request',
+    //         errors: {
+    //           address: 'Street address is required',
+    //           city: 'City is required',
+    //           state: 'State is required',
+    //           country: 'Country is required',
+    //           lat: 'Latitude is not valid',
+    //           lng: 'Longitude is not valid',
+    //           name: 'Name must be less than 50 characters',
+    //           description: 'Description is required',
+    //           price: 'Price per day is required'
+    //         }
+    //     });
+    // }
+
+    // const spot = await Spot.create({
+    //   ownerId: req.user.id,
+    //   address,
+    //   city,
+    //   state,
+    //   country,
+    //   lat,
+    //   lng,
+    //   name,
+    //   description,
+    //   price,
+    // });
+
+    const ownerId = req.user.id;
 
     const spot = await Spot.create({
-        ownerId: req.user.id,
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price,
-      });
+      ownerId,
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+    });
 
-      res.json(spot)
+      res.status(201).json(spot)
 });
 
 //add an image to a spot based on the Spot's id
