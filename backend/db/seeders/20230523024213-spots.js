@@ -88,7 +88,7 @@ module.exports = {
       },
       {
         // id: 6,
-        ownerId: 1,
+        ownerId: 2,
         address: '12345 Test Ave',
         city: 'Portland',
         state: 'Oregon',
@@ -103,7 +103,7 @@ module.exports = {
       },
       {
         // id: 7,
-        ownerId: 1,
+        ownerId: 2,
         address: '12345 Test Ave',
         city: 'Eugene',
         state: 'Oregon',
@@ -118,7 +118,7 @@ module.exports = {
       },
       {
         // id: 8,
-        ownerId: 1,
+        ownerId: 3,
         address: '12345 Test Ave',
         city: 'Newport',
         state: 'Oregon',
