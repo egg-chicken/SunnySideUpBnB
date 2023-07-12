@@ -289,7 +289,7 @@ router.post('/:id/images', requireAuth, async (req, res) => {
 });
 
 //edit a spot
-router.put('/:id', requireAuth, async (req, res) => {
+router.put('/:id', requireAuth, validateSpot, async (req, res) => {
     const spotId = req.params.id;
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
@@ -297,23 +297,23 @@ router.put('/:id', requireAuth, async (req, res) => {
         where: { id: spotId}
       });
 
-        if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
-            res.status(400);
-            res.json({
-                message: 'Bad Request',
-                errors: {
-                address: 'Street address is required',
-                city: 'City is required',
-                state: 'State is required',
-                country: 'Country is required',
-                lat: 'Latitude is not valid',
-                lng: 'Longitude is not valid',
-                name: 'Name must be less than 50 characters',
-                description: 'Description is required',
-                price: 'Price per day is required'
-                }
-            });
-        }
+        // if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
+        //     res.status(400);
+        //     res.json({
+        //         message: 'Bad Request',
+        //         errors: {
+        //         address: 'Street address is required',
+        //         city: 'City is required',
+        //         state: 'State is required',
+        //         country: 'Country is required',
+        //         lat: 'Latitude is not valid',
+        //         lng: 'Longitude is not valid',
+        //         name: 'Name must be less than 50 characters',
+        //         description: 'Description is required',
+        //         price: 'Price per day is required'
+        //         }
+        //     });
+        // }
 
       if (!spot) {
         return res.status(404).json({ message: "Spot couldn't be found" });
