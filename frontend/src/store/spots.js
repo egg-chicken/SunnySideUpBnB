@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf";
 const LOAD = 'spots/LOAD';
 const LOAD_ONE = 'spots/ADD_ONE';
 const CREATE = 'spots/CREATE';
+const UPDATE = 'spots/UPDATE';
 const DELETE = 'spots/DELETE';
 
 const load = list => ({
@@ -23,6 +24,11 @@ const createOne = spot => ({
 
 const deleteOne = spot => ({
     type: DELETE,
+    spot
+});
+
+const updateOne = spot => ({
+    type: UPDATE,
     spot
 });
 
@@ -49,6 +55,7 @@ export const getOneSpot = (id) => async dispatch => {
     }
 };
 
+//create a spot
 export const createSpot = (spot) => async dispatch => {
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
@@ -86,6 +93,24 @@ export const createSpot = (spot) => async dispatch => {
     }
 };
 
+//update a spot
+export const updateSpot = (spot) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spot.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(spot)
+    });
+
+    if(response.ok) {
+        const updated = await response.json();
+        dispatch(updated(spot));
+        return updated;
+    }
+};
+
+//delete a spot
 export const deleteSpot = (spot) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: 'DELETE'
@@ -119,6 +144,11 @@ const spotsReducer = (state = initialState, action) => {
         case CREATE:
             newState[action.spot.id] =  action.spot;
             return newState
+        case UPDATE:
+            return {
+                ...state,
+                [action.spot.id]: action.spot
+            }
         case DELETE:
             delete newState[action.id];
             return newState;
