@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as spotsActions from '../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
-// import SpotGrid from '../SpotGrid';
+
 import { Link } from 'react-router-dom';
 
 
@@ -37,6 +37,8 @@ const ManageSpots = () => {
                                 </div>
                                 <p className='spot-price'>{`$${spot.price} night`}</p>
                             </div>
+                            <button>Update</button>
+                            <button>Delete</button>
                         </Link>
                     </div>
                 </div>
