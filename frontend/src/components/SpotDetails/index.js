@@ -4,7 +4,7 @@ import * as spotsActions from '../../store/spots';
 import * as reviewsActions from '../../store/reviews';
 import * as sessionActions from '../../store/session';
 import OpenModalButton from '../OpenModalButton';
-import createReview from '../ReviewModal';
+// import createReview from '../ReviewModal';
 import { useParams } from 'react-router-dom';
 import './spotDetails.css'
 
@@ -44,7 +44,7 @@ const SpotDetails = () => {
       <>
         <div className='full-page'>
           {isLoaded && (
-            <div key={spot.id}>
+            <div >
               <div className='spot-details'>
                   <h1>{spot.name}</h1>
                   <p className='location'>{spot.city}, {spot.state}, {spot.country}</p>
@@ -57,7 +57,7 @@ const SpotDetails = () => {
                 {
                   spot?.SpotImages.map((image, index) => {
                     return (
-                      <img className={image.preview ? 'preview-image' : `spot-image-tiles tile-image-${index}`} src={image.url} onError={(e) => {
+                      <img key={image.id} className={image.preview ? 'preview-image' : `spot-image-tiles tile-image-${index}`} src={image.url} onError={(e) => {
                         e.target.src = 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688368793/airbnb-proj/No-Image-Placeholder_wthyue.svg';
                         e.onError = null;
                       }} alt={image.url.split('/').pop()} />
@@ -75,12 +75,12 @@ const SpotDetails = () => {
             </div>
             </div>
           )}
-          {isReviewsLoaded &&
+          {/* {isReviewsLoaded && */}
             <div>
-              <h2><i className="fa-solid fa-star"/>{spot.avgStarRating || 'New'}</h2>
+              <h2><i className="fa-solid fa-star"/>{spot?.avgStarRating || 'New'}</h2>
               {reviews?.map(review => {
                 return (
-                  <div>
+                  <div key={review.id}>
                     <p>{review.User?.firstName}</p>
                     <p>{review.createdAt}</p>
                     <p>{review.review}</p>
@@ -89,9 +89,8 @@ const SpotDetails = () => {
                 })
               }
             </div>
-          {isVisible &&
-          <OpenModalButton modalComponent={<createReview setIsVisible={setIsVisible}/>} />}
-          }
+          {/* // <OpenModalButton modalComponent={<createReview setIsVisible={setIsVisible}/>} />} */}
+
         </div>
       </>
       );

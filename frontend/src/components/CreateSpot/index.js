@@ -20,7 +20,7 @@ const CreateSpotForm = () => {
     const [price, setPrice] = useState('');
     const [previewImage, setPreviewImage] = useState('');
     const [image1, setImage1] = useState('');
-    const [image2,setImage2] = useState('');
+    const [image2, setImage2] = useState('');
     const [image3, setImage3] = useState('');
     const [image4, setImage4] = useState('');
     const [errors, setErrors] = useState({});
@@ -60,14 +60,19 @@ const CreateSpotForm = () => {
         if(!price) errors.price = 'Price is required';
         if(!previewImage) errors.previewImage = 'Preview Image is required';
         if(previewImage && !previewImage.endsWith('.png') && !previewImage.endsWith('.jpg') && !previewImage.endsWith('.jpeg')) errors.previewImage = 'Image URL must end in .png, .jpg, .jpeg';
-        // if(image1 && !image1.endsWith('.png') && !image1.endsWith('.jpg') && !image1.endsWith('.jpeg')) errors.image1 = 'Image URL must end in .png, .jpg, .jpeg';
-        // if(image2 && !image2.endsWith('.png') && !image2.endsWith('.jpg') && !image2.endsWith('.jpeg')) errors.image2 = 'Image URL must end in .png, .jpg, .jpeg';
-        // if(image3 && !image3.endsWith('.png') && !image3.endsWith('.jpg') && !image3.endsWith('.jpeg')) errors.image3 = 'Image URL must end in .png, .jpg, .jpeg';
-        // if(image4 && !image4.endsWith('.png') && !image4.endsWith('.jpg') && !image4.endsWith('.jpeg')) errors.image4 = 'Image URL must end in .png, .jpg, .jpeg';
+        if(image1 && !image1.endsWith('.png') && !image1.endsWith('.jpg') && !image1.endsWith('.jpeg')) errors.image1 = 'Image URL must end in .png, .jpg, .jpeg';
+        if(image2 && !image2.endsWith('.png') && !image2.endsWith('.jpg') && !image2.endsWith('.jpeg')) errors.image2 = 'Image URL must end in .png, .jpg, .jpeg';
+        if(image3 && !image3.endsWith('.png') && !image3.endsWith('.jpg') && !image3.endsWith('.jpeg')) errors.image3 = 'Image URL must end in .png, .jpg, .jpeg';
+        if(image4 && !image4.endsWith('.png') && !image4.endsWith('.jpg') && !image4.endsWith('.jpeg')) errors.image4 = 'Image URL must end in .png, .jpg, .jpeg';
 
         setErrors(errors);
 
-        const spotInfo = { address, city, state, country, name, description, price, url: previewImage, spotImages: [image1, image2, image3, image4]}
+        const spotInfo = { address, city, state, country, name, description, price, url: previewImage, spotImages: []}
+
+        if(image1) spotInfo.spotImages.push(image1)
+        if(image2) spotInfo.spotImages.push(image2)
+        if(image3) spotInfo.spotImages.push(image3)
+        if(image4) spotInfo.spotImages.push(image4)
 
         if (Object.keys(errors).length > 0) {
             setErrors(errors);

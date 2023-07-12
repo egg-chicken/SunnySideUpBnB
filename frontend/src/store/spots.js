@@ -53,9 +53,30 @@ export const createSpot = (spot) => async dispatch => {
     });
 
     if(response.ok){
-        const spot = await response.json();
-        dispatch(createOne(spot))
-        return spot;
+
+        const data = await response.json();
+
+        const previewRes = await csrfFetch(`/api/spots/${data.id}/images`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({url: spot.url, preview: true})
+        })
+
+        spot.spotImages.forEach(async (image) => {
+            const imageRes = await csrfFetch(`/api/spots/${data.id}/images`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({url: image, preview: false})
+            });
+
+        })
+
+        dispatch(createOne(data))
+        return data;
     }
 };
 
@@ -72,8 +93,7 @@ const spotsReducer = (state = initialState, action) => {
             });
 
             return {
-                ...allSpots,
-                ...state
+                ...allSpots
             }
         case LOAD_ONE:
             newState[action.spot.id] = {...newState[action.spot.id], ...action.spot};
