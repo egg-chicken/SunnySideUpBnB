@@ -105,7 +105,7 @@ export const updateSpot = (spot) => async dispatch => {
 
     if(response.ok) {
         const updated = await response.json();
-        dispatch(updated(spot));
+        dispatch(updateOne(spot));
         return updated;
     }
 };
