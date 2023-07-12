@@ -14,7 +14,13 @@ const ManageSpots = () => {
     return (
         <>
             <h2>Manage Your Spots</h2>
-
+            <div>
+                {spots && spotsArray.map((spot) => {
+                    <div>
+                        
+                    </div>
+                })}
+            </div>
         </>
     )
 };

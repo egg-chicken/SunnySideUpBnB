@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 
 const LOAD = 'spots/LOAD';
 const LOAD_ONE = 'spots/ADD_ONE';
+const LOAD_USER_SPOTS = 'spots/LOAD_USER_SPOTS';
 const CREATE = 'spots/CREATE';
 const UPDATE = 'spots/UPDATE';
 const DELETE = 'spots/DELETE';
@@ -10,6 +11,11 @@ const DELETE = 'spots/DELETE';
 const load = list => ({
     type: LOAD,
     list
+});
+
+const loadUser = spots => ({
+    type: LOAD_USER_SPOTS,
+    spots
 });
 
 const viewOne = spot => ({
@@ -43,6 +49,17 @@ export const getSpots = () => async dispatch => {
         return list;
     }
 };
+
+//get all the current user's spots
+export const getCurrentSpots = () => async dispatch => {
+    const response = await csrfFetch('/api/spots/current')
+
+    if(response.ok){
+        const spots = await response.json();
+        dispatch(loadUser(spots));
+        return spots;
+    }
+}
 
 //View a spot's detail
 export const getOneSpot = (id) => async dispatch => {
@@ -141,6 +158,12 @@ const spotsReducer = (state = initialState, action) => {
         case LOAD_ONE:
             newState[action.spot.id] = {...newState[action.spot.id], ...action.spot};
             return newState
+        case LOAD_USER_SPOTS:
+            const user = {};
+            action.spots.forEach((spot) => {
+                user[spot.id] = spot;
+            })
+            return user
         case CREATE:
             newState[action.spot.id] =  action.spot;
             return newState
