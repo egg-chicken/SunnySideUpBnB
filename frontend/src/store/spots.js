@@ -160,7 +160,7 @@ const spotsReducer = (state = initialState, action) => {
             return newState
         case LOAD_USER_SPOTS:
             const user = {};
-            action.spots.forEach((spot) => {
+            action.spots.Spots.forEach((spot) => {
                 user[spot.id] = spot;
             })
             return user

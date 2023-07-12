@@ -8,7 +8,7 @@ const ManageSpots = () => {
     const spotsArray = Object.values(spots);
 
     useEffect(() => {
-        dispatch(getSpots())
+        dispatch(spotsActions.getCurrentSpots())
     }, [dispatch]);
 
     return (
@@ -17,7 +17,7 @@ const ManageSpots = () => {
             <div>
                 {spots && spotsArray.map((spot) => {
                     <div>
-                        
+
                     </div>
                 })}
             </div>
