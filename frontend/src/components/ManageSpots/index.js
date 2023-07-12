@@ -4,9 +4,11 @@ import * as spotsActions from '../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 const ManageSpots = () => {
+    const { id } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
     const spots = useSelector((state) => state.spot);
@@ -37,7 +39,7 @@ const ManageSpots = () => {
                                 </div>
                                 <p className='spot-price'>{`$${spot.price} night`}</p>
                             </div>
-                            <button>Update</button>
+                            <button onClick={() => history.push(`/spots/${id}/edit`)}>Update</button>
                             <button>Delete</button>
                         </Link>
                     </div>
