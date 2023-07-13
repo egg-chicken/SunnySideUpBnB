@@ -135,9 +135,9 @@ export const deleteSpot = (spot) => async dispatch => {
     });
 
     if(response.ok) {
-        const { id: removeItem } = await response.json();
-        dispatch(deleteOne(removeItem));
-        return removeItem;
+        const remove = await response.json();
+        dispatch(deleteOne(remove));
+        return remove;
     }
 }
 
