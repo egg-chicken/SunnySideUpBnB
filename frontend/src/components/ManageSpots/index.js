@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as spotsActions from '../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
-
+import DeleteModal from '../DeleteModal';
+import OpenModalButton from '../OpenModalButton';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -47,7 +48,14 @@ const ManageSpots = () => {
                                 e.stopPropagation()
                                 history.push(`/spots/${spot.id}/edit`)
                                 }}>Update</button>
-                                <button>Delete</button>
+
+                                    <OpenModalButton
+                                        modalComponent={<DeleteModal id={spot.id}/>}
+                                        buttonText = 'Delete'
+                                    />
+
+
+
                     </div>
                 </div>
             ))}

@@ -137,15 +137,15 @@ export const updateSpot = (id, spotInfo) => async dispatch => {
 };
 
 //delete a spot
-export const deleteSpot = (spot) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${spot.id}`, {
+export const deleteSpot = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${id}`, {
         method: 'DELETE'
     });
 
     if(response.ok) {
-        const remove = await response.json();
-        dispatch(deleteOne(remove));
-        return remove;
+        // const remove = await response.json();
+        return dispatch(deleteOne(id));
+        // return remove;
     }
 }
 
