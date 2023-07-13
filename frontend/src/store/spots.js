@@ -122,6 +122,7 @@ export const updateSpot = (spot) => async dispatch => {
 
     if(response.ok) {
         const updated = await response.json();
+        console.log('UPDATEDDDDDDD', updated)
         dispatch(updateOne(spot));
         return updated;
     }
@@ -168,10 +169,12 @@ const spotsReducer = (state = initialState, action) => {
             newState[action.spot.id] =  action.spot;
             return newState
         case UPDATE:
-            return {
-                ...state,
-                [action.spot.id]: action.spot
-            }
+            newState[action.spot.id] = action.spot;
+            return newState
+            // return {
+            //     ...state,
+            //     [action.spot.id]: action.spot
+            // }
         case DELETE:
             delete newState[action.id];
             return newState;

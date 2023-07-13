@@ -76,32 +76,20 @@ const UpdateSpotForm = () => {
         if(image3) spotInfo.spotImages.push(image3)
         if(image4) spotInfo.spotImages.push(image4)
 
-        // if (Object.keys(errors).length > 0) {
-        //     setErrors(errors);
-        //   } else {
-        //     setErrors({});
-        //     dispatch(spotsActions.updateSpot(spotInfo))
-        //         .then((spot) => {
-        //             history.push(`/spots/${spot.id}`)
-        //         })
-        //         .catch(async (res) => {
-        //             const data = await res.json()
-        //             if(data && data.errors) setErrors(data.errors)
-        //         })
+        if (Object.keys(errors).length) {
+            setErrors(errors);
+          } else {
+            setErrors({});
+            dispatch(spotsActions.updateSpot(spotInfo))
+                .then((res) => {
+                    history.push(`/spots/${res.id}`)
+                })
+                .catch(async (res) => {
+                    const data = await res.json()
+                    if(data && data.errors) setErrors(data.errors)
+                })
+            }
 
-        if(Object.values(errors).length === 0){
-            const spot = dispatch(spotsActions.updateSpot(spotInfo))
-            .catch(async (res) => {
-                const data = await res.json();
-                if(data && data.errors){
-                    setErrors(data.errors);
-                }
-            })
-        }
-        if(spot){
-            history.push(`/spots/${spot.id}`)
-            setErrors({})
-        }
     }
 
     return (
@@ -233,7 +221,7 @@ const UpdateSpotForm = () => {
                         />
                     </label>
                     <div>
-                        <button type='submit' onClick={``}>Update Spot</button>
+                        <button type='submit' >Update Spot</button>
                     </div>
                 </form>
             </div>
