@@ -18,6 +18,7 @@ const ManageSpots = () => {
         dispatch(spotsActions.getCurrentSpots())
     }, [dispatch]);
 
+
     const defaultImage = 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688368793/airbnb-proj/No-Image-Placeholder_wthyue.svg'
     return (
         <>
@@ -39,9 +40,14 @@ const ManageSpots = () => {
                                 </div>
                                 <p className='spot-price'>{`$${spot.price} night`}</p>
                             </div>
-                            <button onClick={() => history.push(`/spots/${id}/edit`)}>Update</button>
-                            <button>Delete</button>
+
+
                         </Link>
+                        <button onClick={(e) => {
+                                e.stopPropagation()
+                                history.push(`/spots/${spot.id}/edit`)
+                                }}>Update</button>
+                                <button>Delete</button>
                     </div>
                 </div>
             ))}

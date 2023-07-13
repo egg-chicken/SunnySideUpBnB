@@ -68,7 +68,7 @@ export const getOneSpot = (id) => async dispatch => {
         const spot = await response.json();
         // console.log('%%%%%%%%%%', spot)
         dispatch(viewOne(spot));
-        // return spot;
+        return spot;
     }
 };
 
