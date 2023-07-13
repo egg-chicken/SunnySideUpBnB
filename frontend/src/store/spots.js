@@ -33,10 +33,17 @@ const deleteOne = spot => ({
     spot
 });
 
-const updateOne = spot => ({
+// const updateOne = spot => ({
+//     console.log('updatedaction!!!!', spot)
+//     type: UPDATE,
+//     spot
+// });
+const updateOne = spot => {
+    return {
     type: UPDATE,
     spot
-});
+    }
+};
 
 //get the list of All Spots thunk
 export const getSpots = () => async dispatch => {
@@ -111,19 +118,20 @@ export const createSpot = (spot) => async dispatch => {
 };
 
 //update a spot
-export const updateSpot = (spot) => async dispatch => {
-    const response = await csrfFetch(`/api/spots/${spot.id}`, {
+export const updateSpot = (id, spotInfo) => async dispatch => {
+    // console.log('!!!!!Updating spot:!!!', spot);
+    const response = await csrfFetch(`/api/spots/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(spot)
+        body: JSON.stringify(spotInfo) //spot.id
     });
 
     if(response.ok) {
         const updated = await response.json();
         console.log('UPDATEDDDDDDD', updated)
-        dispatch(updateOne(spot));
+        dispatch(updateOne(updated));
         return updated;
     }
 };
@@ -173,13 +181,16 @@ const spotsReducer = (state = initialState, action) => {
             return newState
             // return {
             //     ...state,
-            //     [action.spot.id]: action.spot
+            //     [action.spot.id]: {
+            //       ...state[action.spot.id],
+            //       ...action.spot
+            //     }
             // }
         case DELETE:
             delete newState[action.id];
             return newState;
         default:
-            return state;
+            return newState;
     }
 };
 

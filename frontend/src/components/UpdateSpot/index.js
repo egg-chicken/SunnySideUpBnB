@@ -10,14 +10,14 @@ const UpdateSpotForm = () => {
     const { id } = useParams();
     const user = useSelector(state => state.session.user);
     const spot = useSelector((state) => state.spot[id]);
-    const [country, setCountry] = useState(spot?.country);
-    const [address, setAddress] = useState(spot?.address);
-    const [city, setCity] = useState(spot?.city);
-    const [state, setState] = useState(spot?.state);
-    const [description, setDescription] = useState(spot?.description);
-    const [name, setName] = useState(spot?.name);
-    const [price, setPrice] = useState(spot?.price);
-    const [previewImage, setPreviewImage] = useState(spot?.previewImage);
+    const [country, setCountry] = useState(spot?.country || '');
+    const [address, setAddress] = useState(spot?.address || '');
+    const [city, setCity] = useState(spot?.city || '');
+    const [state, setState] = useState(spot?.state || '');
+    const [description, setDescription] = useState(spot?.description || '');
+    const [name, setName] = useState(spot?.name || '');
+    const [price, setPrice] = useState(spot?.price || '');
+    const [previewImage, setPreviewImage] = useState(spot?.previewImage || '');
     const [image1, setImage1] = useState(spot?.SpotImages ? spot?.SpotImages[1].url : '');
     const [image2, setImage2] = useState(spot?.SpotImages ? spot?.SpotImages[2].url : '');
     const [image3, setImage3] = useState(spot?.SpotImages ? spot?.SpotImages[3].url : '');
@@ -27,6 +27,10 @@ const UpdateSpotForm = () => {
     useEffect(() => {
         dispatch(spotsActions.getOneSpot(id))
             .then(spotdetail => {
+                if(!spotdetail){
+                    history.push('/error');
+                    return;
+                }
                 setCountry(spotdetail?.country)
                 setAddress(spotdetail?.address)
                 setCity(spotdetail?.city)
@@ -41,11 +45,12 @@ const UpdateSpotForm = () => {
                 setImage4(spotdetail?.SpotImages[4].url)
             })
 
-    }, [dispatch, id]);
+    }, [dispatch, id, history]);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
 
         const errors = {};
 
@@ -76,19 +81,34 @@ const UpdateSpotForm = () => {
         if(image3) spotInfo.spotImages.push(image3)
         if(image4) spotInfo.spotImages.push(image4)
 
-        if (Object.keys(errors).length) {
-            setErrors(errors);
-          } else {
-            setErrors({});
-            dispatch(spotsActions.updateSpot(spotInfo))
-                .then((res) => {
-                    history.push(`/spots/${res.id}`)
+
+        console.log('!!!!!submitting spot:!!!!', spotInfo)
+            // if (Object.keys(errors).length > 0) {
+            //     setErrors(errors);
+            //   } else {
+            //     setErrors({});
+            //     dispatch(spotsActions.updateSpot(spotInfo))
+            //         .then((spot) => {
+            //             history.push(`/spots/${spot.id}`)
+            //         })
+            //         .catch(async (res) => {
+            //             const data = await res.json()
+            //             if(data && data.errors) setErrors(data.errors)
+            //         })
+            //     }
+
+            if(!spot.id){
+                history.push('/error');
+                return;
+            }
+            dispatch(spotsActions.updateSpot(id, spotInfo))
+                .then((spot) => {
+                    history.push(`/spots/${spot.id}`);
                 })
                 .catch(async (res) => {
-                    const data = await res.json()
-                    if(data && data.errors) setErrors(data.errors)
-                })
-            }
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors);
+                });
 
     }
 
