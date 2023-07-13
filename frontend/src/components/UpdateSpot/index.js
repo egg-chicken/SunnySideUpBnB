@@ -27,10 +27,6 @@ const UpdateSpotForm = () => {
     useEffect(() => {
         dispatch(spotsActions.getOneSpot(id))
             .then(spotdetail => {
-                if(!spotdetail){
-                    history.push('/error');
-                    return;
-                }
                 setCountry(spotdetail?.country)
                 setAddress(spotdetail?.address)
                 setCity(spotdetail?.city)
@@ -82,7 +78,7 @@ const UpdateSpotForm = () => {
         if(image4) spotInfo.spotImages.push(image4)
 
 
-        console.log('!!!!!submitting spot:!!!!', spotInfo)
+        // console.log('!!!!!submitting spot:!!!!', spotInfo)
             // if (Object.keys(errors).length > 0) {
             //     setErrors(errors);
             //   } else {
@@ -97,10 +93,6 @@ const UpdateSpotForm = () => {
             //         })
             //     }
 
-            if(!spot.id){
-                history.push('/error');
-                return;
-            }
             dispatch(spotsActions.updateSpot(id, spotInfo))
                 .then((spot) => {
                     history.push(`/spots/${spot.id}`);
