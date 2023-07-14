@@ -40,6 +40,8 @@ const SpotDetails = () => {
         alert("Feature Coming Soon")
     }
 
+    // const review = { id, avgStarRating, stars}
+
     return (
       <>
         <div className='full-page'>

@@ -26,13 +26,13 @@ export const getAllReviews = id => async dispatch => {
 }
 
 //create a review
-export const createReview = reviewCreate => async dispatch => {
-    const response = await fetch(`/api/spots/${reviewCreate.id}/reviews`, {
+export const createReview = (id, spotInfo) => async dispatch => {
+    const response = await fetch(`/api/spots/${id}/reviews`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ rating: reviewCreate.rating })
+          body: JSON.stringify(spotInfo)
     });
 
     if(response.ok) {
@@ -55,7 +55,9 @@ const reviewsReducer = (state = initialState, action) => {
             });
             return mapRev;
         case CREATE_REVIEW:
-            return {...state, [action.review.id]: action.review}
+            // return {...state, [action.review.id]: action.review}
+            newState[action.review.id] = action.review;
+            return newState;
         default:
             return newState;
     }
