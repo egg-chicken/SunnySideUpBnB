@@ -50,7 +50,7 @@ const SpotDetails = () => {
                   <p className='location'>{spot.city}, {spot.state}, {spot.country}</p>
             </div>
             <div className='spot-desc'>
-                  <p>Hosted by {spot.firstName} {spot.lastName}</p>
+                  <p>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</p>
                   <p>{spot.description}</p>
             </div>
             <div className='spot-images'>
