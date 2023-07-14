@@ -71,6 +71,15 @@ const validateSpot = [
     .withMessage('Price per day is required')
 ]
 
+const validateReview = [
+  check('review')
+    .exists({checkFalsy: true})
+    .withMessage('Review text is required'),
+  check('stars')
+    .exists({checkFalsy: true})
+    .withMessage('Stars must be an integer from 1 to 5'),
+]
+
 //get all spots
 router.get('/', validateQueryParams, async (req, res) => {
   let { page, size, minLng, maxLng, minPrice, maxPrice } = req.query;
@@ -390,7 +399,7 @@ router.get('/:id/reviews', async (req, res) => {
 });
 
 //create a review for a spot based on the spot's id
-router.post('/:id/reviews', requireAuth, async (req, res) => {
+router.post('/:id/reviews', requireAuth, validateReview, async (req, res) => {
     const { review, stars } = req.body;
     const userId = req.user.id;
     const spotId = +req.params.id;
@@ -401,16 +410,16 @@ router.post('/:id/reviews', requireAuth, async (req, res) => {
           return res.status(404).json({ message: "Spot couldn't be found" });
         }
 
-    if (!review || !stars) {
-        res.status(400);
-        res.json({
-            message: 'Bad Request',
-            errors: {
-            review: 'Review text is required',
-            stars: 'Stars must be an integer from 1 to 5'
-            }
-        });
-    }
+    // if (!review || !stars) {
+    //     res.status(400);
+    //     res.json({
+    //         message: 'Bad Request',
+    //         errors: {
+    //         review: 'Review text is required',
+    //         stars: 'Stars must be an integer from 1 to 5'
+    //         }
+    //     });
+    // }
 
     const existingReview = await Review.findOne({
       where: { userId, spotId}

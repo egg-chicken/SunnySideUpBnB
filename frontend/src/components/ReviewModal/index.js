@@ -7,21 +7,24 @@ import './createReview.css';
 function ReviewModal() {
     const dispatch = useDispatch();
 
-    const [review, setReview] = useState(false);
+    const [review, setReview] = useState('');
     const [stars, setStars] = useState(0);
     const [error, setError] = useState('');
 
     const { closeModal } = useModal();
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
 
         e.preventDefault();
 
+        if (review.length < 10 || stars === 0) {
+            setError('Please enter a comment with at least 10 characters and select a rating.');
+            return;
+        }
+
         dispatch(reviewsActions.createReview())
-        // if (comment.length < 10 || rating === 0) {
-        //   setError('Please enter a comment with at least 10 characters and select a rating.');
-        //   return;
-        // }
+
+
 
         // const newReview = {
         //     comment,
@@ -57,7 +60,7 @@ function ReviewModal() {
               onChange={(e) => setStars(Number(e.target.value))}
             />
           </label>
-          <button onClick={handleSubmit} disabled={comment.length < 10 || rating === 0}>Submit Your Review</button>
+          <button onClick={handleSubmit} disabled={review.length < 10 || stars === 0}>Submit Your Review</button>
           </form>
         </>
     )
