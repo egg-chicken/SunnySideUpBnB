@@ -426,7 +426,7 @@ router.post('/:id/reviews', requireAuth, validateReview, async (req, res) => {
     });
 
     if (existingReview) {
-      return res.status(500).json({ message: 'User already has a review for this spot' });
+      return res.status(403).json({ message: 'User already has a review for this spot' });
     }
 
     const newReview = await Review.create({

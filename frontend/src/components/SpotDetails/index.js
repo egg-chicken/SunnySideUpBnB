@@ -30,6 +30,13 @@ const SpotDetails = () => {
     useEffect(() => {
       if(isReviewsLoaded) {
         if(user){
+          // if(user.id !== spot.id){
+          //   let target = true;
+          //   reviews.forEach(el => {
+          //     if(el.userId === user.id) target =false;
+          //   });
+          //   if(target === true) setIsVisible(true);
+          // }
           let target = true;
           if(target === true) setIsVisible(true);
         }
@@ -78,6 +85,12 @@ const SpotDetails = () => {
             </div>
           )}
           {/* {isReviewsLoaded && */}
+          {isVisible &&
+            <OpenModalButton
+            modalComponent={<ReviewModal id={spot.id} setIsVisible={setIsVisible}/>}
+            buttonText='Post Your Review'
+            />
+          }
             <div>
               <h2><i className="fa-solid fa-star"/>{spot?.avgStarRating || 'New'}</h2>
               {reviews?.map(review => {
@@ -91,13 +104,6 @@ const SpotDetails = () => {
                 })
               }
             </div>
-
-          <OpenModalButton
-          modalComponent={<ReviewModal />}
-          buttonText='Post Your Review'
-          />
-
-
         </div>
       </>
       );

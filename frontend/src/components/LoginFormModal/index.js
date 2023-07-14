@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router';
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  // console.log('!!!!errrors:', errors)
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setErrors({});
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
+      .then(() => history.pushState('/'))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {
@@ -35,9 +40,10 @@ function LoginFormModal() {
             placeholder="Username or Email"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
-            required
+            // required
           />
         </label>
+        {errors.credential && (<p>{errors.credential}</p>)}
         <label className="password">
           {/* Password */}
           <input
@@ -45,12 +51,10 @@ function LoginFormModal() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+            // required
           />
         </label>
-        {errors.credential && (
-          <p>{errors.credential}</p>
-        )}
+        {errors.password && (<p>{errors.password}</p>)}
         <div className="button-style">
         <button className='login-button' disabled={credential.length < 4 || password.length < 6} type='submit'>Log In</button>
         </div>

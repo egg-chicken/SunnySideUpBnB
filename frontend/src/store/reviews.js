@@ -27,13 +27,30 @@ export const getAllReviews = id => async dispatch => {
 }
 
 //create a review
-export const createReview = (id, reviewInfo) => async dispatch => {
-    const response = await fetch(`/api/spots/${id}/reviews`, {
+// export const createReview = (id, reviewInfo) => async dispatch => {
+//     const response = await csrfFetch(`/api/spots/${id}/reviews`, {
+//         method: 'POST',
+//         headers: {
+//             "Content-Type": "application/json"
+//           },
+//           body: JSON.stringify(reviewInfo)
+//     });
+
+//     if(response.ok) {
+//         const data = await response.json();
+//         console.log('!!!!!!! id !!!!!!', id)
+//         dispatch(addReview(data));
+//         dispatch(getOneSpot(id));
+//         dispatch(getAllReviews(id));
+//         return data
+//     }
+
+// };
+export const createReview = (payload) => async dispatch => {
+    const { id, review, stars } = payload
+    const response = await csrfFetch(`/api/spots/${id}/reviews`, {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(reviewInfo)
+        body: JSON.stringify({ review, stars})
     });
 
     if(response.ok) {
@@ -41,7 +58,7 @@ export const createReview = (id, reviewInfo) => async dispatch => {
         dispatch(addReview(data));
         dispatch(getOneSpot(id));
         dispatch(getAllReviews(id));
-        return data
+        return response;
     }
 
 };
