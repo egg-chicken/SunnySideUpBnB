@@ -6,41 +6,39 @@ import './createReview.css';
 
 function ReviewModal() {
     const dispatch = useDispatch();
-
     const [review, setReview] = useState('');
     const [stars, setStars] = useState(0);
-    const [error, setError] = useState('');
+    const [hover, setHover] = useState(0);
+    const [errors, setErrors] = useState('');
 
     const { closeModal } = useModal();
 
     const handleSubmit = (e) => {
-
         e.preventDefault();
 
-        if (review.length < 10 || stars === 0) {
-            setError('Please enter a comment with at least 10 characters and select a rating.');
-            return;
-        }
+        const errors = {};
 
-        dispatch(reviewsActions.createReview())
+        if (review && review.length < 10) errors.review = 'Please enter a comment with at least 10 characters.';
+        if (stars === 0 ) errors.stars = 'Select a rating';
 
+        const reviewInfo = {
+            id,
+            review,
+            stars
+        };
 
+        setErrors(errors);
 
-        // const newReview = {
-        //     comment,
-        //     rating,
-        //     user: currentUser,
-        // };
+        dispatch(reviewsActions.createReview(reviewInfo))
+            .then(closeModal)
+            .catch(async (res) => {
+                const data = await res.json();
+                if(data && data.errors) setErrors(data.errors)
 
-        // const updatedReviews = [newReview, ...reviews];
-
-        // setSuccessMessage('Review successfully created.');
-
-        // setComment('');
-        // setRating(0);
-        // setError('');
+            })
 
     }
+
     return (
         <>
             <h2>How was your stay?</h2>
