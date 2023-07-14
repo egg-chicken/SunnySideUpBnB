@@ -4,7 +4,7 @@ import * as spotsActions from '../../store/spots';
 import * as reviewsActions from '../../store/reviews';
 import * as sessionActions from '../../store/session';
 import OpenModalButton from '../OpenModalButton';
-// import createReview from '../ReviewModal';
+import ReviewModal from '../ReviewModal';
 import { useParams } from 'react-router-dom';
 import './spotDetails.css'
 
@@ -89,7 +89,12 @@ const SpotDetails = () => {
                 })
               }
             </div>
-          {/* // <OpenModalButton modalComponent={<createReview setIsVisible={setIsVisible}/>} />} */}
+
+          <OpenModalButton
+          modalComponent={<ReviewModal />}
+          buttonText='Post Your Review'
+          />
+
 
         </div>
       </>

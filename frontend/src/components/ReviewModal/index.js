@@ -4,7 +4,7 @@ import { useDispatch} from 'react-redux';
 import * as reviewsActions from '../../store/reviews';
 import './createReview.css';
 
-function createReview() {
+function ReviewModal() {
     const dispatch = useDispatch();
 
     const [review, setReview] = useState(false);
@@ -63,4 +63,4 @@ function createReview() {
     )
 }
 
-export default createReview;
+export default ReviewModal;
