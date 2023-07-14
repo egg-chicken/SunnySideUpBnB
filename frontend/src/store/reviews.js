@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { getOneSpot } from "./spots";
 
 const LOAD = 'reviews/LOAD';
 
@@ -26,18 +27,20 @@ export const getAllReviews = id => async dispatch => {
 }
 
 //create a review
-export const createReview = (id, spotInfo) => async dispatch => {
+export const createReview = (id, reviewInfo) => async dispatch => {
     const response = await fetch(`/api/spots/${id}/reviews`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(spotInfo)
+          body: JSON.stringify(reviewInfo)
     });
 
     if(response.ok) {
         const data = await response.json();
         dispatch(addReview(data));
+        dispatch(getOneSpot(id));
+        dispatch(getAllReviews(id));
         return data
     }
 
@@ -55,7 +58,6 @@ const reviewsReducer = (state = initialState, action) => {
             });
             return mapRev;
         case CREATE_REVIEW:
-            // return {...state, [action.review.id]: action.review}
             newState[action.review.id] = action.review;
             return newState;
         default:
