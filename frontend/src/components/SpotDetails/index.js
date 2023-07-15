@@ -1,15 +1,15 @@
 import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as spotsActions from '../../store/spots';
-import * as reviewsActions from '../../store/reviews';
-// import * as sessionActions from '../../store/session';
+import { useParams } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import ReviewModal from '../ReviewModal';
-import { useParams } from 'react-router-dom';
-import './spotDetails.css'
 import DeleteReviewModal from '../DeleteReviewModal';
+import * as spotsActions from '../../store/spots';
+import * as reviewsActions from '../../store/reviews';
+import './spotDetails.css'
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
 const SpotDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -20,14 +20,11 @@ const SpotDetails = () => {
     const [isVisible, setIsVisible] = useState(false);
     const user = useSelector(state => state.session.user);
 
-    // console.log('!!!!!!!SPOT!!!!!', spot)
     useEffect(() => {
-        // console.log('!!!!spots!!!!', id)
         dispatch(spotsActions.getOneSpot(id))
           .then(() => setIsLoaded(true))
         dispatch(reviewsActions.getAllReviews(id))
           .then(() => setIsReviewsLoaded(true))
-        // dispatch(getAllReviews(id))
     }, [id, dispatch]);
 
     useEffect(() => {
@@ -40,8 +37,6 @@ const SpotDetails = () => {
             });
             if(target === true) setIsVisible(true);
           }
-          // let target = true;
-          // if(target === true) setIsVisible(true);
         }
       }
     },[isReviewsLoaded, user])
@@ -49,8 +44,6 @@ const SpotDetails = () => {
         e.preventDefault();
         alert("Feature Coming Soon")
     }
-
-    // const review = { id, avgStarRating, stars}
 
     return (
       <>
@@ -114,7 +107,6 @@ const SpotDetails = () => {
           }
 
               {reviews?.map(review => {
-                // const createdDate = new Date(review.createdAt)
                 const reviewMonth = months[new Date(review.createdAt).getMonth()]
                 const year = new Date(review.createdAt).getFullYear();
 

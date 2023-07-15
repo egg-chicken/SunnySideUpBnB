@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import * as spotsActions from '../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import DeleteModal from '../DeleteModal';
 import OpenModalButton from '../OpenModalButton';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import * as spotsActions from '../../store/spots';
 
 
 const ManageSpots = () => {
-    const { id } = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
     const spots = useSelector((state) => state.spot);
@@ -19,8 +17,8 @@ const ManageSpots = () => {
         dispatch(spotsActions.getCurrentSpots())
     }, [dispatch]);
 
-
     const defaultImage = 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688368793/airbnb-proj/No-Image-Placeholder_wthyue.svg'
+
     return (
         <>
             <h2>Manage Your Spots</h2>
@@ -49,7 +47,7 @@ const ManageSpots = () => {
                                 history.push(`/spots/${spot.id}/edit`)
                                 }}>Update</button>
 
-                                    <OpenModalButton 
+                                    <OpenModalButton
                                         modalComponent={<DeleteModal id={spot.id}/>}
                                         buttonText = 'Delete'
                                     />

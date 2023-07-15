@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 import * as spotsActions from '../../store/spots';
-import { useDispatch, useSelector } from "react-redux";
 import './createspot.css'
-// import { useParams } from "react-router-dom";
 
 const CreateSpotForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    // const { id } = useParams
-    // const user = useSelector(state => state.session.user);
-    // const spot = useSelector((state) => state.spots[id]);
     const [country, setCountry] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -54,9 +50,7 @@ const CreateSpotForm = () => {
         if(!name) errors.name = 'Name is required';
         if(!price) errors.price = 'Price is required';
         if(!description) errors.description = 'Description is required';
-        if(description.length < 30){
-            errors.description = 'Description needs 30 or more characters';
-        }
+        if(description.length < 30) errors.description = 'Description needs 30 or more characters';
         if(!price) errors.price = 'Price is required';
         if(!previewImage) errors.previewImage = 'Preview Image is required';
         if(previewImage && !previewImage.endsWith('.png') && !previewImage.endsWith('.jpg') && !previewImage.endsWith('.jpeg')) errors.previewImage = 'Image URL must end in .png, .jpg, .jpeg';
@@ -86,10 +80,6 @@ const CreateSpotForm = () => {
                     const data = await res.json()
                     if(data && data.errors) setErrors(data.errors)
                 })
-        // let spotId;
-        // spotId = await dispatch(spotsActions.createSpot(spotInfo))
-        // history.push(`/spots/${spotId}`)
-
           }
 
     }
@@ -110,7 +100,6 @@ const CreateSpotForm = () => {
                             placeholder="Country"
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.country && <p>{errors.country}</p>}
@@ -121,7 +110,6 @@ const CreateSpotForm = () => {
                             placeholder="Address"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
-                            // required
                     />
                     </label>
                     {errors.address && <p>{errors.address}</p>}
@@ -132,7 +120,6 @@ const CreateSpotForm = () => {
                             placeholder="City"
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.city && <p>{errors.city}</p>}
@@ -143,7 +130,6 @@ const CreateSpotForm = () => {
                             placeholder="STATE"
                             value={state}
                             onChange={(e) => setState(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.state && <p>{errors.state}</p>}
@@ -155,7 +141,6 @@ const CreateSpotForm = () => {
                             placeholder="Please write at least 30 characters"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.description && <p>{errors.description}</p>}
@@ -167,7 +152,6 @@ const CreateSpotForm = () => {
                             placeholder="Name of your spot"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.name && <p>{errors.name}</p>}
@@ -179,7 +163,6 @@ const CreateSpotForm = () => {
                             placeholder="Price per night (USD)"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.price && <p>{errors.price}</p>}
@@ -191,35 +174,30 @@ const CreateSpotForm = () => {
                             placeholder="Preview Image URL"
                             value={previewImage}
                             onChange={(e) => setPreviewImage(e.target.value)}
-                            // required
                         />
                         <input
                             type='text'
                             placeholder="Image URL"
                             value={image1}
                             onChange={(e) => setImage1(e.target.value)}
-                            // required
                         />
                         <input
                             type='text'
                             placeholder="Image URL"
                             value={image2}
                             onChange={(e) => setImage2(e.target.value)}
-                            // required
                         />
                         <input
                             type='text'
                             placeholder="Image URL"
                             value={image3}
                             onChange={(e) => setImage3(e.target.value)}
-                            // required
                         />
                         <input
                             type='text'
                             placeholder="Image URL"
                             value={image4}
                             onChange={(e) => setImage4(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.previewImage && <p>{errors.previewImage}</p>}

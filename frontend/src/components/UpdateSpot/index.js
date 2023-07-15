@@ -1,14 +1,13 @@
 import { useParams } from 'react-router-dom';
-import * as spotsActions from '../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import * as spotsActions from '../../store/spots';
 
 const UpdateSpotForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
-    const user = useSelector(state => state.session.user);
     const spot = useSelector((state) => state.spot[id]);
     const [country, setCountry] = useState(spot?.country || '');
     const [address, setAddress] = useState(spot?.address || '');
@@ -91,30 +90,14 @@ const UpdateSpotForm = () => {
         if(image3) spotInfo.spotImages.push(image3)
         if(image4) spotInfo.spotImages.push(image4)
 
-
-        // console.log('!!!!!submitting spot:!!!!', spotInfo)
-            // if (Object.keys(errors).length > 0) {
-            //     setErrors(errors);
-            //   } else {
-            //     setErrors({});
-            //     dispatch(spotsActions.updateSpot(spotInfo))
-            //         .then((spot) => {
-            //             history.push(`/spots/${spot.id}`)
-            //         })
-            //         .catch(async (res) => {
-            //             const data = await res.json()
-            //             if(data && data.errors) setErrors(data.errors)
-            //         })
-            //     }
-
-            dispatch(spotsActions.updateSpot(id, spotInfo))
-                .then((spot) => {
-                    history.push(`/spots/${spot.id}`);
-                })
-                .catch(async (res) => {
-                    const data = await res.json();
-                    if (data && data.errors) setErrors(data.errors);
-                });
+        dispatch(spotsActions.updateSpot(id, spotInfo))
+            .then((spot) => {
+                history.push(`/spots/${spot.id}`);
+            })
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            });
 
     }
 
@@ -134,7 +117,6 @@ const UpdateSpotForm = () => {
                             placeholder="Country"
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.country && <p>{errors.country}</p>}
@@ -145,7 +127,6 @@ const UpdateSpotForm = () => {
                             placeholder="Address"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
-                            // required
                     />
                     </label>
                     {errors.address && <p>{errors.address}</p>}
@@ -156,7 +137,6 @@ const UpdateSpotForm = () => {
                             placeholder="City"
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.city && <p>{errors.city}</p>}
@@ -167,7 +147,6 @@ const UpdateSpotForm = () => {
                             placeholder="STATE"
                             value={state}
                             onChange={(e) => setState(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.state && <p>{errors.state}</p>}
@@ -179,7 +158,6 @@ const UpdateSpotForm = () => {
                             placeholder="Please write at least 30 characters"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.description && <p>{errors.description}</p>}
@@ -191,7 +169,6 @@ const UpdateSpotForm = () => {
                             placeholder="Name of your spot"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.name && <p>{errors.name}</p>}
@@ -203,7 +180,6 @@ const UpdateSpotForm = () => {
                             placeholder="Price per night (USD)"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
-                            // required
                         />
                     </label>
                     {errors.price && <p>{errors.price}</p>}
@@ -215,35 +191,30 @@ const UpdateSpotForm = () => {
                             placeholder="Preview Image URL"
                             value={previewImage}
                             onChange={(e) => setPreviewImage(e.target.value)}
-                            // required
                         />
                         <input
                             type='text'
                             placeholder="Image URL"
                             value={image1}
                             onChange={(e) => setImage1(e.target.value)}
-                            // required
                         />
                         <input
                             type='text'
                             placeholder="Image URL"
                             value={image2}
                             onChange={(e) => setImage2(e.target.value)}
-                            // required
                         />
                         <input
                             type='text'
                             placeholder="Image URL"
                             value={image3}
                             onChange={(e) => setImage3(e.target.value)}
-                            // required
                         />
                         <input
                             type='text'
                             placeholder="Image URL"
                             value={image4}
                             onChange={(e) => setImage4(e.target.value)}
-                            // required
                         />
                     </label>
                     <div>
