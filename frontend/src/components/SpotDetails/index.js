@@ -84,7 +84,7 @@ const SpotDetails = () => {
             </div>
             </div>
           )}
-          {/* {isReviewsLoaded && */}
+          {isReviewsLoaded &&
 
             <div>
               <h2><i className="fa-solid fa-star"/>{spot.avgStarRating ? (Number.isInteger(spot.avgStarRating) ? spot.avgStarRating.toFixed(1) : spot.avgStarRating.toFixed(2)) : 'New'}</h2>
@@ -108,7 +108,9 @@ const SpotDetails = () => {
                 })
               }
             </div>
+}
         </div>
+
       </>
       );
 }

@@ -18,7 +18,7 @@ function LoginFormModal() {
     e.preventDefault();
     setErrors({});
 
-    return dispatch(sessionActions.login({ credential, password }))
+   dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
       // .then(() => history.push('/'))
       .catch(async (res) => {
@@ -27,6 +27,9 @@ function LoginFormModal() {
           setErrors(data.errors);
         }
       });
+      return setErrors({
+        credential: 'The provided credentials were invalid.'
+      })
   };
 
   return (
@@ -42,17 +45,17 @@ function LoginFormModal() {
             placeholder="Username or Email"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
-            // required
+            required
           />
         </label>
-        {/* {errors.credential && (<p>{errors.credential}</p>)} */}
+        {/* {errors.credential && (<p className="errors-login">{errors.credential}</p>)} */}
         <label className="password">
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            // required
+            required
           />
         </label>
         {/* {errors.password && (<p>{errors.password}</p>)} */}

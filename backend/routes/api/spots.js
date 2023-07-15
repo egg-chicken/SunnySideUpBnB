@@ -143,10 +143,10 @@ router.get('/current', requireAuth, async (req, res) => {
         where: { ownerId: currentUserId },
         attributes: {
             include: [
-              [
-                sequelize.fn('AVG', sequelize.cast(sequelize.col('Reviews.stars'), 'FLOAT')),
-                'avgRating'
-              ],
+              // [
+              //   sequelize.fn('AVG', sequelize.cast(sequelize.col('Reviews.stars'), 'FLOAT')), 'avgRating'
+              // ],
+              [Sequelize.cast(Sequelize.fn("AVG", Sequelize.col("Review.stars")), 'FLOAT'),"avgRating"],
               [
                 sequelize.col('SpotImages.url'), 'previewImage'
               ]
