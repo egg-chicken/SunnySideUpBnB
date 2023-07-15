@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import * as spotsActions from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 // import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { useModal } from "../../context/Modal";
-import { Modal } from '../../context/Modal';
+// import { Modal } from '../../context/Modal';
 
 function DeleteModal({id}) {
 

@@ -77,7 +77,8 @@ function ReviewModal({id}) {
                                 onMouseEnter={() => setHover(index)}
                                 onMouseLeave={() => setHover(index)}
                             >
-                                 <i className="fa-regular fa-star"/>
+                                 {/* <i className="fa-regular fa-star"/> */}
+                                 &#9733;
                             </button>
                         )
                     })}

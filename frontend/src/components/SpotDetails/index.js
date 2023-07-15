@@ -7,6 +7,7 @@ import OpenModalButton from '../OpenModalButton';
 import ReviewModal from '../ReviewModal';
 import { useParams } from 'react-router-dom';
 import './spotDetails.css'
+import DeleteReviewModal from '../DeleteReviewModal';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const SpotDetails = () => {
@@ -19,6 +20,7 @@ const SpotDetails = () => {
     const [isVisible, setIsVisible] = useState(false);
     const user = useSelector(state => state.session.user);
 
+    // console.log('!!!!!!!SPOT!!!!!', spot)
     useEffect(() => {
         // console.log('!!!!spots!!!!', id)
         dispatch(spotsActions.getOneSpot(id))
@@ -89,15 +91,21 @@ const SpotDetails = () => {
 
             <div>
               <h2><i className="fa-solid fa-star"/>{spot.avgStarRating ? (Number.isInteger(spot.avgStarRating) ? spot.avgStarRating.toFixed(1) : spot.avgStarRating.toFixed(2)) : 'New'}</h2>
-              <p><i className="fa-solid fa-circle" style={{color: '#000000'}}/></p>
+              <p>·</p>
+              <div>
               {spot.numReviews}
+              {spot.numReviews === 1 ? 'Review': 'Reviews'}
+              </div>
+
               {spot?.numReviews < 1 && isVisible && <div>Be the first to post a review!</div>}
+
               {isVisible &&
             <OpenModalButton
             modalComponent={<ReviewModal id={spot.id} setIsVisible={setIsVisible}/>}
             buttonText='Post Your Review'
             />
           }
+
               {reviews?.map(review => {
                 // const createdDate = new Date(review.createdAt)
                 const reviewMonth = months[new Date(review.createdAt).getMonth()]
@@ -108,6 +116,10 @@ const SpotDetails = () => {
                     <p>{review.User?.firstName}</p>
                     <p>{reviewMonth} {year}</p>
                     <p>{review.review}</p>
+                    {review.userId === user?.id && <OpenModalButton
+                      modalComponent={<DeleteReviewModal id={review.id} spotId={review.spotId} setIsVisible={setIsVisible}/>}
+                      buttonText='Delete'
+                    />}
                   </div>
                 )
                 })

@@ -28,9 +28,9 @@ const createOne = spot => ({
     spot
 });
 
-const deleteOne = spot => ({
+const deleteOne = id => ({
     type: DELETE,
-    spot
+    id
 });
 
 // const updateOne = spot => ({
@@ -64,7 +64,7 @@ export const getCurrentSpots = () => async dispatch => {
     if(response.ok){
         const spots = await response.json();
         dispatch(loadUser(spots));
-        return spots;
+        // return spots;
     }
 }
 
@@ -182,6 +182,8 @@ const spotsReducer = (state = initialState, action) => {
         case DELETE:
             delete newState[action.id];
             return newState;
+            // delete newState[action.id]
+            // return {...newState[action.spot.id], ...action.spot}
         default:
             return newState;
     }

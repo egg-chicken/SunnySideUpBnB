@@ -34,11 +34,11 @@ const UpdateSpotForm = () => {
                 setDescription(spotdetail?.description)
                 setName(spotdetail?.name)
                 setPrice(spotdetail?.price)
-                setPreviewImage(spotdetail?.SpotImages[0].url)
-                setImage1(spotdetail?.SpotImages[1]?.url)
-                setImage2(spotdetail?.SpotImages[2]?.url)
-                setImage3(spotdetail?.SpotImages[3]?.url)
-                setImage4(spotdetail?.SpotImages[4]?.url)
+                // setPreviewImage(spotdetail?.SpotImages[0].url)
+                // setImage1(spotdetail?.SpotImages[1]?.url)
+                // setImage2(spotdetail?.SpotImages[2]?.url)
+                // setImage3(spotdetail?.SpotImages[3]?.url)
+                // setImage4(spotdetail?.SpotImages[4]?.url)
             })
 
         // if(spot?.SpotImages) {

@@ -49,7 +49,7 @@ const ManageSpots = () => {
                                 history.push(`/spots/${spot.id}/edit`)
                                 }}>Update</button>
 
-                                    <OpenModalButton
+                                    <OpenModalButton 
                                         modalComponent={<DeleteModal id={spot.id}/>}
                                         buttonText = 'Delete'
                                     />
