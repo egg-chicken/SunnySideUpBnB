@@ -8,6 +8,7 @@ import ReviewModal from '../ReviewModal';
 import { useParams } from 'react-router-dom';
 import './spotDetails.css'
 
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const SpotDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -98,10 +99,14 @@ const SpotDetails = () => {
             />
           }
               {reviews?.map(review => {
+                // const createdDate = new Date(review.createdAt)
+                const reviewMonth = months[new Date(review.createdAt).getMonth()]
+                const year = new Date(review.createdAt).getFullYear();
+
                 return (
                   <div key={review.id}>
                     <p>{review.User?.firstName}</p>
-                    <p>{review.createdAt}</p>
+                    <p>{reviewMonth} {year}</p>
                     <p>{review.review}</p>
                   </div>
                 )
