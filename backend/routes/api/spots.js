@@ -146,7 +146,7 @@ router.get('/current', requireAuth, async (req, res) => {
               // [
               //   sequelize.fn('AVG', sequelize.cast(sequelize.col('Reviews.stars'), 'FLOAT')), 'avgRating'
               // ],
-              [Sequelize.cast(Sequelize.fn("AVG", Sequelize.col("Review.stars")), 'FLOAT'),"avgRating"],
+              [Sequelize.cast(Sequelize.fn("AVG", Sequelize.col('Reviews.stars')), 'FLOAT'),"avgRating"],
               [
                 sequelize.col('SpotImages.url'), 'previewImage'
               ]
