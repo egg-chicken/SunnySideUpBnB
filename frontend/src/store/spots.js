@@ -1,15 +1,15 @@
 import { csrfFetch } from "./csrf";
 // import { ValidationError } from '../backend/utils/validation.js';
 
-const LOAD = 'spots/LOAD';
-const LOAD_ONE = 'spots/ADD_ONE';
+const LOAD_SPOTS = 'spots/LOAD_SPOTS';
+const LOAD_ONE_SPOT = 'spots/LOAD_ONE_SPOT';
 const LOAD_USER_SPOTS = 'spots/LOAD_USER_SPOTS';
-const CREATE = 'spots/CREATE';
-const UPDATE = 'spots/UPDATE';
-const DELETE = 'spots/DELETE';
+const CREATE_SPOT = 'spots/CREATE';
+const UPDATE_SPOT = 'spots/UPDATE';
+const DELETE_SPOT = 'spots/DELETE';
 
 const load = list => ({
-    type: LOAD,
+    type: LOAD_SPOTS,
     list
 });
 
@@ -19,39 +19,33 @@ const loadUser = spots => ({
 });
 
 const viewOne = spot => ({
-    type: LOAD_ONE,
+    type: LOAD_ONE_SPOT,
     spot
 });
 
 const createOne = spot => ({
-    type: CREATE,
+    type: CREATE_SPOT,
     spot
 });
 
 const deleteOne = id => ({
-    type: DELETE,
+    type: DELETE_SPOT,
     id
 });
 
-// const updateOne = spot => ({
-//     console.log('updatedaction!!!!', spot)
-//     type: UPDATE,
-//     spot
-// });
-const updateOne = spot => {
-    return {
-    type: UPDATE,
+const updateOne = spot => ({
+    type: UPDATE_SPOT,
     spot
-    }
-};
+});
 
-//get the list of All Spots thunk
+
+//get the list of ALL Spots thunk
 export const getSpots = () => async dispatch => {
     const response = await csrfFetch('/api/spots');
 
     if(response.ok) {
         const list = await response.json();
-        console.log('!!!!!!!!!!!!!!!!', list)
+        // console.log('!!!!!!!!!!!!!!!!', list)
         dispatch(load(list));
         return list;
     }
@@ -125,12 +119,12 @@ export const updateSpot = (id, spotInfo) => async dispatch => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(spotInfo) //spot.id
+        body: JSON.stringify(spotInfo)
     });
 
     if(response.ok) {
         const updated = await response.json();
-        console.log('UPDATEDDDDDDD', updated)
+        // console.log('UPDATEDDDDDDD', updated)
         dispatch(updateOne(updated));
         return updated;
     }
@@ -143,9 +137,7 @@ export const deleteSpot = (id) => async dispatch => {
     });
 
     if(response.ok) {
-        // const remove = await response.json();
         return dispatch(deleteOne(id));
-        // return remove;
     }
 }
 
@@ -154,7 +146,7 @@ const initialState = {};
 const spotsReducer = (state = initialState, action) => {
     let newState = {...state}
     switch (action.type) {
-        case LOAD:
+        case LOAD_SPOTS:
             const allSpots = {};
 
             action.list.Spots.forEach((spot) => {
@@ -164,7 +156,7 @@ const spotsReducer = (state = initialState, action) => {
             return {
                 ...allSpots
             }
-        case LOAD_ONE:
+        case LOAD_ONE_SPOT:
             newState[action.spot.id] = {...newState[action.spot.id], ...action.spot};
             return newState
         case LOAD_USER_SPOTS:
@@ -173,17 +165,15 @@ const spotsReducer = (state = initialState, action) => {
                 user[spot.id] = spot;
             })
             return user
-        case CREATE:
+        case CREATE_SPOT:
             newState[action.spot.id] =  action.spot;
             return newState
-        case UPDATE:
+        case UPDATE_SPOT:
             newState[action.spot.id] = action.spot;
             return newState
-        case DELETE:
+        case DELETE_SPOT:
             delete newState[action.id];
             return newState;
-            // delete newState[action.id]
-            // return {...newState[action.spot.id], ...action.spot}
         default:
             return newState;
     }

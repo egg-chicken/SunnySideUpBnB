@@ -1,11 +1,11 @@
 import { csrfFetch } from "./csrf";
 import { getOneSpot } from "./spots";
-import * as spotsActions from './spots';
 
 const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS';
 const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
+//review action creators 
 const load = reviews => ({
     type: LOAD_REVIEWS,
     reviews
@@ -33,25 +33,6 @@ export const getAllReviews = id => async dispatch => {
 }
 
 //create a review
-// export const createReview = (id, reviewInfo) => async dispatch => {
-//     const response = await csrfFetch(`/api/spots/${id}/reviews`, {
-//         method: 'POST',
-//         headers: {
-//             "Content-Type": "application/json"
-//           },
-//           body: JSON.stringify(reviewInfo)
-//     });
-
-//     if(response.ok) {
-//         const data = await response.json();
-//         console.log('!!!!!!! id !!!!!!', id)
-//         dispatch(addReview(data));
-//         dispatch(getOneSpot(id));
-//         dispatch(getAllReviews(id));
-//         return data
-//     }
-
-// };
 export const createReview = (payload) => async dispatch => {
     const { id, review, stars } = payload
     const response = await csrfFetch(`/api/spots/${id}/reviews`, {
@@ -61,6 +42,7 @@ export const createReview = (payload) => async dispatch => {
 
     if(response.ok) {
         const data = await response.json();
+        //console.log('!!!!!!! id !!!!!!', id)
         dispatch(addReview(data));
         dispatch(getOneSpot(id));
         dispatch(getAllReviews(id));
@@ -69,6 +51,7 @@ export const createReview = (payload) => async dispatch => {
 
 };
 
+//delete a review using id
 export const deleteReview = (id) => async dispatch => {
     const response = await csrfFetch(`/api/reviews/${id}`, {
         method: 'DELETE',
@@ -76,10 +59,10 @@ export const deleteReview = (id) => async dispatch => {
     if(response.ok){
         const res = await response.json();
         dispatch(removeReview(id));
-        // dispatch(spotsActions.getCurrentSpots(spotId));
         return res;
     }
 };
+
 
 const initialState = {}
 

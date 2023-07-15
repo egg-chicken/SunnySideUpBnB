@@ -15,6 +15,7 @@ const removeUser = () => ({
     type: REMOVE_USER,
 });
 
+//user login
 export const login = (user) => async (dispatch) => {
     const { credential, password } = user;
     const response = await csrfFetch('/api/session', {
@@ -24,11 +25,13 @@ export const login = (user) => async (dispatch) => {
             password,
         })
     });
+
     const data = await response.json();
     dispatch(setUser(data.user));
     return response;
 };
 
+//restore user
 export const restoreUser = () => async (dispatch) => {
     const response = await csrfFetch("/api/session");
     const data = await response.json();
@@ -36,6 +39,7 @@ export const restoreUser = () => async (dispatch) => {
     return response;
   };
 
+  //sign up a new user
 export const signup = (user) => async (dispatch) => {
     const {username, firstName, lastName, email, password} = user;
     const response = await csrfFetch('/api/users', {
@@ -53,6 +57,7 @@ export const signup = (user) => async (dispatch) => {
     return response;
 }
 
+//user logout
 export const logout = () => async (dispatch) => {
     const response = await csrfFetch("/api/session", {
         method: 'DELETE'
