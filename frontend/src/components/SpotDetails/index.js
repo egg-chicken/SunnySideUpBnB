@@ -55,7 +55,7 @@ const SpotDetails = () => {
     return (
       <>
         <div className='full-page'>
-          {isLoaded && (
+          {isLoaded && isReviewsLoaded && (
             <div >
               <div className='spot-details'>
                   <h1>{spot.name}</h1>
@@ -82,6 +82,13 @@ const SpotDetails = () => {
                 <div>
                   <i className="fa-solid fa-star"/>
                   <p>{spot.avgStarRating}</p>
+                  <p>·</p>
+                  <div>
+                    {spot.avgStarRating ? (Number.isInteger(spot.avgStarRating) ? spot.avgStarRating.toFixed(1) : spot.avgStarRating.toFixed(2)) : 'New'}
+                {/* {spot.numReviews} */}
+                {spot.numReviews === 0 ? 'New' : spot.numReviews === 1 ? 'Review': 'Reviews'}
+                {/* {spot.numReviews === 1 ? 'Review': 'Reviews'} */}
+              </div>
                 </div>
                 <button onClick={handleClick} className='reserve-button'>Reserve</button>
             </div>
