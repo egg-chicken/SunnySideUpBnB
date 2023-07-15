@@ -222,6 +222,7 @@ const CreateSpotForm = () => {
                             // required
                         />
                     </label>
+                    {errors.previewImage && <p>{errors.previewImage}</p>}
                     <div>
                         <button type='submit'>Create Spot</button>
                     </div>

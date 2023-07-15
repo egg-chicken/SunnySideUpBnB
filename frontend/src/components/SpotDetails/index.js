@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as spotsActions from '../../store/spots';
 import * as reviewsActions from '../../store/reviews';
-import * as sessionActions from '../../store/session';
+// import * as sessionActions from '../../store/session';
 import OpenModalButton from '../OpenModalButton';
 import ReviewModal from '../ReviewModal';
 import { useParams } from 'react-router-dom';
@@ -30,18 +30,18 @@ const SpotDetails = () => {
     useEffect(() => {
       if(isReviewsLoaded) {
         if(user){
-          // if(user.id !== spot.id){
-          //   let target = true;
-          //   reviews.forEach(el => {
-          //     if(el.userId === user.id) target =false;
-          //   });
-          //   if(target === true) setIsVisible(true);
-          // }
-          let target = true;
-          if(target === true) setIsVisible(true);
+          if(user.id !== spot.id){
+            let target = true;
+            reviews.forEach(el => {
+              if(el.userId === user.id) target =false;
+            });
+            if(target === true) setIsVisible(true);
+          }
+          // let target = true;
+          // if(target === true) setIsVisible(true);
         }
       }
-    })
+    },[isReviewsLoaded, user])
     const handleClick = e => {
         e.preventDefault();
         alert("Feature Coming Soon")
@@ -58,10 +58,6 @@ const SpotDetails = () => {
                   <h1>{spot.name}</h1>
                   <p className='location'>{spot.city}, {spot.state}, {spot.country}</p>
             </div>
-            <div className='spot-desc'>
-                  <p>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</p>
-                  <p>{spot.description}</p>
-            </div>
             <div className='spot-images'>
                 {
                   spot?.SpotImages.map((image, index) => {
@@ -74,6 +70,10 @@ const SpotDetails = () => {
                   })
                 }
             </div>
+            <div className='spot-desc'>
+                  <p>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</p>
+                  <p>{spot.description}</p>
+            </div>
             <div className='callout-box'>
                 <p>${spot.price} night</p>
                 <div>
@@ -85,14 +85,18 @@ const SpotDetails = () => {
             </div>
           )}
           {/* {isReviewsLoaded && */}
-          {isVisible &&
+
+            <div>
+              <h2><i className="fa-solid fa-star"/>{spot.avgStarRating ? (Number.isInteger(spot.avgStarRating) ? spot.avgStarRating.toFixed(1) : spot.avgStarRating.toFixed(2)) : 'New'}</h2>
+              <p><i className="fa-solid fa-circle" style={{color: '#000000'}}/></p>
+              {spot.numReviews}
+              {spot?.numReviews < 1 && isVisible && <div>Be the first to post a review!</div>}
+              {isVisible &&
             <OpenModalButton
             modalComponent={<ReviewModal id={spot.id} setIsVisible={setIsVisible}/>}
             buttonText='Post Your Review'
             />
           }
-            <div>
-              <h2><i className="fa-solid fa-star"/>{spot?.avgStarRating || 'New'}</h2>
               {reviews?.map(review => {
                 return (
                   <div key={review.id}>

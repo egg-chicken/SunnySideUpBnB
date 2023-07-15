@@ -18,10 +18,10 @@ const UpdateSpotForm = () => {
     const [name, setName] = useState(spot?.name || '');
     const [price, setPrice] = useState(spot?.price || '');
     const [previewImage, setPreviewImage] = useState(spot?.previewImage || '');
-    const [image1, setImage1] = useState(spot?.SpotImages ? spot?.SpotImages[1].url : '');
-    const [image2, setImage2] = useState(spot?.SpotImages ? spot?.SpotImages[2].url : '');
-    const [image3, setImage3] = useState(spot?.SpotImages ? spot?.SpotImages[3].url : '');
-    const [image4, setImage4] = useState(spot?.SpotImages ? spot?.SpotImages[4].url : '');
+    const [image1, setImage1] = useState(spot?.SpotImages ? spot?.SpotImages[1] : '');
+    const [image2, setImage2] = useState(spot?.SpotImages ? spot?.SpotImages[2] : '');
+    const [image3, setImage3] = useState(spot?.SpotImages ? spot?.SpotImages[3] : '');
+    const [image4, setImage4] = useState(spot?.SpotImages ? spot?.SpotImages[4] : '');
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
@@ -35,12 +35,24 @@ const UpdateSpotForm = () => {
                 setName(spotdetail?.name)
                 setPrice(spotdetail?.price)
                 setPreviewImage(spotdetail?.SpotImages[0].url)
-                setImage1(spotdetail?.SpotImages[1].url)
-                setImage2(spotdetail?.SpotImages[2].url)
-                setImage3(spotdetail?.SpotImages[3].url)
-                setImage4(spotdetail?.SpotImages[4].url)
+                setImage1(spotdetail?.SpotImages[1]?.url)
+                setImage2(spotdetail?.SpotImages[2]?.url)
+                setImage3(spotdetail?.SpotImages[3]?.url)
+                setImage4(spotdetail?.SpotImages[4]?.url)
             })
 
+        // if(spot?.SpotImages) {
+        //     const previewImage = spot.SpotImages.find((image) => image.preview);
+        //     const addImages = spot.SpotImages.filter((image) => !image.preview);
+
+        //     setPreviewImage(previewImage?.url || '');
+        //     addImages.forEach((image, index) => {
+        //         if(index === 0) setImage1(image?.url || '');
+        //         if(index === 1) setImage2(image?.url || '');
+        //         if(index === 2) setImage3(image?.url || '');
+        //         if(index === 3) setImage4(image?.url || '');
+        //     });
+        // }
     }, [dispatch, id, history]);
 
 
@@ -70,9 +82,11 @@ const UpdateSpotForm = () => {
 
         setErrors(errors);
 
-        const spotInfo = { address, city, state, country, name, description, price, url: previewImage, spotImages: []}
-
-        if(image1) spotInfo.spotImages.push(image1)
+        //const spotInfo = { address, city, state, country, name, description, price, url: previewImage, spotImages: []}
+        const spotInfo = { address, city, state, country, name, description, price, SpotImages: [{url: previewImage, preview: true}]}
+        // if(image1) spotInfo.spotImages.push(image1)
+        if(previewImage) spotInfo.SpotImages.push({url: previewImage, preview: true})
+        if(image1) spotInfo.SpotImages.push({url: image1, preview: false})
         if(image2) spotInfo.spotImages.push(image2)
         if(image3) spotInfo.spotImages.push(image3)
         if(image4) spotInfo.spotImages.push(image4)

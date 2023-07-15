@@ -13,7 +13,8 @@ const validateLogin = [
       .exists({ checkFalsy: true })
       .withMessage('Email or username is required.'),
     check('password')
-      .exists({ checkFalsy: true }).withMessage('Password is required.'),
+      .exists({ checkFalsy: true })
+      .withMessage('Password is required.'),
     handleValidationErrors
   ];
 
@@ -32,11 +33,11 @@ router.post('/', validateLogin, async (req, res, next) => {
 
     if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
       // const err = new Error('Login failed');
-      const err = new Error('Invalid Credentials');
+      // const err = new Error('Invalid Credentials');
 
-      // const err = new Error('The provided credentials were invalid.')
+      const err = new Error('The provided credentials were invalid.')
       err.status = 401;
-      err.message = 'Invalid Credentials';
+      // err.message = 'Invalid Credentials';
       return next(err);
     }
     // if(!user) {

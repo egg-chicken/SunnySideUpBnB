@@ -13,14 +13,14 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  // console.log('!!!!errrors:', errors)
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setErrors({});
+
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
-      .then(() => history.pushState('/'))
+      // .then(() => history.push('/'))
       .catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) {
@@ -32,9 +32,11 @@ function LoginFormModal() {
   return (
     <div className="login-form">
       <h1 className="login-text">Log In</h1>
+      {Object.keys(errors).map((key) => (
+        <p key ={key} className="error-message">{errors[key]}</p>
+      ))}
       <form onSubmit={handleSubmit}>
         <label className="user">
-          {/* Username or Email */}
           <input
             type="text"
             placeholder="Username or Email"
@@ -43,9 +45,8 @@ function LoginFormModal() {
             // required
           />
         </label>
-        {errors.credential && (<p>{errors.credential}</p>)}
+        {/* {errors.credential && (<p>{errors.credential}</p>)} */}
         <label className="password">
-          {/* Password */}
           <input
             type="password"
             placeholder="Password"
@@ -54,7 +55,7 @@ function LoginFormModal() {
             // required
           />
         </label>
-        {errors.password && (<p>{errors.password}</p>)}
+        {/* {errors.password && (<p>{errors.password}</p>)} */}
         <div className="button-style">
         <button className='login-button' disabled={credential.length < 4 || password.length < 6} type='submit'>Log In</button>
         </div>
