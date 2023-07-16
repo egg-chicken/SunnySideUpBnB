@@ -1,0 +1,112 @@
+.parent-review {
+    padding: 10px;
+}
+
+.star-rating-container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.star-ratings {
+    display: flex;
+    margin-right: 10px;
+}
+
+.star-symbol {
+    outline: black;
+}
+
+.star-name {
+    font-size: 10pt;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.submit-button {
+    background-color: #FFFFFF;
+    color: #000000;
+    border-color: #CCCCCC;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.submit-button .accent {
+    color: red;
+}
+
+.star-button#star-1 {
+    background-color: transparent;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+
+}
+.star-button#star-2 {
+    background-color: transparent;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+}
+.star-button#star-3 {
+    background-color: transparent;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+}
+.star-button#star-4 {
+    background-color: transparent;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+}
+.star-button#star-5 {
+    background-color: transparent;
+    border:none;
+    outline: none;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+}
+.star-button#star-1.on {
+    color: #000000;
+}
+#star-2.on {
+    color: #000000;
+}
+#star-3.on {
+    color: #000000;
+}
+#star-4.on {
+    color: #000000;
+}
+#star-5.on {
+    color: #000000;
+}
+
+
+#star-1.off {
+    color: #CCCCCC;
+    outline: black;
+}
+#star-2.off {
+    color: #CCCCCC;
+}
+#star-3.off {
+    color: #CCCCCC;
+}
+#star-4.off {
+    color: #CCCCCC;
+}
+#star-5.off {
+    color: #CCCCCC;
+}

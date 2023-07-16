@@ -8,8 +8,6 @@ import * as spotsActions from '../../store/spots';
 import * as reviewsActions from '../../store/reviews';
 import './spotDetails.css'
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
 const SpotDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -20,6 +18,8 @@ const SpotDetails = () => {
     const [isVisible, setIsVisible] = useState(false);
     const user = useSelector(state => state.session.user);
 
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
     useEffect(() => {
         dispatch(spotsActions.getOneSpot(id))
           .then(() => setIsLoaded(true))
@@ -28,18 +28,18 @@ const SpotDetails = () => {
     }, [id, dispatch]);
 
     useEffect(() => {
-      if(isReviewsLoaded) {
+      if(isReviewsLoaded & isLoaded) {
         if(user){
           if(user.id !== spot.id){
             let target = true;
             reviews.forEach(el => {
-              if(el.userId === user.id) target =false;
+              if(el.userId === user.id) target = false;
             });
             if(target === true) setIsVisible(true);
           }
         }
       }
-    },[isReviewsLoaded, user])
+    },[isReviewsLoaded, isLoaded, user])
     const handleClick = e => {
         e.preventDefault();
         alert("Feature Coming Soon")
@@ -73,15 +73,8 @@ const SpotDetails = () => {
             <div className='callout-box'>
                 <p>${spot.price} night</p>
                 <div>
-                  <i className="fa-solid fa-star"/>
-                  <p>{spot.avgStarRating}</p>
-                  <p>·</p>
-                  <div>
-                    {spot.avgStarRating ? (Number.isInteger(spot.avgStarRating) ? spot.avgStarRating.toFixed(1) : spot.avgStarRating.toFixed(2)) : 'New'}
-                {/* {spot.numReviews} */}
-                {spot.numReviews === 0 ? 'New' : spot.numReviews === 1 ? 'Review': 'Reviews'}
-                {/* {spot.numReviews === 1 ? 'Review': 'Reviews'} */}
-              </div>
+                  &#9733; {spot?.avgStarRating === 0 ? 'New' : `${spot?.avgStarRating.toFixed(1)}`}{spot?.numReviews >= 1 && <span> · {spot?.numReviews} Review{spot?.numReviews > 1 ? 's' : ''}</span>}
+                  {/* &#9733; {reviews?.avgStarRating === 0 ? 'New' : `${reviews?.avgStarRating.toFixed(1)}`}{reviews?.numReviews >= 1 && <span> · {reviews?.numReviews} Review{reviews?.numReviews > 1 ? 's' : ''}</span>} */}
                 </div>
                 <button onClick={handleClick} className='reserve-button'>Reserve</button>
             </div>
