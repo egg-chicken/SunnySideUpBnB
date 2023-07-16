@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -22,6 +22,12 @@ const ManageSpots = () => {
     return (
         <>
             <h2>Manage Your Spots</h2>
+            {spotsArray.length === 0 ? (
+                 <button onClick={(e) => {
+                    e.stopPropagation()
+                    history.push(`/spots/new`)
+                    }}>Create a New Spot</button>
+            ): (
             <main className='tiles-container'>
             {spots && spotsArray.map((spot) => (
                 <div key={spot.id} className='spot-tile'>
@@ -58,6 +64,7 @@ const ManageSpots = () => {
                 </div>
             ))}
         </main>
+        )}
         </>
     )
 };
