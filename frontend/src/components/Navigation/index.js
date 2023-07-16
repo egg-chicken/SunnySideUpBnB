@@ -15,14 +15,16 @@ function Navigation({ isLoaded }){
             airbnb
           </NavLink>
         </div>
-        {isLoaded && (
-            <ProfileButton user={sessionUser} />
-        )}
-        {sessionUser && (
-                <NavLink to='/spots/new' className='nav-link'>
-                    Create a New Spot
-                </NavLink>
-        )}
+        <div className='right-nav-side'>
+          {sessionUser && (
+              <NavLink to='/spots/new' className='nav-link'>
+                  Create a New Spot
+              </NavLink>
+          )}
+          {isLoaded && (
+              <ProfileButton user={sessionUser} />
+          )}
+        </div>
       </div>
 
   );

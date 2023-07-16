@@ -76,9 +76,81 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        //id: 2,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236705/airbnb-proj/spot2/coast_view.webp',
+        preview: false,
+        imageableId: 2,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 2,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236721/airbnb-proj/spot2/living_room.webp',
+        preview: false,
+        imageableId: 2,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 2,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236742/airbnb-proj/spot2/kitchen.webp',
+        preview: false,
+        imageableId: 2,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 2,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236763/airbnb-proj/spot2/bathroom_oceanview.webp',
+        preview: false,
+        imageableId: 2,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         //id: 3,
         url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236906/airbnb-proj/spot3/2beb143557e1c44cb58b125e0b7348dc-cc_ft_960_lksyf2.webp',
         preview: true,
+        imageableId: 3,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 3,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236924/airbnb-proj/spot3/spot3_kitchen.webp',
+        preview: false,
+        imageableId: 3,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 3,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236938/airbnb-proj/spot3/spot3_outdoor_dining.webp',
+        preview: false,
+        imageableId: 3,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 3,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236961/airbnb-proj/spot3/spot3_bedroom.webp',
+        preview: false,
+        imageableId: 3,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 3,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688237092/airbnb-proj/spot3/spot3_fun_area.webp',
+        preview: false,
         imageableId: 3,
         imageableType: 'Spot',
         createdAt: new Date(),
@@ -94,9 +166,81 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        //id: 4,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688237834/airbnb-proj/spot4/spot4_family_area.webp',
+        preview: false,
+        imageableId: 4,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 4,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688237856/airbnb-proj/spot4/spot4_bedroom.webp',
+        preview: false,
+        imageableId: 4,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 4,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688237904/airbnb-proj/spot4/spot4_kitchen.webp',
+        preview: false,
+        imageableId: 4,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 4,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688237950/airbnb-proj/spot4/spot4_land_overview.webp',
+        preview: false,
+        imageableId: 4,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         //id: 5,
         url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240550/airbnb-proj/spot5/114a1cc7ef9f08cce4ba5785977bec5c-cc_ft_960_tlcolh.webp',
         preview: true,
+        imageableId: 5,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 5,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240579/airbnb-proj/spot5/spot5_cozy_living.webp',
+        preview: false,
+        imageableId: 5,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 5,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240607/airbnb-proj/spot5/spot5_bedroom_stay.webp',
+        preview: false,
+        imageableId: 5,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 5,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240632/airbnb-proj/spot5/spot5_patio.webp',
+        preview: false,
+        imageableId: 5,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 5,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240654/airbnb-proj/spot5/spot5_patio_overview.webp',
+        preview: false,
         imageableId: 5,
         imageableType: 'Spot',
         createdAt: new Date(),
@@ -112,6 +256,42 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        //id: 6,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240753/airbnb-proj/spot6/spot6_pool_backyard.webp',
+        preview: false,
+        imageableId: 6,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 6,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240791/airbnb-proj/spot6/spot6_home_gym.webp',
+        preview: false,
+        imageableId: 6,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 6,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240810/airbnb-proj/spot6/spot6_bedroom.webp',
+        preview: false,
+        imageableId: 6,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 6,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240836/airbnb-proj/spot6/spot6_bar_hangout.webp',
+        preview: false,
+        imageableId: 6,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         //id: 7,
         url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241072/airbnb-proj/spot7/a0e20848fedd8d3c52936acc28c9f6ac-cc_ft_960_sywd8a.webp',
         preview: true,
@@ -121,9 +301,81 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        //id: 7,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241100/airbnb-proj/spot7/spot7_kitchen.webp',
+        preview: false,
+        imageableId: 7,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 7,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241116/airbnb-proj/spot7/spot7_bedroom.webp',
+        preview: false,
+        imageableId: 7,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 7,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241141/airbnb-proj/spot7/spot7_pool.webp',
+        preview: false,
+        imageableId: 7,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 7,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241165/airbnb-proj/spot7/spot7_kids_bedroom.webp',
+        preview: false,
+        imageableId: 7,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         //id: 8,
         url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241658/airbnb-proj/spot8/f591e0991e6bcd0453a0409082abe386-cc_ft_960_viqppm.webp',
         preview: true,
+        imageableId: 8,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 8,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241681/airbnb-proj/spot8/spot8_hangout_bonfire.webp',
+        preview: false,
+        imageableId: 8,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 8,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241720/airbnb-proj/spot8/spot8_lookout.webp',
+        preview: false,
+        imageableId: 8,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 8,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241736/airbnb-proj/spot8/spot8_living.webp',
+        preview: false,
+        imageableId: 8,
+        imageableType: 'Spot',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        //id: 8,
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241772/airbnb-proj/spot8/spot8_bedroom.webp',
+        preview: false,
         imageableId: 8,
         imageableType: 'Spot',
         createdAt: new Date(),

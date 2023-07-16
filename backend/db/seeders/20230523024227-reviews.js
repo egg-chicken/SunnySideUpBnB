@@ -21,7 +21,7 @@ backend/db/models/review.js     *   name: 'John Doe',
     */
 await queryInterface.bulkInsert(options, [{
         //id: 1,
-        userId: 1,
+        userId: 3,
         spotId: 1,
         review: 'A gorgeous house with beautiful trees',
         stars: 5,
@@ -39,8 +39,8 @@ await queryInterface.bulkInsert(options, [{
       },
       {
         //id: 2,
-        userId: 3,
-        spotId: 1,
+        userId: 1,
+        spotId: 2,
         review: 'The location is perfect',
         stars: 3,
         createdAt: new Date(),
@@ -48,7 +48,7 @@ await queryInterface.bulkInsert(options, [{
       },
       {
         //id: 2,
-        userId: 2,
+        userId: 3,
         spotId: 2,
         review: 'beautiful area',
         stars: 4,
@@ -57,7 +57,7 @@ await queryInterface.bulkInsert(options, [{
       },
       {
         //id: 3,
-        userId: 3,
+        userId: 1,
         spotId: 3,
         review: 'not the best',
         stars: 3,

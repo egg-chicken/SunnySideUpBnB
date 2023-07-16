@@ -38,7 +38,8 @@ ul.profile-dropdown {
     border: 2px solid #000000;
     /* box-shadow: 2px 2px 2px #000000; */
     font-size: 14px;
-    width: 90px;
+    /* width: 100px; */
+    list-style: none;
 }
 
 ul.profile-dropdown.hidden {
@@ -47,4 +48,18 @@ ul.profile-dropdown.hidden {
 
 .profile-button {
     align-self: center;
+    margin-top: 5px;
+    border-top: 1px solid #000000;
+}
+
+.right-nav-side {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.manage-spots {
+    text-decoration: none;
+    border-bottom: 1px solid #000000;
+    /* border-top: 1px solid #000000; */
+    padding: 5px;
 }
