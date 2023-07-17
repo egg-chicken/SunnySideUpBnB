@@ -20,9 +20,9 @@ function DeleteModal({id}) {
         <div className="login-form">
             <h2 className="login-text">Confirm Delete</h2>
             <p>Are your sure you want to remove this spot from the listings?</p>
-            <form onSubmit={handleSubmit}>
+            <form className='form-delete'onSubmit={handleSubmit}>
                 <button className='create-button' type='submit'>Yes (Delete Spot)</button>
-                <button className='keep-button' onClick={closeModal}>No (Keep Spot)</button>
+                <button className='keep-button delete-style' onClick={closeModal}>No (Keep Spot)</button>
             </form>
         </div>
         </>

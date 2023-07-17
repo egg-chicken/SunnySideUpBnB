@@ -6,4 +6,13 @@
     box-shadow: 2px 2px 2px black;
     cursor: pointer;
     border: 1px solid black;
+    width: 110px;
+}
+
+.delete-style {
+    width: 110px;
+}
+
+.form-delete {
+    gap: 5px;
 }
