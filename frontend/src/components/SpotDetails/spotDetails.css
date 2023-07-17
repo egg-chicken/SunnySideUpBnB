@@ -1,6 +1,6 @@
 .full-page {
     /* max-width: 1000px; */
-    padding: 20px;
+    padding: 30px;
     width: 100%;
 }
 
@@ -32,7 +32,7 @@ h1 {
     /* width: 200px; */
     /* margin-top: 10px; */
     display: grid;
-    width: 300px;
+    width: 400px;
     grid-template-areas:
     'price rating'
     'reserve reserve';
@@ -41,6 +41,9 @@ h1 {
     box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.2);
     border-radius: 10px;
     padding: 10px;
+    height: 100px;
+    margin-left: 5px;
+    margin-bottom: 50px;
     /* break-inside: avoid; */
     /* grid-area: c; */
 }
@@ -49,8 +52,10 @@ h1 {
     background-color: red;
     border-radius: 4px;
     color: white;
-    width: 200px;
+    /* width: 200px; */
+    /* width: 100%; */
     grid-area: reserve;
+    padding: 5px;
 }
 
 .spot-images {
@@ -63,7 +68,7 @@ h1 {
     'preview tile-2 tile-4';
     /* margin: auto; */
     width: 100%;
-    padding: 20px;
+    padding: 5px;
 }
 
 .tile-image-1 {
@@ -97,8 +102,8 @@ h1 {
 .spot-image-tiles {
     /* height: 200px;
     width: 200px; */
-    width: 100%;
-    height: 100%;
+    width: 98%;
+    height: 98%;
     /* Width: 100%; */
     object-fit: cover;
     align-self: center;
@@ -119,10 +124,15 @@ h1 {
 }
 
 .spot-price {
+    display: grid;
     grid-area: price;
+    align-content: center;
 }
 
 .spot-desc {
     width: 100%;
     font-size: 14pt;
+}
+.review-section {
+    padding: 5px;
 }

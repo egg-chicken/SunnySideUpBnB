@@ -89,120 +89,152 @@ const CreateSpotForm = () => {
             <div className="form-create">
                 <div className="Intro">
                     <h2>Create a New Spot</h2>
-                    <p>Where's your place located?</p>
-                    <p>Guests will only get your exact address once they booked a reservation.</p>
+                    <p className="text">Where's your place located?</p>
+                    <p className="intro-text">Guests will only get your exact address once they booked a reservation.</p>
                 </div>
                 <form onSubmit={handleSubmit}>
-                    <label>
-                        Country
+                    <div className="align-create">
+                    <div className="error-message">{errors.country && <p className="special">{errors.country}</p>}</div>
+                    <label className="label-create">
+                         Country
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="Country"
                             value={country}
                             onChange={(e) => setCountry(e.target.value)}
                         />
                     </label>
-                    {errors.country && <p>{errors.country}</p>}
-                    <label>
+                    </div>
+                    <div className="align-create">
+                    <div className="error-message">{errors.address && <p className="special">{errors.address}</p>}</div>
+                    <label className="label-create">
                         Street Address
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="Address"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                     />
                     </label>
-                    {errors.address && <p>{errors.address}</p>}
-                    <label>
+                    </div>
+                    <div className="error-message">{errors.city && <p className="special">{errors.city}</p>}</div>
+                    <div className="error-message">{errors.state && <p className="special">{errors.state}</p>}</div>
+                    <div className="organize-create">
+                    <div className="align-create">
+                    <label className="label-create city">
                         City
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="City"
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
                         />
                     </label>
-                    {errors.city && <p>{errors.city}</p>}
-                    <label>
+                    </div>
+                    <div className="align-create">
+                    <label className="label-create state">
                         State
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="STATE"
                             value={state}
                             onChange={(e) => setState(e.target.value)}
                         />
                     </label>
-                    {errors.state && <p>{errors.state}</p>}
-                    <label>
-                        Describe your place to guests
-                        <p>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
+                    </div>
+                    </div>
+                    <div className="align-create">
+                    <label className="label-create border-create">
+                    <div className="error-message">{errors.description && <p className="special">{errors.description}</p>}</div>
+                    <p className="text">Describe your place to guests</p>
+                        <p className="intro-text">Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="Please write at least 30 characters"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </label>
-                    {errors.description && <p>{errors.description}</p>}
-                    <label>
-                        Create a title for your spot
-                        <p>Catch guests' attention with a spot title that highlights what makes your place special.</p>
+                    </div>
+                    <div className="align-create">
+                    <label className="label-create border-create">
+                    <div className="error-message">{errors.name && <p className="special">{errors.name}</p>}</div>
+                        <p className="text">Create a title for your spot</p>
+                        <p className="intro-text">Catch guests' attention with a spot title that highlights what makes your place special.</p>
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="Name of your spot"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </label>
-                    {errors.name && <p>{errors.name}</p>}
-                    <label>
-                        Set a base price for your spot
-                        <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
+                    </div>
+                    <div className="align-create">
+                    <label className="label-create border-create">
+                    <div className="error-message">{errors.price && <p className="special">{errors.price}</p>}</div>
+                    <p className="text">Set a base price for your spot</p>
+                        <p className="intro-text">Competitive pricing can help your listing stand out and rank higher in search results.</p>
                         <input
+                            className="input-create"
                             type='number'
                             placeholder="Price per night (USD)"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                         />
                     </label>
-                    {errors.price && <p>{errors.price}</p>}
-                    <label>
-                        Liven up your spot with photos
-                        <p>Submit a link to at least one photo to publish your spot.</p>
+                    </div>
+                    <p className="border-create"></p>
+                    <div className="align-create">
+                    <div className="error-message">{errors.previewImage && <p className="special">{errors.previewImage}</p>}</div>
+                    <label className="label-create">
+                    <p className="text">Liven up your spot with photos</p>
+                        <p className="intro-text">Submit a link to at least one photo to publish your spot.</p>
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="Preview Image URL"
                             value={previewImage}
                             onChange={(e) => setPreviewImage(e.target.value)}
                         />
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="Image URL"
                             value={image1}
                             onChange={(e) => setImage1(e.target.value)}
                         />
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="Image URL"
                             value={image2}
                             onChange={(e) => setImage2(e.target.value)}
                         />
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="Image URL"
                             value={image3}
                             onChange={(e) => setImage3(e.target.value)}
                         />
                         <input
+                            className="input-create"
                             type='text'
                             placeholder="Image URL"
                             value={image4}
                             onChange={(e) => setImage4(e.target.value)}
                         />
                     </label>
-                    {errors.previewImage && <p>{errors.previewImage}</p>}
-                    <div>
-                        <button type='submit'>Create Spot</button>
+                    </div>
+                    <p className="border-create"></p>
+                    <div className="align-create-button">
+                        <button className='create-button'type='submit'>Create Spot</button>
                     </div>
                 </form>
             </div>
