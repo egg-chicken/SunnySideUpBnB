@@ -33,7 +33,7 @@ const LandingPage = () => {
                                         {spot.avgRating ? (Number.isInteger(spot.avgRating) ? spot.avgRating.toFixed(1) : spot.avgRating.toFixed(2)) : 'New'}
                                     </p>
                                 </div>
-                                <p className='spot-price'>{`$${spot.price} night`}</p>
+                                <p className='spot-price'><span className='price-child'>{`$${spot.price}`}</span> night</p>
                             </div>
                         </Link>
                     </div>

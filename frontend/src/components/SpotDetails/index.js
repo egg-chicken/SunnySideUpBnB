@@ -39,7 +39,7 @@ const SpotDetails = () => {
           }
         }
       }
-    },[isReviewsLoaded, isLoaded, user])
+    },[isReviewsLoaded, isLoaded, reviews, spot, user])
     const handleClick = e => {
         e.preventDefault();
         alert("Feature Coming Soon")
@@ -49,14 +49,13 @@ const SpotDetails = () => {
       <>
         <div className='full-page'>
           {isLoaded && isReviewsLoaded && (
-            <div >
+            <div>
               <div className='spot-details'>
-                  <h1>{spot.name}</h1>
+                  <h1 className='spot-name'>{spot.name}</h1>
                   <p className='location'>{spot.city}, {spot.state}, {spot.country}</p>
-            </div>
-            <div className='spot-images'>
-                {
-                  spot?.SpotImages.map((image, index) => {
+              </div>
+              <div className='spot-images'>
+                {spot?.SpotImages.map((image, index) => {
                     return (
                       <img key={image.id} className={image.preview ? 'preview-image' : `spot-image-tiles tile-image-${index}`} src={image.url} onError={(e) => {
                         e.target.src = 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688368793/airbnb-proj/No-Image-Placeholder_wthyue.svg';
@@ -65,39 +64,33 @@ const SpotDetails = () => {
                     );
                   })
                 }
-            </div>
-            <div className='spot-desc'>
+              </div>
+              <div className='desc-section'>
+              <div className='spot-desc'>
                   <p>Hosted by {spot.Owner.firstName} {spot.Owner.lastName}</p>
                   <p>{spot.description}</p>
-            </div>
-            <div className='callout-box'>
-                <p>${spot.price} night</p>
-                <div>
-                  &#9733; {spot?.avgStarRating === 0 ? 'New' : `${spot?.avgStarRating.toFixed(1)}`}{spot?.numReviews >= 1 && <span> · {spot?.numReviews} Review{spot?.numReviews > 1 ? 's' : ''}</span>}
-                  {/* &#9733; {reviews?.avgStarRating === 0 ? 'New' : `${reviews?.avgStarRating.toFixed(1)}`}{reviews?.numReviews >= 1 && <span> · {reviews?.numReviews} Review{reviews?.numReviews > 1 ? 's' : ''}</span>} */}
-                </div>
+              </div>
+              <div className='call-position'>
+              <div className='callout-box'>
+                <p className='spot-price'>${spot.price} night</p>
+                <div className='callout-box-rating'>&#9733;{spot.avgStarRating ? (Number.isInteger(spot.avgStarRating) ? spot.avgStarRating.toFixed(1) : spot.avgStarRating.toFixed(2)) : 'New'}{spot?.numReviews >= 1 && <span className='callout-box-rating numrev'>  &#8231; {spot?.numReviews} Review{spot?.numReviews > 1 ? 's' : ''}</span>}</div>
                 <button onClick={handleClick} className='reserve-button'>Reserve</button>
+              </div>
+              </div>
             </div>
             </div>
           )}
           {isReviewsLoaded &&
-
-            <div>
-              <h2><i className="fa-solid fa-star"/>{spot.avgStarRating ? (Number.isInteger(spot.avgStarRating) ? spot.avgStarRating.toFixed(1) : spot.avgStarRating.toFixed(2)) : 'New'}</h2>
-              <p>·</p>
-              <div>
-              {spot.numReviews}
-              {spot.numReviews === 1 ? 'Review': 'Reviews'}
+            <div className='review-section'>
+              <h3 className='review-header'> &#9733;{spot.avgStarRating ? (Number.isInteger(spot.avgStarRating) ? spot.avgStarRating.toFixed(1) : spot.avgStarRating.toFixed(2)) : 'New'}{spot?.numReviews >= 1 && <span> · {spot?.numReviews} Review{spot?.numReviews > 1 ? 's' : ''}</span>}</h3>
+              <div className='bruh'>
+                {isVisible &&
+                <OpenModalButton
+                modalComponent={<ReviewModal id={spot.id} setIsVisible={setIsVisible}/>}
+                buttonText='Post Your Review'
+                />}
               </div>
-
-              {spot?.numReviews < 1 && isVisible && <div>Be the first to post a review!</div>}
-
-              {isVisible &&
-            <OpenModalButton
-            modalComponent={<ReviewModal id={spot.id} setIsVisible={setIsVisible}/>}
-            buttonText='Post Your Review'
-            />
-          }
+              {spot?.numReviews < 1 && isVisible && <div className='no-review-text'>Be the first to post a review!</div>}
 
               {reviews?.map(review => {
                 const reviewMonth = months[new Date(review.createdAt).getMonth()]
@@ -105,21 +98,19 @@ const SpotDetails = () => {
 
                 return (
                   <div key={review.id}>
-                    <p>{review.User?.firstName}</p>
-                    <p>{reviewMonth} {year}</p>
-                    <p>{review.review}</p>
+                    <p className='user-firstname'>{review.User?.firstName}</p>
+                    <p className='date'>{reviewMonth} {year}</p>
+                    <p className='review-text'>{review.review}</p>
                     {review.userId === user?.id && <OpenModalButton
                       modalComponent={<DeleteReviewModal id={review.id} spotId={review.spotId} setIsVisible={setIsVisible}/>}
                       buttonText='Delete'
                     />}
                   </div>
                 )
-                })
-              }
+              })}
             </div>
-}
+          }
         </div>
-
       </>
       );
 }

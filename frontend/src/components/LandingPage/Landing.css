@@ -6,6 +6,7 @@
     /* flex-wrap: wrap; */
     /* justify-content: flex-start; */
     /* gap: 20px; */
+    width: 100%;
     padding: 20px;
 }
 
@@ -39,12 +40,14 @@ img.image {
 }
 
 .spot-details {
-    font-size: 14px;
+    font-size: 12pt;
+    width: 300px;
 }
 
 .local-rating {
     display: flex;
     justify-content: space-between;
+    font-size: 12pt;
 }
 
 .spot-rating {
@@ -55,6 +58,7 @@ img.image {
 .spot-price {
     display: flex-start;
     margin: 0px;
+    font-size: 12pt;
 }
 
  .tooltip .tooltiptext {
@@ -65,4 +69,8 @@ img.image {
 
  .tooltip:hover .tooltiptext {
     visibility: hidden;
+ }
+
+ .price-child {
+    font-weight: bold;
  }

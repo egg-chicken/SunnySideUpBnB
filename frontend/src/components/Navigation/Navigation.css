@@ -5,7 +5,9 @@
     border-bottom: 2px solid #CCCCCC;
     Height: 70px;
     /* top | right | bottom | left */
-    padding: 0px 20px 0px 20px;
+    padding: 0px 30px 0px 30px;
+    /* max-width: 1000px; */
+    width: 100%
 }
 
 .nav-link {
@@ -24,6 +26,7 @@
     position: relative;
     border-radius: 30px;
     padding: 5px 10px;
+    cursor: pointer;
 }
 
 ul.profile-dropdown {
@@ -50,6 +53,7 @@ ul.profile-dropdown.hidden {
     align-self: center;
     margin-top: 5px;
     border-top: 1px solid #000000;
+
 }
 
 .right-nav-side {
@@ -63,3 +67,35 @@ ul.profile-dropdown.hidden {
     /* border-top: 1px solid #000000; */
     padding: 5px;
 }
+
+.review-section {
+    border-top: 1px solid #000000;
+}
+
+.user-firstname {
+    font-weight: bold;
+    font-size: 12pt;
+    margin: 0px;
+}
+
+.date {
+    font-weight: light;
+    font-size: 12pt;
+    margin: 0px;
+}
+
+.review-text {
+    font-weight: light;
+    font-size: 12pt;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.review-header {
+    font-size: 18pt;
+}
+/*
+h1.spot-name {
+    font-size: 24pt;
+    width: 100%;
+} */
