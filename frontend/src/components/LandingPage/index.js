@@ -24,7 +24,9 @@ const LandingPage = () => {
                     <div  className='tooltip'>
                         <Link className='spot-id' to={`/spots/${spot.id}`}>
                             <p className='tooltiptext'>{spot.name}</p>
-                            <img src={spot.previewImage || defaultImage} alt='Spot Preview' className='image'title={spot.name}/>
+                            <img src={spot.previewImage || defaultImage} alt='Spot Preview' className='image'title={spot.name} onError={(e) => {
+                        e.target.src = 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688368793/airbnb-proj/No-Image-Placeholder_wthyue.svg';
+                        e.onError = null;}}/>
                             <div className='spot-details'>
                                 <div className='local-rating'>
                                     <p className='spot-location'>{`${spot.city}, ${spot.state}`}</p>
