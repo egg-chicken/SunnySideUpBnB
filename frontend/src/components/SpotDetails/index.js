@@ -72,7 +72,7 @@ const SpotDetails = () => {
               </div>
               <div className='call-position'>
               <div className='callout-box'>
-                <p className='spot-price'>${spot.price} night</p>
+                <p className='spot-price-detail'>${spot.price} night</p>
                 <div className='callout-box-rating'>&#9733;{spot.avgStarRating ? (Number.isInteger(spot.avgStarRating) ? spot.avgStarRating.toFixed(1) : spot.avgStarRating.toFixed(2)) : 'New'}{spot?.numReviews >= 1 && <span className='callout-box-rating numrev'>  &#8231; {spot?.numReviews} Review{spot?.numReviews > 1 ? 's' : ''}</span>}</div>
                 <button onClick={handleClick} className='reserve-button'>Reserve</button>
               </div>

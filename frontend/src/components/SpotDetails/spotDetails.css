@@ -123,7 +123,7 @@ h1 {
     margin-left: 5px;
 }
 
-.spot-price {
+.spot-price-detail {
     display: grid;
     grid-area: price;
     align-content: center;
