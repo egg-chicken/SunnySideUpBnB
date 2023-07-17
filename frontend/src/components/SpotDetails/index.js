@@ -25,12 +25,12 @@ const SpotDetails = () => {
           .then(() => setIsLoaded(true))
         dispatch(reviewsActions.getAllReviews(id))
           .then(() => setIsReviewsLoaded(true))
-    }, [id, dispatch]);
+    }, [dispatch]);
 
     useEffect(() => {
-      if(isReviewsLoaded & isLoaded) {
+      if(isReviewsLoaded && isLoaded) {
         if(user){
-          if(user.id !== spot.id){
+          if(user.id !== spot.ownerId){
             let target = true;
             reviews.forEach(el => {
               if(el.userId === user.id) target = false;
@@ -39,7 +39,8 @@ const SpotDetails = () => {
           }
         }
       }
-    },[isReviewsLoaded, isLoaded, reviews, spot, user])
+    },[isReviewsLoaded, isLoaded, user]) //, reviews, spot.id, user.id
+
     const handleClick = e => {
         e.preventDefault();
         alert("Feature Coming Soon")
@@ -48,7 +49,7 @@ const SpotDetails = () => {
     return (
       <>
         <div className='full-page'>
-          {isLoaded && isReviewsLoaded && (
+          {isLoaded && ( //isReviewsLoaded &&
             <div>
               <div className='spot-details'>
                   <h1 className='spot-name'>{spot.name}</h1>
@@ -90,8 +91,8 @@ const SpotDetails = () => {
                 buttonText='Post Your Review'
                 />}
               </div>
-              {spot?.numReviews < 1 && isVisible && <div className='no-review-text'>Be the first to post a review!</div>}
-
+              <div className='reviews-reviews'>
+              {(spot?.numReviews < 1 && isVisible) && <div className='no-review-text'>Be the first to post a review!</div>}
               {reviews?.map(review => {
                 const reviewMonth = months[new Date(review.createdAt).getMonth()]
                 const year = new Date(review.createdAt).getFullYear();
@@ -108,6 +109,8 @@ const SpotDetails = () => {
                   </div>
                 )
               })}
+              </div>
+
             </div>
           }
         </div>

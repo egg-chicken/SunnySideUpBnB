@@ -192,6 +192,7 @@ const CreateSpotForm = () => {
                     <p className="border-create"></p>
                     <div className="align-create">
                     <div className="error-message">{errors.previewImage && <p className="special">{errors.previewImage}</p>}</div>
+                    {/* <div className="error-message">{errors.image1 && <p className="special">{errors.image1}</p>}</div> */}
                     <label className="label-create">
                     <p className="text">Liven up your spot with photos</p>
                         <p className="intro-text">Submit a link to at least one photo to publish your spot.</p>

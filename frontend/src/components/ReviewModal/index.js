@@ -50,10 +50,10 @@ function ReviewModal({id, setIsVisible}) {
 
     }
 
-    const handleButton = e => {
-        setReview(e.target.value)
-        setIsDisabled(e.target.value.length < 10 || stars === 0);
-    }
+    // const handleButton = e => {
+    //     setReview(e.target.value)
+    //     setIsDisabled(e.target.value.length < 10 || stars === 0);
+    // }
 
     return (
         <>
@@ -62,12 +62,13 @@ function ReviewModal({id, setIsVisible}) {
                 {errors && errors.review && <p className="error">{errors.review}</p>}
                 {errors && errors.stars && <p className="error">{errors.stars}</p>}
                 <form onSubmit={handleSubmit}>
-                    <textarea
+                    <input
+                        className='review-input'
                         value={review}
                         placeholder='Leave your review here . . .'
-                        onChange={handleButton}
-                        // onChange={(e) => setReview(e.target.value)}
-                    />
+                        // onChange={handleButton}
+                        onChange={(e) => setReview(e.target.value)}
+                        />
                     <div className='star-rating-container'>
                         {[1, 2, 3, 4, 5].map((star, index) => {
                             index += 1
@@ -90,9 +91,9 @@ function ReviewModal({id, setIsVisible}) {
 
                     <button type='submit'
                             onClick={handleSubmit}
-                            // disabled={review.length < 10 || stars === 0}
+                            disabled={review.length < 10 || stars === 0}
                             // className='submit-button'
-                            className={`submit-button ${isDisabled ? 'accent': ''}`}
+                            // className={`submit-button ${isDisabled ? 'accent': ''}`}
                     >
                                 Submit Your Review
                     </button>
