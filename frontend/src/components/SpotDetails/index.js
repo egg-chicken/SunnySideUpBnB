@@ -83,7 +83,7 @@ const SpotDetails = () => {
           )}
           {isReviewsLoaded &&
             <div className='review-section'>
-              <h3 className='review-header'> &#9733;{spot.avgStarRating ? (Number.isInteger(spot.avgStarRating) ? spot.avgStarRating.toFixed(1) : spot.avgStarRating.toFixed(2)) : 'New'}{spot?.numReviews >= 1 && <span> · {spot?.numReviews} Review{spot?.numReviews > 1 ? 's' : ''}</span>}</h3>
+              <h3 className='review-header'> &#9733;{spot?.avgStarRating ? (Number.isInteger(spot?.avgStarRating) ? spot?.avgStarRating.toFixed(1) : spot?.avgStarRating.toFixed(2)) : 'New'}{spot?.numReviews >= 1 && <span> · {spot?.numReviews} Review{spot?.numReviews > 1 ? 's' : ''}</span>}</h3>
               <div className='bruh'>
                 {isVisible &&
                 <OpenModalButton
