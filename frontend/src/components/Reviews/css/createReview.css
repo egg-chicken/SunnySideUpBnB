@@ -5,7 +5,6 @@
 
 .star-rating-container {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -118,6 +117,4 @@
     width: 200px;
     height: 100px;
     word-break: break-all;
-    /* inline-size: 150px;
-    overflow-wrap: break-word; */
 }

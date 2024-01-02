@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import DeleteModal from '../DeleteModal';
+import DeleteModal from './delete-spot-modal';
 import OpenModalButton from '../OpenModalButton';
 import * as spotsActions from '../../store/spots';
 

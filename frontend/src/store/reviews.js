@@ -5,7 +5,7 @@ const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS';
 const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
-//review action creators 
+//review action creators
 const load = reviews => ({
     type: LOAD_REVIEWS,
     reviews
@@ -42,7 +42,6 @@ export const createReview = (payload) => async dispatch => {
 
     if(response.ok) {
         const data = await response.json();
-        //console.log('!!!!!!! id !!!!!!', id)
         dispatch(addReview(data));
         dispatch(getOneSpot(id));
         dispatch(getAllReviews(id));

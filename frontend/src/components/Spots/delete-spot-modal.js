@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as spotsActions from "../../store/spots";
-import './deleteModal.css'
+import './css/deleteModal.css';
 
 function DeleteModal({id}) {
 

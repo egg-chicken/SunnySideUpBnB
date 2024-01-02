@@ -217,37 +217,6 @@ router.get('/:id', async (req, res) => {
 router.post('/', requireAuth, validateSpot, async (req, res, next) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
-    // if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
-    //     res.status(400);
-    //     res.json({
-    //         message: 'Bad Request',
-    //         errors: {
-    //           address: 'Street address is required',
-    //           city: 'City is required',
-    //           state: 'State is required',
-    //           country: 'Country is required',
-    //           lat: 'Latitude is not valid',
-    //           lng: 'Longitude is not valid',
-    //           name: 'Name must be less than 50 characters',
-    //           description: 'Description is required',
-    //           price: 'Price per day is required'
-    //         }
-    //     });
-    // }
-
-    // const spot = await Spot.create({
-    //   ownerId: req.user.id,
-    //   address,
-    //   city,
-    //   state,
-    //   country,
-    //   lat,
-    //   lng,
-    //   name,
-    //   description,
-    //   price,
-    // });
-
     const ownerId = req.user.id;
 
     const spot = await Spot.create({
@@ -305,24 +274,6 @@ router.put('/:id', requireAuth, validateSpot, async (req, res) => {
     const spot = await Spot.findOne({
         where: { id: spotId}
       });
-
-        // if (!address || !city || !state || !country || !lat || !lng || !name || !description || !price) {
-        //     res.status(400);
-        //     res.json({
-        //         message: 'Bad Request',
-        //         errors: {
-        //         address: 'Street address is required',
-        //         city: 'City is required',
-        //         state: 'State is required',
-        //         country: 'Country is required',
-        //         lat: 'Latitude is not valid',
-        //         lng: 'Longitude is not valid',
-        //         name: 'Name must be less than 50 characters',
-        //         description: 'Description is required',
-        //         price: 'Price per day is required'
-        //         }
-        //     });
-        // }
 
       if (!spot) {
         return res.status(404).json({ message: "Spot couldn't be found" });
@@ -410,16 +361,6 @@ router.post('/:id/reviews', requireAuth, validateReview, async (req, res, next) 
           return res.status(404).json({ message: "Spot couldn't be found" });
         }
 
-    // if (!review || !stars) {
-    //     res.status(400);
-    //     res.json({
-    //         message: 'Bad Request',
-    //         errors: {
-    //         review: 'Review text is required',
-    //         stars: 'Stars must be an integer from 1 to 5'
-    //         }
-    //     });
-    // }
 
     const existingReview = await Review.findOne({
       where: { userId, spotId}
@@ -430,10 +371,6 @@ router.post('/:id/reviews', requireAuth, validateReview, async (req, res, next) 
       err.status = 403;
       return next(err);
     }
-    // if (existingReview) {
-    //   return res.status(403).json({ message: 'Review already exists for this spot' });
-    // }
-    //message: 'User already has a review for this spot'
 
     const newReview = await Review.create({
       userId,
@@ -469,15 +406,6 @@ router.get('/:id/bookings', requireAuth, async (req, res) => {
         });
       }
 
-    // const bookings = await Booking.findAll({
-    //   where: { id },
-    //   include: [
-    //     {
-    //       model: User,
-    //       attributes: ['id', 'firstName', 'lastName']
-    //     },
-    //   ]
-    //})
     res.json({Bookings: bookingsAll});
 
 });
@@ -534,33 +462,6 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
       });
       }
     }
-    // const existingBooking = await Booking.findOne({
-    //   where: {
-    //     spotId,
-    //     [Op.or]: [
-    //       {
-    //         startDate: {
-    //           [Op.lte]: endDate
-    //         }
-    //       },
-    //       {
-    //         endDate: {
-    //           [Op.gte]: startDate
-    //         }
-    //       }
-    //     ]
-    //   }
-    // });
-
-    // if (existingBooking) {
-    //   return res.status(403).json({
-    //     message: "Sorry, this spot is already booked for the specified dates",
-    //     errors: {
-    //       startDate: "Start date conflicts with an existing booking",
-    //       endDate: "End date conflicts with an existing booking"
-    //     }
-    //   });
-    // }
 
     const booking = await Booking.create({
       spotId,

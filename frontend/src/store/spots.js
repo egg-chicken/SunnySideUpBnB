@@ -1,5 +1,4 @@
 import { csrfFetch } from "./csrf";
-// import { ValidationError } from '../backend/utils/validation.js';
 
 const LOAD_SPOTS = 'spots/LOAD_SPOTS';
 const LOAD_ONE_SPOT = 'spots/LOAD_ONE_SPOT';
@@ -45,7 +44,6 @@ export const getSpots = () => async dispatch => {
 
     if(response.ok) {
         const list = await response.json();
-        // console.log('!!!!!!!!!!!!!!!!', list)
         dispatch(load(list));
         return list;
     }
@@ -67,7 +65,6 @@ export const getOneSpot = (id) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${id}`);
     if(response.ok){
         const spot = await response.json();
-        // console.log('%%%%%%%%%%', spot)
         dispatch(viewOne(spot));
         return spot;
     }
@@ -113,7 +110,6 @@ export const createSpot = (spot) => async dispatch => {
 
 //update a spot
 export const updateSpot = (id, spotInfo) => async dispatch => {
-    // console.log('!!!!!Updating spot:!!!', spot);
     const response = await csrfFetch(`/api/spots/${id}`, {
         method: 'PUT',
         headers: {
@@ -124,7 +120,6 @@ export const updateSpot = (id, spotInfo) => async dispatch => {
 
     if(response.ok) {
         const updated = await response.json();
-        // console.log('UPDATEDDDDDDD', updated)
         dispatch(updateOne(updated));
         return updated;
     }

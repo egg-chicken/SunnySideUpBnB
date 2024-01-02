@@ -58,7 +58,6 @@ function SignupFormModal() {
             required
           />
         </label>
-        {/* {errors.email && <p>{errors.email}</p>} */}
         <label className="user">
           <input
             type="text"
@@ -68,7 +67,6 @@ function SignupFormModal() {
             required
           />
         </label>
-        {/* {errors.username && <p>{errors.username}</p>} */}
         <label className="first-name">
           <input
             type="text"
@@ -78,7 +76,6 @@ function SignupFormModal() {
             required
           />
         </label>
-        {/* {errors.firstName && <p>{errors.firstName}</p>} */}
         <label className="last-name">
           <input
             type="text"
@@ -88,7 +85,6 @@ function SignupFormModal() {
             required
           />
         </label>
-        {/* {errors.lastName && <p>{errors.lastName}</p>} */}
         <label className="password">
           <input
             type="password"
@@ -98,7 +94,6 @@ function SignupFormModal() {
             required
           />
         </label>
-        {/* {errors.password && <p>{errors.password}</p>} */}
         <label className="confirm">
           <input
             type="password"
@@ -108,7 +103,6 @@ function SignupFormModal() {
             required
           />
         </label>
-        {/* {errors.confirmPassword && (<p>{errors.confirmPassword}</p>)} */}
         <div className="style-button">
         <button className='signup-button' disabled={!firstName || !lastName || !email || username.length < 4 || password.length < 6 || (password !== confirmPassword)} type="submit">Sign Up</button>
         </div>

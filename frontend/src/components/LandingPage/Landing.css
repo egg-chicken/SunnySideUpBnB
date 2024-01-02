@@ -1,10 +1,6 @@
 .tiles-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    /* gap: 20px; */
-    /* display: flex; */
-    /* flex-wrap: wrap; */
-    /* justify-content: flex-start; */
     gap: 10px;
     width: 100%;
     padding: 20px;
@@ -19,17 +15,13 @@
 .spot-tile {
     display: flex;
     flex-direction: column;
-    /* border: 1px dotted black; */
     padding: 10px;
     cursor: pointer;
-    /* overflow: hidden; */
     flex-basis: 100%;
-    /* width: 100% */
 }
 
 .image {
     object-fit: cover;
-    /* border: 1px solid black; */
     height: 300px;
     width: 300px;
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useModal } from '../../context/Modal';
 import { useDispatch } from 'react-redux';
 import * as reviewsActions from '../../store/reviews';
-import './createReview.css';
+import './css/createReview.css';
 
 function ReviewModal({id, setIsVisible}) {
     const dispatch = useDispatch();
@@ -21,18 +21,11 @@ function ReviewModal({id, setIsVisible}) {
         if (review && review.length < 10) errors.review = 'Please enter a comment with at least 10 characters.';
         if (stars === 0 ) errors.stars = 'Select a rating';
 
-        // if (Object.keys(errors).length > 0) {
-        //     setErrors(errors);
-        //     return;
-        // }
-
         const payload = {
             id,
             review,
             stars
         };
-
-        // console.log('!!!!REVIEW!!!!!', payload)
 
         setErrors(errors);
 
@@ -49,11 +42,6 @@ function ReviewModal({id, setIsVisible}) {
               })
 
     }
-
-    // const handleButton = e => {
-    //     setReview(e.target.value)
-    //     setIsDisabled(e.target.value.length < 10 || stars === 0);
-    // }
 
     return (
         <>
@@ -92,8 +80,6 @@ function ReviewModal({id, setIsVisible}) {
                     <button type='submit'
                             onClick={handleSubmit}
                             disabled={review.length < 10 || stars === 0}
-                            // className='submit-button'
-                            // className={`submit-button ${isDisabled ? 'accent': ''}`}
                     >
                                 Submit Your Review
                     </button>

@@ -7,25 +7,6 @@ const { Op } = require('sequelize');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
-// const validateSignup = [
-//     check('email')
-//       .exists({ checkFalsy: true })
-//       .isEmail()
-//       .withMessage('Please provide a valid email.'),
-//     check('username')
-//       .exists({ checkFalsy: true })
-//       .isLength({ min: 4 })
-//       .withMessage('Please provide a username with at least 4 characters.'),
-//     check('username')
-//       .not()
-//       .isEmail()
-//       .withMessage('Username cannot be an email.'),
-//     check('password')
-//       .exists({ checkFalsy: true })
-//       .isLength({ min: 6 })
-//       .withMessage('Password must be 6 characters or more.'),
-//     handleValidationErrors
-//   ];
 const validateSignup = [
   check('email')
     .isEmail()
@@ -57,11 +38,8 @@ router.post('/', validateSignup, async (req, res, next) => {
         err.errors = {};
 
         if(emailfind) err.errors.email = 'User with that email already exists'
-        // if(usernameFind) err.errors.username = 'User with that username already exists'
         if(usernameFind) err.errors.username = 'Username must be unique'
         return next (err);
-        // err.errors = 'User with that email already exists'
-        // return next(err);
       }
 
       const user = await User.create({ firstName, lastName, email, username, hashedPassword });

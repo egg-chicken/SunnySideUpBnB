@@ -45,7 +45,6 @@ function LoginFormModal() {
             required
           />
         </label>
-        {/* {errors.credential && (<p className="errors-login">{errors.credential}</p>)} */}
         <label className="password">
           <input
             type="password"
@@ -55,7 +54,6 @@ function LoginFormModal() {
             required
           />
         </label>
-        {/* {errors.password && (<p>{errors.password}</p>)} */}
         <div className="button-style">
         <button className='login-button' disabled={credential.length < 4 || password.length < 6} type='submit'>Log In</button>
         </div>

@@ -2,11 +2,11 @@ import React, { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
-import ReviewModal from '../ReviewModal';
-import DeleteReviewModal from '../DeleteReviewModal';
+import ReviewModal from '../Reviews/create-review-modal';
+import DeleteReviewModal from '../Reviews/delete-review-modal';
 import * as spotsActions from '../../store/spots';
 import * as reviewsActions from '../../store/reviews';
-import './spotDetails.css'
+import './css/spotdetails.css';
 
 const SpotDetails = () => {
     const { id } = useParams();

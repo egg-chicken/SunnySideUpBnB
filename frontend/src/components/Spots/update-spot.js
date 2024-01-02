@@ -33,25 +33,8 @@ const UpdateSpotForm = () => {
                 setDescription(spotdetail?.description)
                 setName(spotdetail?.name)
                 setPrice(spotdetail?.price)
-                // setPreviewImage(spotdetail?.SpotImages[0].url)
-                // setImage1(spotdetail?.SpotImages[1]?.url)
-                // setImage2(spotdetail?.SpotImages[2]?.url)
-                // setImage3(spotdetail?.SpotImages[3]?.url)
-                // setImage4(spotdetail?.SpotImages[4]?.url)
             })
 
-        // if(spot?.SpotImages) {
-        //     const previewImage = spot.SpotImages.find((image) => image.preview);
-        //     const addImages = spot.SpotImages.filter((image) => !image.preview);
-
-        //     setPreviewImage(previewImage?.url || '');
-        //     addImages.forEach((image, index) => {
-        //         if(index === 0) setImage1(image?.url || '');
-        //         if(index === 1) setImage2(image?.url || '');
-        //         if(index === 2) setImage3(image?.url || '');
-        //         if(index === 3) setImage4(image?.url || '');
-        //     });
-        // }
     }, [dispatch, id, history]);
 
 
@@ -71,25 +54,10 @@ const UpdateSpotForm = () => {
             errors.description = 'Description needs 30 or more characters';
         }
         if(!price) errors.price = 'Price is required';
-        // if(!previewImage) errors.previewImage = 'Preview Image is required';
-        // if(previewImage && !previewImage.endsWith('.png') && !previewImage.endsWith('.jpg') && !previewImage.endsWith('.jpeg')) errors.previewImage = 'Image URL must end in .png, .jpg, .jpeg';
-        // if(image1 && !image1.endsWith('.png') && !image1.endsWith('.jpg') && !image1.endsWith('.jpeg')) errors.image1 = 'Image URL must end in .png, .jpg, .jpeg';
-        // if(image2 && !image2.endsWith('.png') && !image2.endsWith('.jpg') && !image2.endsWith('.jpeg')) errors.image2 = 'Image URL must end in .png, .jpg, .jpeg';
-        // if(image3 && !image3.endsWith('.png') && !image3.endsWith('.jpg') && !image3.endsWith('.jpeg')) errors.image3 = 'Image URL must end in .png, .jpg, .jpeg';
-        // if(image4 && !image4.endsWith('.png') && !image4.endsWith('.jpg') && !image4.endsWith('.jpeg')) errors.image4 = 'Image URL must end in .png, .jpg, .jpeg';
 
         setErrors(errors);
 
-        // const spotInfo = { address, city, state, country, name, description, price, url: previewImage, spotImages: []}
         const spotInfo = { address, city, state, country, name, description, price, url: previewImage, spotImages: []}
-        // const spotInfo = { address, city, state, country, name, description, price, SpotImages: [{url: previewImage, preview: true}]}
-        // if(image1) spotInfo.spotImages.push(image1)
-        // if(previewImage) spotInfo.SpotImages.push({url: previewImage, preview: true})
-        // if(image1) spotInfo.SpotImages.push({url: image1, preview: false})
-        // if(image2) spotInfo.spotImages.push(image2)
-        // if(image3) spotInfo.spotImages.push(image3)
-        // if(image4) spotInfo.spotImages.push(image4)
-
 
             if (Object.keys(errors).length > 0) {
                 setErrors(errors);
@@ -104,14 +72,6 @@ const UpdateSpotForm = () => {
                         if(data && data.errors) setErrors(data.errors)
                     })
               }
-    //         dispatch(spotsActions.updateSpot(id, spotInfo))
-    //         .then((spot) => {
-    //             history.push(`/spots/${spot.id}`);
-    //         })
-    //         .catch(async (res) => {
-    //             const data = await res.json();
-    //             if (data && data.errors) setErrors(data.errors);
-    //         });
     }
 
     return (
@@ -221,8 +181,6 @@ const UpdateSpotForm = () => {
                 </div>
                 <p className="border-create"></p>
                 <div className="align-create">
-                {/* <div className="error-message">{errors.previewImage && <p className="special">{errors.previewImage}</p>}</div> */}
-                {/* <div className="error-message">{errors.image1 && <p className="special">{errors.image1}</p>}</div> */}
                 <label className="label-create">
                 <p className="text">Liven up your spot with photos</p>
                     <p className="intro-text">Submit a link to at least one photo to publish your spot.</p>
