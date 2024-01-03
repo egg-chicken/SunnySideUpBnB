@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 import LandingPage from "./components/LandingPage";
 import SpotDetails from "./components/Spots/spot-details.js";
 import CreateSpotForm from "./components/Spots/create-spot.js";
@@ -38,6 +39,7 @@ function App() {
         </Route>
       </Switch>
       )}
+      <Footer isLoaded={isLoaded} />
     </>
   );
 }

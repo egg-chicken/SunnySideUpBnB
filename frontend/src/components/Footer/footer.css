@@ -1,0 +1,35 @@
+footer {
+    border-top: 1px solid lightgray;
+}
+
+.credits {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+ul.icons {
+    display: flex;
+    justify-content: flex-end;
+    cursor: default;
+    list-style: none;
+    padding-left: 0;
+    gap: 10px;
+}
+
+ul.icons li {
+    display: inline-block;
+    padding: 0 1em 0 0;
+}
+
+.fa-github, .fa-linkedin, .fa-envelope {
+   color: #FF5A5F;
+   text-decoration: none;
+   font-size: 24px;
+}
+
+.fa-github:hover,
+.fa-linkedin:hover,
+.fa-envelope:hover {
+    color: lightgray;
+}

@@ -4,7 +4,6 @@
     gap: 10px;
     width: 100%;
     padding: 20px;
-    margin-left: 15px;
 }
 
 .spot-id {
@@ -20,17 +19,11 @@
     flex-basis: 100%;
 }
 
-.image {
-    object-fit: cover;
-    height: 300px;
-    width: 300px;
-}
-
 img.image {
     object-fit: cover;
-    border: 1px solid black;
     height: 300px;
     width: 300px;
+    border-radius: 5%;
 }
 
 .spot-details {

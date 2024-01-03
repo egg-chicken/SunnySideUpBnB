@@ -79,6 +79,7 @@ h1 {
     object-fit: cover;
     align-self: center;
     padding: 5px;
+    border-radius: 5% 0 0 5%;
 }
 
 .spot-image-tiles {
