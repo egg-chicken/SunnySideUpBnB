@@ -76,3 +76,8 @@ ul.profile-dropdown.hidden {
     border: none;
     padding: 0;
 }
+
+.spot-location {
+    margin: 14px 0 0;
+    font-size: 14px;
+}

@@ -18,7 +18,8 @@ const LandingPage = () => {
     const defaultImage = 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688368793/airbnb-proj/No-Image-Placeholder_wthyue.svg'
 
     return (
-        <main className='tiles-container'>
+        <main >
+            <div className='tiles-container'>
             {spots && spotsArray.map((spot) => (
                 <div key={spot.id} className='spot-tile'>
                     <div  className='tooltip'>
@@ -41,6 +42,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             ))}
+            </div>
         </main>
     )
 }
