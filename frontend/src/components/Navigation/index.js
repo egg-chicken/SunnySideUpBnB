@@ -9,7 +9,7 @@ function Navigation({ isLoaded }){
 
   return (
       <div className='navbar'>
-        <div className='home'>
+        <div>
           <NavLink exact to="/" className='nav-link home-link'>
             <i className='fas fa-brands fa-airbnb fa-rotate-180'/>
             airbnb
@@ -17,7 +17,7 @@ function Navigation({ isLoaded }){
         </div>
         <div className='right-nav-side'>
           {sessionUser && (
-              <NavLink to='/spots/new' className='nav-link'>
+              <NavLink to='/spots/new' className='nav-link create-spot'>
                   Create a New Spot
               </NavLink>
           )}

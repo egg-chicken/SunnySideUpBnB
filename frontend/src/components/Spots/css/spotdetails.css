@@ -111,6 +111,31 @@ h1 {
     width: 100%;
     font-size: 14pt;
 }
+
 .review-section {
     padding: 5px;
+    border-top: 1px solid #000000;
+}
+
+.review-text {
+    font-weight: light;
+    font-size: 12pt;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+.review-header {
+    font-size: 18pt;
+}
+
+.date {
+    font-weight: light;
+    font-size: 12pt;
+    margin: 0px;
+}
+
+.user-firstname {
+    font-weight: bold;
+    font-size: 12pt;
+    margin: 0px;
 }
