@@ -21,7 +21,7 @@ const LandingPage = () => {
         <main >
             <div className='tiles-container'>
                 {spotsArray.map((spot) => (
-                    <Link key={spot.id} className='spot-id spot-tile' to={`spots/${spot.id}`}>
+                    <Link key={spot.id} className='spot-tile' to={`spots/${spot.id}`}>
                         <img src={spot.previewImage || defaultImage} alt='preview' className='image' title={spot.name} onError={(e) => {
                             e.target.src = 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688368793/airbnb-proj/No-Image-Placeholder_wthyue.svg';
                             e.onError = null;}}/>

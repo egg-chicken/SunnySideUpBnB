@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import DeleteModal from './delete-spot-modal';
 import OpenModalButton from '../OpenModalButton';
 import * as spotsActions from '../../store/spots';
-
+import  './css/manage-spots.css';
 
 const ManageSpots = () => {
     const dispatch = useDispatch();
@@ -27,14 +27,12 @@ const ManageSpots = () => {
                     e.stopPropagation()
                     history.push(`/spots/new`)
                     }}>Create a New Spot</button>
-            ): (
+            ):(
             <main className='tiles-container'>
-            {spots && spotsArray.map((spot) => (
-                <div key={spot.id} className='spot-tile'>
-                    <div  className='tooltip'>
+                {spotsArray.map((spot) => (
+                    <div key={spot.id} className='spot-tile'>
                         <Link className='spot-id' to={`/spots/${spot.id}`}>
-                            <p className='tooltiptext'>{spot.name}</p>
-                            <img src={spot.previewImage || defaultImage} alt='Spot Preview' className='image'title={spot.name}/>
+                            <img src={spot.previewImage || defaultImage} alt='preview' className='image' title={spot.name}/>
                             <div className='spot-details'>
                                 <div className='local-rating'>
                                     <p className='spot-location'>{`${spot.city}, ${spot.state}`}</p>
@@ -45,26 +43,21 @@ const ManageSpots = () => {
                                 </div>
                                 <p className='spot-price'>{`$${spot.price} night`}</p>
                             </div>
-
-
                         </Link>
-                        <button onClick={(e) => {
+                        <div>
+                            <button onClick={(e) => {
                                 e.stopPropagation()
                                 history.push(`/spots/${spot.id}/edit`)
                                 }}>Update</button>
-
-                                    <OpenModalButton
-                                        modalComponent={<DeleteModal id={spot.id}/>}
-                                        buttonText = 'Delete'
-                                    />
-
-
-
+                            <OpenModalButton
+                                modalComponent={<DeleteModal id={spot.id}/>}
+                                buttonText = 'Delete'
+                            />
+                        </div>
                     </div>
-                </div>
-            ))}
-        </main>
-        )}
+                ))}
+            </main>
+            )}
         </>
     )
 };
