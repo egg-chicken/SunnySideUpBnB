@@ -1,21 +1,24 @@
 .tiles-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 4fr));
+    gap: 15px;
     width: 100%;
-    padding: 10px;
+    padding: 10px 10px 30px;
 }
 
-.spot-id {
-    text-decoration: none;
-    color: black;
+@media (min-width:1200px) {
+    .tiles-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .spot-tile {
     display: flex;
     flex-direction: column;
-    padding: 5px;
     cursor: pointer;
+    text-decoration: none;
+    color: black;
+    padding: 5px;
 }
 
 img.image {
@@ -24,8 +27,13 @@ img.image {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 5px;
+}
+
+img {
+    min-height: 300px;
+    min-width: 250px;
 }
 
 .spot-details {
@@ -53,16 +61,6 @@ img.image {
     margin: 0px;
     font-size: 12pt;
 }
-
- .tooltip .tooltiptext {
-    visibility: hidden;
-    padding: 0px;
-    position: absolute;
- }
-
- .tooltip:hover .tooltiptext {
-    visibility: hidden;
- }
 
  .price-child {
     font-weight: bold;
