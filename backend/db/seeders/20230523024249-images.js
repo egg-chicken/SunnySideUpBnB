@@ -203,7 +203,7 @@ module.exports = {
       },
       {
         //id: 5,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240550/airbnb-proj/spot5/spot5-preview.webp',
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240550/airbnb-proj/spot5/spot5_preview.webp',
         preview: true,
         imageableId: 5,
         imageableType: 'Spot',
@@ -248,7 +248,7 @@ module.exports = {
       },
       {
         //id: 6,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688237804/airbnb-proj/spot4/outdoor-cabin.webp',
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240735/airbnb-proj/spot6/spot6_front_home_night.webp',
         preview: true,
         imageableId: 6,
         imageableType: 'Spot',
