@@ -23,7 +23,7 @@ module.exports = {
     await queryInterface.bulkInsert(options, [
       {
         //id: 1,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688021129/airbnb-proj/spot1/d4ce648e8d26d05a403bee6d0c8fa356-cc_ft_1536_p9piom.webp',//real pic
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688021129/airbnb-proj/spot1/spot1-review.webp',//real pic
         preview: true,
         imageableId: 1,
         imageableType: 'Spot',
@@ -68,7 +68,7 @@ module.exports = {
       },
       {
         //id: 2,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236686/airbnb-proj/spot2/a24da633f031c7df91327f827c7145bc-cc_ft_960_xryur9.webp',
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236686/airbnb-proj/spot2/preview-spot2.webp',
         preview: true,
         imageableId: 2,
         imageableType: 'Spot',
@@ -113,7 +113,7 @@ module.exports = {
       },
       {
         //id: 3,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236906/airbnb-proj/spot3/2beb143557e1c44cb58b125e0b7348dc-cc_ft_960_lksyf2.webp',
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688236906/airbnb-proj/spot3/preview-spot3.webp',
         preview: true,
         imageableId: 3,
         imageableType: 'Spot',
@@ -158,7 +158,7 @@ module.exports = {
       },
       {
         //id: 4,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688237804/airbnb-proj/spot4/6efb1b04e3b6554583eefe156ee8ac57-cc_ft_960_ssxsj2.webp',
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688237804/airbnb-proj/spot4/outdoor-cabin.webp',
         preview: true,
         imageableId: 4,
         imageableType: 'Spot',
@@ -203,7 +203,7 @@ module.exports = {
       },
       {
         //id: 5,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240550/airbnb-proj/spot5/114a1cc7ef9f08cce4ba5785977bec5c-cc_ft_960_tlcolh.webp',
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240550/airbnb-proj/spot5/spot5-preview.webp',
         preview: true,
         imageableId: 5,
         imageableType: 'Spot',
@@ -248,7 +248,7 @@ module.exports = {
       },
       {
         //id: 6,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240735/airbnb-proj/spot6/114d81583719f117e368bd17242c7a30-cc_ft_384_cqe1zd.webp',
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688237804/airbnb-proj/spot4/outdoor-cabin.webp',
         preview: true,
         imageableId: 6,
         imageableType: 'Spot',
@@ -293,7 +293,7 @@ module.exports = {
       },
       {
         //id: 7,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241072/airbnb-proj/spot7/a0e20848fedd8d3c52936acc28c9f6ac-cc_ft_960_sywd8a.webp',
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241072/airbnb-proj/spot7/home-garden-preview.webp',
         preview: true,
         imageableId: 7,
         imageableType: 'Spot',
@@ -338,7 +338,7 @@ module.exports = {
       },
       {
         //id: 8,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241658/airbnb-proj/spot8/f591e0991e6bcd0453a0409082abe386-cc_ft_960_viqppm.webp',
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688241658/airbnb-proj/spot8/cube-preview.webp',
         preview: true,
         imageableId: 8,
         imageableType: 'Spot',
