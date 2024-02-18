@@ -35,7 +35,7 @@ img.image {
 
 .spot-details {
     font-size: 12pt;
-    width: 300px;
+    width: 100%;
 }
 
 .local-rating {
@@ -43,7 +43,6 @@ img.image {
     justify-content: space-between;
     font-size: 12pt;
     align-items: baseline;
-
 }
 
 .spot-rating {
