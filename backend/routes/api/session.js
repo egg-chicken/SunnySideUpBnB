@@ -32,12 +32,8 @@ router.post('/', validateLogin, async (req, res, next) => {
     });
 
     if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
-      // const err = new Error('Login failed');
-      // const err = new Error('Invalid Credentials');
-
       const err = new Error('The provided credentials were invalid.')
       err.status = 401;
-      // err.message = 'Invalid Credentials';
       return next(err);
     }
 
@@ -57,33 +53,28 @@ router.post('/', validateLogin, async (req, res, next) => {
 });
 
 // Log out
-router.delete(
-    '/',
-    (_req, res) => {
+router.delete('/', (_req, res) => {
       res.clearCookie('token');
       return res.json({ message: 'success' });
-    }
-  );
+});
 
 // Restore session user
-router.get(
-    '/',
-    (req, res) => {
-      const { user } = req;
-      if (user) {
-        const safeUser = {
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          username: user.username,
-          createdAt: user.createdAt,
-          updatedAt: user.updatedAt
-        };
-        return res.json({
-          user: safeUser
-        });
-      } else return res.json({ user: null });
-    }
-  );
-  module.exports = router;
+router.get('/', (req, res) => {
+    const { user } = req;
+    if (user) {
+      const safeUser = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        username: user.username,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      };
+      return res.json({
+        user: safeUser
+      });
+    } else return res.json({ user: null });
+});
+
+module.exports = router;

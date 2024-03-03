@@ -8,8 +8,6 @@ const { requireAuth } = require('../../utils/auth');
 router.delete('/:id', requireAuth, async (req, res) => {
     const userId = +req.user.id;
     const { id } = req.params;
-    //const imageId = +req.params.imageableId;
-
     const image = await Image.findByPk(id);
 
     if(!image) {
@@ -22,8 +20,8 @@ router.delete('/:id', requireAuth, async (req, res) => {
         const spot = await image.getSpot();
 
         if(userId !== spot.ownerId){
-                return res.status(403).json({ message: "Forbidden" });
-            }
+            return res.status(403).json({ message: "Forbidden" });
+        }
     }
 
     await image.destroy();

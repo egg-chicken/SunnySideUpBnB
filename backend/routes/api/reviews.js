@@ -69,7 +69,6 @@ router.post('/:id/images', requireAuth, async (req, res) => {
     const reviewId  = req.params.id;
     const { url } = req.body;
     const userId = req.user.id;
-
     const review = await Review.findByPk(reviewId);
 
     if(!review){
@@ -141,7 +140,6 @@ router.put('/:id', requireAuth, async (req, res) => {
 //delete a review
 router.delete('/:id', requireAuth, async (req, res) => {
     const reviewId = req.params.id;
-    //const ownerId = req.user.id
 
     const review = await Review.findOne({
         where: { id: reviewId }
@@ -159,10 +157,5 @@ router.delete('/:id', requireAuth, async (req, res) => {
 
     res.status(200).json({ message: 'Successfully deleted' });
 });
-
-
-
-
-
 
 module.exports = router;
