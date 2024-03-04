@@ -41,6 +41,13 @@
     padding: 5px;
 }
 
+.label-create-small {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    padding: 5px;
+}
+
 .border-create {
     border-top: 1px solid black;
     margin: 10px;
@@ -49,17 +56,31 @@
 .input-create {
     width: 400px;
 }
+
+.input-create-small {
+    width: 200px;
+}
+
 .align-create-button {
     display: grid;
     justify-items: center;
 }
+
 .create-button {
     display: grid;
     justify-items: center;
     color:white;
-    background-color: #FF5A5F;
-    box-shadow: 2px 2px 2px black;
     cursor: pointer;
-    border: 1px solid black;
+    border-style: none;
+    background: hsla(0, 100%, 77%, 1);
+    background: linear-gradient(90deg, hsla(0, 100%, 77%, 1) 0%, hsla(358, 77%, 54%, 1) 0%, hsla(331, 83%, 55%, 1) 100%);
+    background: -moz-linear-gradient(90deg, hsla(0, 100%, 77%, 1) 0%, hsla(358, 77%, 54%, 1) 0%, hsla(331, 83%, 55%, 1) 100%);
+    background: -webkit-linear-gradient(90deg, hsla(0, 100%, 77%, 1) 0%, hsla(358, 77%, 54%, 1) 0%, hsla(331, 83%, 55%, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF8A8A", endColorstr="#E42D33", GradientType=1 );
+    border-radius: 4px;
+    width: 100px;
+}
 
+.create-button:hover {
+    box-shadow: 2px 2px 10px 2px lightgray;
 }

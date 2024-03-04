@@ -85,29 +85,28 @@ const CreateSpotForm = () => {
     }
 
     return (
-        <>
-            <div className="form-create">
-                <div className="Intro">
-                    <h2>Create a New Spot</h2>
-                    <p className="text">Where's your place located?</p>
-                    <p className="intro-text">Guests will only get your exact address once they booked a reservation.</p>
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <div className="align-create">
+        <div className="form-create">
+            <div className="Intro">
+                <h2>Create a New Spot</h2>
+                <p className="text">Where's your place located?</p>
+                <p className="intro-text">Guests will only get your exact address once they booked a reservation.</p>
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="align-create">
                     <div className="error-message">{errors.country && <p className="special">{errors.country}</p>}</div>
-                    <label className="label-create">
-                         Country
-                        <input
-                            className="input-create"
-                            type='text'
-                            placeholder="Country"
-                            value={country}
-                            onChange={(e) => setCountry(e.target.value)}
-                        />
-                    </label>
+                        <label className="label-create">
+                                Country
+                            <input
+                                className="input-create"
+                                type='text'
+                                placeholder="Country"
+                                value={country}
+                                onChange={(e) => setCountry(e.target.value)}
+                            />
+                        </label>
                     </div>
-                    <div className="align-create">
-                    <div className="error-message">{errors.address && <p className="special">{errors.address}</p>}</div>
+                <div className="align-create">
+                <div className="error-message">{errors.address && <p className="special">{errors.address}</p>}</div>
                     <label className="label-create">
                         Street Address
                         <input
@@ -116,38 +115,38 @@ const CreateSpotForm = () => {
                             placeholder="Address"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
-                    />
+                        />
                     </label>
-                    </div>
-                    <div className="error-message">{errors.city && <p className="special">{errors.city}</p>}</div>
-                    <div className="error-message">{errors.state && <p className="special">{errors.state}</p>}</div>
-                    <div className="organize-create">
-                    <div className="align-create">
-                    <label className="label-create city">
+                </div>
+                <div className="error-message">{errors.city && <p className="special">{errors.city}</p>}</div>
+                <div className="error-message">{errors.state && <p className="special">{errors.state}</p>}</div>
+                <div className="organize-create">
+                <div className="align-create">
+                    <label className="label-create-small city">
                         City
                         <input
-                            className="input-create"
+                            className="input-create-small"
                             type='text'
                             placeholder="City"
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
                         />
                     </label>
-                    </div>
-                    <div className="align-create">
-                    <label className="label-create state">
+                </div>
+                <div className="align-create">
+                    <label className="label-create-small state">
                         State
                         <input
-                            className="input-create"
+                            className="input-create-small"
                             type='text'
-                            placeholder="STATE"
+                            placeholder="State"
                             value={state}
                             onChange={(e) => setState(e.target.value)}
                         />
                     </label>
-                    </div>
-                    </div>
-                    <div className="align-create">
+                </div>
+                </div>
+                <div className="align-create">
                     <label className="label-create border-create">
                     <div className="error-message">{errors.description && <p className="special">{errors.description}</p>}</div>
                     <p className="text">Describe your place to guests</p>
@@ -160,8 +159,8 @@ const CreateSpotForm = () => {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </label>
-                    </div>
-                    <div className="align-create">
+                </div>
+                <div className="align-create">
                     <label className="label-create border-create">
                     <div className="error-message">{errors.name && <p className="special">{errors.name}</p>}</div>
                         <p className="text">Create a title for your spot</p>
@@ -174,8 +173,8 @@ const CreateSpotForm = () => {
                             onChange={(e) => setName(e.target.value)}
                         />
                     </label>
-                    </div>
-                    <div className="align-create">
+                </div>
+                <div className="align-create">
                     <label className="label-create border-create">
                     <div className="error-message">{errors.price && <p className="special">{errors.price}</p>}</div>
                     <p className="text">Set a base price for your spot</p>
@@ -188,57 +187,56 @@ const CreateSpotForm = () => {
                             onChange={(e) => setPrice(e.target.value)}
                         />
                     </label>
-                    </div>
-                    <p className="border-create"></p>
-                    <div className="align-create">
-                    <div className="error-message">{errors.previewImage && <p className="special">{errors.previewImage}</p>}</div>
-                    <label className="label-create">
-                    <p className="text">Liven up your spot with photos</p>
-                        <p className="intro-text">Submit a link to at least one photo to publish your spot.</p>
-                        <input
-                            className="input-create"
-                            type='text'
-                            placeholder="Preview Image URL"
-                            value={previewImage}
-                            onChange={(e) => setPreviewImage(e.target.value)}
-                        />
-                        <input
-                            className="input-create"
-                            type='text'
-                            placeholder="Image URL"
-                            value={image1}
-                            onChange={(e) => setImage1(e.target.value)}
-                        />
-                        <input
-                            className="input-create"
-                            type='text'
-                            placeholder="Image URL"
-                            value={image2}
-                            onChange={(e) => setImage2(e.target.value)}
-                        />
-                        <input
-                            className="input-create"
-                            type='text'
-                            placeholder="Image URL"
-                            value={image3}
-                            onChange={(e) => setImage3(e.target.value)}
-                        />
-                        <input
-                            className="input-create"
-                            type='text'
-                            placeholder="Image URL"
-                            value={image4}
-                            onChange={(e) => setImage4(e.target.value)}
-                        />
-                    </label>
-                    </div>
-                    <p className="border-create"></p>
-                    <div className="align-create-button">
-                        <button className='create-button'type='submit'>Create Spot</button>
-                    </div>
-                </form>
-            </div>
-        </>
+                </div>
+                <p className="border-create"></p>
+                <div className="align-create">
+                <div className="error-message">{errors.previewImage && <p className="special">{errors.previewImage}</p>}</div>
+                <label className="label-create">
+                <p className="text">Liven up your spot with photos</p>
+                    <p className="intro-text">Submit a link to at least one photo to publish your spot.</p>
+                    <input
+                        className="input-create"
+                        type='text'
+                        placeholder="Preview Image URL"
+                        value={previewImage}
+                        onChange={(e) => setPreviewImage(e.target.value)}
+                    />
+                    <input
+                        className="input-create"
+                        type='text'
+                        placeholder="Image URL"
+                        value={image1}
+                        onChange={(e) => setImage1(e.target.value)}
+                    />
+                    <input
+                        className="input-create"
+                        type='text'
+                        placeholder="Image URL"
+                        value={image2}
+                        onChange={(e) => setImage2(e.target.value)}
+                    />
+                    <input
+                        className="input-create"
+                        type='text'
+                        placeholder="Image URL"
+                        value={image3}
+                        onChange={(e) => setImage3(e.target.value)}
+                    />
+                    <input
+                        className="input-create"
+                        type='text'
+                        placeholder="Image URL"
+                        value={image4}
+                        onChange={(e) => setImage4(e.target.value)}
+                    />
+                </label>
+                </div>
+                <p className="border-create"></p>
+                <div className="align-create-button">
+                    <button className='create-button'type='submit'>Create Spot</button>
+                </div>
+            </form>
+        </div>
     )
 }
 export default CreateSpotForm;
