@@ -195,7 +195,6 @@ router.get('/:id', async (req, res) => {
     detailIdInfo.avgStarRating = numReviewsInfo.avgStarRating
 
     res.json(detailIdInfo);
-
 });
 
 //create a spot
@@ -416,6 +415,7 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
 
     for(let i = 0; i < bookingId.length; i ++){
       let reservedSpot = bookingId[i];
+
       if(startDate <= reservedSpot.endDate && startDate >= reservedSpot.startDate){
         return res.status(400).json({
           message: "Sorry, this spot is already booked for the specified dates",
