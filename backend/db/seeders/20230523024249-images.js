@@ -248,7 +248,7 @@ module.exports = {
       },
       {
         //id: 6,
-        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240735/airbnb-proj/spot6/spot6_front_home_night.webp',
+        url: 'https://res.cloudinary.com/dc5lrkblw/image/upload/v1688240735/airbnb-proj/spot6/preview_image_spot6.webp',
         preview: true,
         imageableId: 6,
         imageableType: 'Spot',
