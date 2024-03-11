@@ -78,7 +78,7 @@ const UpdateSpotForm = () => {
         <>
         <div className="form-create">
             <div className="Intro">
-                <h2>Update your Spot</h2>
+                <h2>Update Your Listing</h2>
                 <p className="text">Where's your place located?</p>
                 <p className="intro-text">Guests will only get your exact address once they booked a reservation.</p>
             </div>
