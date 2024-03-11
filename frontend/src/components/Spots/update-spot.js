@@ -113,10 +113,10 @@ const UpdateSpotForm = () => {
                 <div className="error-message">{errors.state && <p className="special">{errors.state}</p>}</div>
                 <div className="organize-create">
                 <div className="align-create">
-                <label className="label-create city">
+                <label className="label-create-small city">
                     City
                     <input
-                        className="input-create"
+                        className="input-create-small"
                         type='text'
                         placeholder="City"
                         value={city}
@@ -125,12 +125,12 @@ const UpdateSpotForm = () => {
                 </label>
                 </div>
                 <div className="align-create">
-                <label className="label-create state">
+                <label className="label-create-small state">
                     State
                     <input
-                        className="input-create"
+                        className="input-create-small"
                         type='text'
-                        placeholder="STATE"
+                        placeholder="State"
                         value={state}
                         onChange={(e) => setState(e.target.value)}
                     />
@@ -142,7 +142,7 @@ const UpdateSpotForm = () => {
                 <div className="error-message">{errors.description && <p className="special">{errors.description}</p>}</div>
                 <p className="text">Describe your place to guests</p>
                     <p className="intro-text">Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
-                    <input
+                    <textarea
                         className="input-create"
                         type='text'
                         placeholder="Please write at least 30 characters"

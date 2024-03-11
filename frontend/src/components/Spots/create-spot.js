@@ -151,7 +151,7 @@ const CreateSpotForm = () => {
                     <div className="error-message">{errors.description && <p className="special">{errors.description}</p>}</div>
                     <p className="text">Describe your place to guests</p>
                         <p className="intro-text">Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
-                        <input
+                        <textarea
                             className="input-create"
                             type='text'
                             placeholder="Please write at least 30 characters"
